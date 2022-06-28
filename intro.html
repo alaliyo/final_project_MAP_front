@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Plane</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="static/main.css" rel="stylesheet">
+    <link href="static/intro.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="menu">
+        <div style="height: 80px;">
+            <div class="menu_box">
+                <a href="home.html" class="menu_btn position" style="display: block; float: left">
+                    <b style="font-size: 30px;">MAP</b>
+                    <h7>Make A Plane</h7>
+                </a>
+                <div class="position" style="float: right;" >
+                    <a class="remote_btn position_right" href="login.html">
+                        <div class="menu_btn" style="font-size: 19px;">로그인</div>
+                    </a>
+                    <a class="remote_btn position_right">
+                        <div class="menu_btn" style="font-size: 19px;">설명서</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div style="height:100vh;">
+        <div class="title-_box">
+            <div style=" line-height: 100px;">
+                <h1 style="font-size:100px">MAP</h1>
+                <p style="font-size:40px">Make A Plane</p>
+            </div>
+            <div class="start_btn_back" onclick="location.href='home.html'">
+                <a id="start_btn" class="start_btn">시작하기</a>
+            </div>
+        </div>
+        <div style="float: right; width: 60%;">
+            <video autoplay muted loop>
+                <source src="static/intro_video.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</body>
+</html>

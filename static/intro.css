@@ -1,0 +1,65 @@
+/* 상단 메뉴 */
+.menu {
+    table-layout: fixed;
+    overflow:auto;
+    width: 100%;
+}
+.menu_box {
+    height: 80px;
+    padding: 10px;
+}
+/* 로그인 여행지 MAP*/
+.menu_btn {
+    color: black;
+    display: block;
+    margin: aout;
+}
+/* 로그인 여행지 */
+.menu_btn:hover {
+        color: rgb(95, 214, 175);
+        transition: 0.3s ease-in-out;
+}
+.remote_btn {
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
+}
+.position_right {
+    float: right;
+}
+/* MAP */
+.position {
+    height: 80px;
+    padding-left: 20px;
+}
+
+
+/* 시작하기 스위치 css */
+.title-_box {
+    float: left;
+    width: 40%;
+    text-align:center;
+    padding : 100px 0;
+}
+.start_btn_back {
+    background-color: aquamarine;
+    height: 100px;
+    width: 200px;
+    margin: 0px auto;
+    border-radius: 10px;
+    text-align: center;
+    line-height : 100px;
+}
+.start_btn {
+    color: white;
+    font-size: 30px;
+    
+}
+/* 테그 마우스 오버 시 색 변환 */
+.start_btn:hover {
+    color: white;
+}

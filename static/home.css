@@ -1,0 +1,79 @@
+
+
+/* 검색창 Backgtound img css */
+.field_background {
+    background-image: url("123.png");
+    background-size: cover;
+    background-position: center;
+    padding-top: 300px;
+    padding-bottom: 60px;
+}
+
+/* a 하이퍼링크 검정색으로 변환  */
+a:link {
+    color: black;
+}
+
+/* 카드_박스_css */
+.card_box {
+    height: auto;
+    min-height: 100px;
+    width: 1040px;
+    margin: auto;
+}
+.cards {
+    margin: auto;
+
+/* 카드_css */
+}
+.card {
+    box-shadow: 1px 1px 7px gray ;
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+    float:left;
+    position: relative;
+    
+    
+}
+/* 카드 이미지 css */
+.card_img_box {
+    display: block;
+    width: 300px;
+    height: 280px;
+}
+.card_img {
+    display: block;
+    margin: auto;
+    padding-top: 25px;
+    width: 250px;
+    height: 250px;
+}
+
+.card_title {
+    display: block;
+    margin-left: 15px;
+    color: black;
+    font-size: 25px;
+}
+.card_contents {
+    display: block;
+    margin-left: 15px;
+    color: black;
+    font-size: 15px;
+}
+
+/* 아이콘 css */
+.like_icon {
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+.icon_box {
+    float:right;
+}
+#result {
+    display: block;
+    float: right;
+    margin-right: 10px;
+}

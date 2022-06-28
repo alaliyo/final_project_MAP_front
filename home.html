@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Plane</title>
+    <!-- 부트스트랩 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- css와 font -->
+    <link href="static/home.css" rel="stylesheet">
+    <link href="static/main.css" rel="stylesheet">
+    <link href="static/header.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+
+<body>
+        <!-- 윗 메뉴 바 -->
+    <nav class="menu">
+        <div style="height: 80px;">
+            <div class="menu_box">
+                <a href="home.html" class="menu_btn position" style="display: block; float: left">
+                    <b style="font-size: 30px;">MAP</b>
+                    <h7>Make A Plane</h7>
+                </a>
+                <div class="position" style="float: right;" >
+                    <a class="remote_btn position_right" href="login.html">
+                        <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
+                    </a>
+                    <a class="remote_btn position_right" href="login.html">
+                        <div class="menu_btn "  style="font-size: 19px;">로그인</div>
+                    </a>
+                    <a class="remote_btn position_right" href="mypage.html">
+                        <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="field has-addons field_background">
+        <div class="control" style="margin:auto;">
+            <input id = "input-local" class="input" style="width: 700px; height: 40px;" type="text" placeholder="지역을 입력하세요">
+            <buttun class="button is-info" onclick="check_local()" style="height: 40px; float:right;">검색</buttun>
+        </div>
+    </div>
+    <div class="card_box">
+        <div id="cards" class="cards">
+            <div class="card">
+                <a class="card_img_box" href="detail.html">
+                    <img class="card_img" src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"/>
+                </a>
+                <div>
+                    <a href="detail.html">
+                        <p class="card_title">제목</p>
+                    </a>
+                </div>
+                <div class="watch_add">
+                    <div class="icon_box">
+                        <a style="color: black;">
+                            <img class="like_icon"
+                            type="button" onclick="counnt('fillHeartRed')"
+                            src="static/like-icon-off.png"/>
+                            <img class="like_icon"
+                            type="button" onclick="counnt('fillHeartRed')"
+                            src="static/like-icon-on.png"/>
+                            <p id="result">0</p>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </div> 
+
+
+    <script>
+        // 게시물 api get
+        function check_local() {
+            $('#cards').empty()
+            $.ajax({
+                type: "GET",
+                url: "/trip/index/posts",
+                data: {},
+                success: function (cards) {
+                    let card = cards['result']
+                    console.log(cards['result'])
+                    for (let i = 0; i < card.length; i++) {
+                        const id = card[i]['id']
+                        const image = card[i]['img']
+                        const title = card[i]['title']
+                        const content = card[i]['content']
+                        const temp_html = `<div class="card" id="${id}">
+                                            <a class="card_img_box" href="detail.html">
+                                                <img class="card_img" src="${image}"/>
+                                            </a>
+                                            <a href="detail.html">
+                                                <p class="card_title">${title}</p>
+                                            </a>
+                                            <a href="detail.html">
+                                                <p class="card_contents">${content}</p>
+                                            </a>
+                                        </div>`
+                                        $('#cards').append(temp_html)
+                    }
+                }
+            })
+        }
+    const heatrSvg = document.querySelector('.like_icon');
+    const heartPath = document.querySelector('.like_icon');
+
+    heartSvg.addEventListener('click', () => changeClass(heartSvg, heartPath));
+    function fillHeartRed(heartSvg, heartPath){
+        if(heartSvg.classList.contains("like-default")){
+            heartSvg.classList.remove("like-default");
+            heartSvg.classList.add("like-fill");
+            heartPath.setAttribute('d','M34.6 3....')
+        }
+        else{
+            heartSvg.classList.remove("like-fill");
+            heartSvg.classList.add("like-default");
+            heartPath.setAttribute('d','M34.6 6....')
+        }
+    }        
+ 
+    </script>
+
+
+</body>
+</html>

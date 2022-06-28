@@ -1,0 +1,42 @@
+.card-box {
+    width: 320px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    border: 5px solid #c3c8cd;
+    border-radius: 15px;
+}
+
+.card-image {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    display: block;
+}
+
+.card-footer-item {
+    margin-bottom: -20px;
+    font-size: 25px;
+}
+
+a:link {
+    color: black;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.post-title {
+    color: black;
+}
+
+.card-footer-item {
+    color: black;
+}
+
+.card-footer-item:hover {
+    color: rgb(95, 214, 175);
+    transition: 0.3s ease-in-out;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Plane</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="static/main.css" rel="stylesheet">
+    <link href="static/intro.css" rel="stylesheet">
+    <link href="static/mypage.css" rel="stylesheet">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <script>
+
+        function logout(){
+            $.removeCookie('mytoken');
+            alert('로그아웃!')
+            window.location.href = '/'
+        }
+
+        function delete_word(postid) {
+            $.ajax({
+                type: "POST",
+                url: `/trip/posts/delete`,
+                data: {
+                    postid : postid,
+                },
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            get_mypost();
+        });
+
+        function get_mypost() {
+           // if (username == undefined)
+           // username == ""
+           // console.log(username)
+
+            $.ajax({
+                type: "GET",
+                url: '/mypage/getmypost',
+                data: {},
+                success: function (response) {
+                    let rows = response['mypost']
+                    for (let i = 0; i < rows.length; i++) {
+                        let title = rows[i]['title']
+                        let postid = rows[i]['postid']
+                        let img = rows[i]['img']
+                        console.log(rows)   // 콘솔에 출력됨
+                         //card-image 에 onclick 넣어서 상세페이지로 이동하게 만들기
+
+                        let temp_html =
+                        $('#card-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
+</head>
+    <nav class="menu">
+        <div style="height: 80px;">
+            <div class="menu_box">
+                <a href="home.html" class="menu_btn position" style="display: block; float: left">
+                    <b style="font-size: 30px;">MAP</b>
+                    <h7>Make A Plane</h7>
+                </a>
+                <div class="position" style="float: right;" >
+                    <a class="remote_btn position_right" href="login.html">
+                        <div class="menu_btn" style="font-size: 19px;">로그아웃</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div class="box" style="margin: 178px 80px auto 80px">
+    <h1 style="font-size: 50px; text-align: center" id="idname"> 마이 페이지 입니다</h1>
+    <hr style="background: #c0c0c0">
+    <div class="cards" id="card-box">
+        <div class="card-box box">
+            <div class="mycards">
+                <div class="card-image">
+                    <a href="detail.html">
+                        <figure class="image is-1by1">
+                            <img src="static/index_backdrop_img.jpg" alt="Placeholder image" />
+                        </figure>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <div class="media" style="padding-bottom: 15px">
+                        <div class="media-content">
+                            <a href="detail.html" class="post-title" style="font-size: 40px">제목</a>
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <!--  편집 삭제 onclick 지정해주기-->
+                        <a href="#" class="card-footer-item" onclick="">수정</a>
+                        <a href="#" class="card-footer-item" onclick="delete_word()">삭제</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
