@@ -36,6 +36,11 @@
                         <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
                     </a>
                 </div>
+                <div class="plan_btn_box">
+                    <a href="plan.html" class="plan_btn" >
+                        여행 설계
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -82,26 +87,26 @@
             $('#cards').empty()
             $.ajax({
                 type: "GET",
-                url: "/trip/index/posts",
+                url: "/trip/user/posts",
                 data: {},
                 success: function (cards) {
                     let card = cards['result']
                     console.log(cards['result'])
                     for (let i = 0; i < card.length; i++) {
-                        const id = card[i]['id']
+                        const indec = card[i]['index']
                         const image = card[i]['img']
                         const title = card[i]['title']
                         const content = card[i]['content']
-                        const temp_html = `<div class="card" id="${id}">
-                                            <a class="card_img_box" href="detail.html">
-                                                <img class="card_img" src="${image}"/>
-                                            </a>
-                                            <a href="detail.html">
-                                                <p class="card_title">${title}</p>
-                                            </a>
-                                            <a href="detail.html">
-                                                <p class="card_contents">${content}</p>
-                                            </a>
+                        const temp_html = `<div class="card" id="${idex}">
+                                                <a class="card_img_box" href="detail.html">
+                                                    <img class="card_img" src="${image}"/>
+                                                </a>
+                                                <a href="detail.html">
+                                                    <p class="card_title">${title}</p>
+                                                </a>
+                                                <a href="detail.html">
+                                                    <p class="card_contents">${content}</p>
+                                                </a>
                                         </div>`
                                         $('#cards').append(temp_html)
                     }

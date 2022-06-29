@@ -31,4 +31,24 @@
 .position {
     height: 80px;
     padding-left: 20px;
+    position:relative;
+}
+.z-in {
+    z-index: 1;
+}
+/* plan_btn_css */
+.plan_btn{
+    color: white;
+    font-size: 25px;
+}
+.plan_btn:hover {
+    color: aquamarine;
+    transition: 0.3s ease-in-out;
+}
+
+.plan_btn_box {
+    width: 95%;
+    text-align: center;
+    margin: 10px auto;
+    position:static;
 }
