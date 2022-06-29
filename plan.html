@@ -3,14 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <title>Make A Plane</title>
+    <!-- 부트스트랩 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- css와 font -->
+    <link href="static/main.css" rel="stylesheet">
+    <link href="static/header.css" rel="stylesheet">
+    <link href="static/map.css" rel="stylesheet">
+    <link href="static/plan.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <!-- kakao지도 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=26ca3bb251f3783d5a218c186f922d4a&libraries=services"></script>
+    <!-- map.js -->
+    <script src="map.js"></script>
     <style>
+        
     </style>
 </head>
 <body>
-    <div class="div-box">
-        <h1 style="font-size: 50px;"> 여기는 plan 페이지 </h1>
-        <br>
-        <a class="font" href="home.html">메인 페이지로 가기</a>
+    <!-- 윗 메뉴 바 -->
+    <nav class="menu">
+        <div style="height: 80px;">
+            <div class="menu_box">
+                <a href="home.html" class="menu_btn position" style="display: block; float: left">
+                    <b style="font-size: 30px; color: black;">MAP</b>
+                    <h7 style="color: black">Make A Plane</h7>
+                </a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- 빈 공간 -->
+    <div style="width: 100%; height: 70px"></div>
+
+    <!-- 내용 -->
+    <div style="padding: 30px;">
+        <!-- 지도 부분 -->
+        <div class="map_wrap">
+            <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+        
+            <div id="menu_wrap" class="bg_white">
+                <div class="option">
+                    <div>
+                        <form onsubmit="searchPlaces(); return false;">
+                            키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                            <button type="submit">검색하기</button> 
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <ul id="placesList"></ul>
+                <div id="pagination"></div>
+            </div>
+        </div>
+
+        <!-- 계획짜는 부분 -->
+        <div class="plan_wrap" style="border-radius: 10px; width: 25%; height: 600px;float: right;border: 1px solid black; margin: 10px;">
+            <!-- 게시물 제목 -->
+            <div class="plan_title" style="width:100%; margin:20px 10px 20px 20px; border-radius: 10px;">
+                <input type="text" id="mytitle" style="font-size: 30px; text-align:center;">
+            </div>
+
+            <!-- 이미지 파일 업로드  -->
+            <div class="custom-file" style="margin: 10px
+            ;">
+                <label style="font-size: 15px" class="custom-file-label" for="file">대표 이미지</label>
+                <input type="file" class="custom-file-input" id="file">
+            </div>
+            
+
+            <!-- 여행 기간 선택 -->
+            <div>
+                <select style="float: right; margin: 10px" id="select_day">
+                    <option label="선택" selected></option>
+                    <option value=1 label="하루"></option>
+                    <option value=2 label="1박 2일"></option>
+                    <option value=3 label="2박 3일"></option>
+                    <option value=4 label="3박 4일"></option>
+                    <option value=5 label="4박 5일"></option>
+                </select>
+            </div>
+
+            <!-- 여행 스케줄 -->
+            <div class="myplan" style="padding: 20px;">
+                <h3 style="margin-bottom: 20px">여행 계획</h3>
+                <div>
+                    <ul id="day_plan" class="list-group" style="height: 400px; overflow: auto; border-radius: 10px; border: solid; padding: 10px;">
+                        <h4>1일</h4>
+                        <li class="list-group-item">
+                            <ul class="list-group" style="height: 200px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
+    
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p>
+                                </li>
+                                <br>
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p> 
+                                </li>
+                                <br>
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p>
+                                </li>
+                                <br>
+                            </ul>
+                        </li>
+                        <h4>2일</h4>
+                        <li class="list-group-item">
+                            <ul class="list-group" style="height: 200px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
+    
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p>
+                                </li>
+                                <br>
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p> 
+                                </li>
+                                <br>
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p>
+                                </li>
+                                <br>
+                            </ul>
+                        </li>
+                        <h4>3일</h4>
+                        <li class="list-group-item">
+                            <ul class="list-group" style="height: 200px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
+    
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p>
+                                </li>
+                                <br>
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p> 
+                                </li>
+                                <br>
+                                <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
+                                    <button style="float: right">취소</button>
+                                    <h5>샐프독서실</h5>
+                                    <p style="font-size: 15px">서울 서초구 서초대로 78번길 28</p>
+                                    <p style="font-size: 12px; color: green">02-522-5963</p>
+                                </li>
+                                <br>
+                            </ul>
+                        </li>
+    
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 버튼 모음 -->
+            <div class="bottom" style="width: 100%; height: 50px; padding: 10px">
+                <button class="button is-primary is-outlined" onclick="savepost()" style="float: right; margin-left: 10px">저장하기</button>
+                <button class="button is-primary is-outlined" onclick="route()" style="float: right; margin-left: 10px">경로보기</button>
+                <button class="button is-primary is-outlined" onclick="alldelete()" style="float: right">내용삭제</button>
+
+            </div>
+        </div>
     </div>
+    
+
+    <script type="text/javascript" src="map.js"></script>
 </body>
 </html>
