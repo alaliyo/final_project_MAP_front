@@ -1,0 +1,77 @@
+/* 바디 마진 설정 */
+body {
+    margin-top: 120px;
+}
+
+/* a 테그 설정 */
+a {
+    color: black;
+}
+
+/* 작성글 전체 박스 */
+.community_box {
+    padding: 10px;
+    padding-bottom: 30px;
+    border: 2px solid rgb(194, 194, 194);
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px gray ;
+}
+/* 작성들 제목 */
+.title_box {
+    padding-left: 10px;
+}
+/* 태그와 작성글 구분 선 */
+.hr_top {
+    background-color: rgb(119, 119, 119);
+}
+/* 구분선  */
+hr {
+    margin: 0;
+    background-color: rgb(167, 167, 167);
+}
+
+/* 작성글 설정 (박스) */
+.posting_box {
+    display: block;
+    padding-left: 10px;
+    padding-top: 7px;
+    height: 40px;
+}
+/* 작성글 동적 색 반응 */
+.posting_box:hover {
+    background-color: rgb(235, 235, 235);
+    transition: 0.3s ease-in-out;
+}
+/* 시간 박스 */
+.time_box {
+    width: 95px;
+    margin-right: 10px;
+    float: right;
+}
+/* 시간 */
+.posting_time {
+    float: right;
+}
+
+/* 적성하기 스위치 css */
+.community_write_back {
+    background-color: aquamarine;
+    height: 35px;
+    width: 65px;
+    padding-top: 7px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    float: right;
+}
+.community_write_back:hover {
+    background-color: rgb(71, 255, 194);
+}
+#community_write_btn {
+    color: white;
+    font-size: 15px;
+}
+/* 테그 마우스 오버 시 색 변환 */
+#community_write_btn:hover {
+    color: white;
+}

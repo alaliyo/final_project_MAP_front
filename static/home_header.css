@@ -1,0 +1,55 @@
+/* 상단 메뉴 */
+.menu {
+    table-layout: fixed;
+    overflow:auto;
+    width: 100%;
+    position: fixed;
+
+}
+.menu_box {
+    height: 80px;
+    padding: 10px;
+}
+/* 로그인 여행지 MAP*/
+.menu_btn {
+    color: white;
+    display: block;
+    margin: aout;
+}
+/* 로그인 여행지 */
+.menu_btn:hover {
+    color: aquamarine;
+    transition: 0.3s ease-in-out;
+}
+.remote_btn {
+    list-style-type: disc;
+    padding: 20px;
+}
+.position_right {
+    float: right;
+}
+/* MAP */
+.position {
+    height: 80px;
+    padding-left: 20px;
+    position:relative;
+}
+.z-in {
+    z-index: 1;
+}
+/* plan_btn_css */
+.plan_btn{
+    color: white;
+    font-size: 25px;
+}
+.plan_btn:hover {
+    color: aquamarine;
+    transition: 0.3s ease-in-out;
+}
+
+.plan_btn_box {
+    width: 95%;
+    text-align: center;
+    margin: 10px auto;
+    position:static;
+}
