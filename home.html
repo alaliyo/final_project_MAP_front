@@ -8,9 +8,10 @@
     <!-- css와 font -->
     <link href="static/home.css" rel="stylesheet">
     <link href="static/main.css" rel="stylesheet">
-    <link href="static/header.css" rel="stylesheet">
+    <link href="static/home_header.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    
+    <!-- JS -->
+    <script src="JavaScript/home.js"> </script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -40,17 +41,23 @@
                     <a href="plan.html" class="plan_btn" >
                         여행 설계
                     </a>
+                    <a href="community.html" class="plan_btn" style="margin-left: 30px;" >
+                        커뮤니티
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- 검색창 -->
     <div class="field has-addons field_background">
         <div class="control" style="margin:auto;">
             <input id = "input-local" class="input" style="width: 700px; height: 40px;" type="text" placeholder="지역을 입력하세요">
             <buttun class="button is-info" onclick="check_local()" style="height: 40px; float:right;">검색</buttun>
         </div>
     </div>
+
+    <!-- 카드 생성 -->
     <div class="card_box">
         <div id="cards" class="cards">
             <div class="card">
@@ -59,23 +66,14 @@
                 </a>
                 <div>
                     <a href="detail.html">
-                        <p class="card_title">제목</p>
+                        <p class="card_title">여기에 제목은 2줄까지 들어가게 됩니다.</p>
                     </a>
                 </div>
-                <!--
-                <div class="watch_add">
-                    <div class="icon_box">
-                        <a style="color: black;">
-                            <img class="like_icon"
-                            type="button" onclick="counnt('fillHeartRed')"
-                            src="static/like-icon-off.png"/>
-                            <img class="like_icon"
-                            type="button" onclick="counnt('fillHeartRed')"
-                            src="static/like-icon-on.png"/>
-                            <p id="result">0</p>
-                        </a>
-                    </div>
-                </div>-->
+                <div >
+                    <p class="card_writer">작성자</p>
+                    <br>
+                    <p class="card_time">작성일자</p>
+                </div>
             </div>
         </div>
     </div> 
@@ -83,36 +81,6 @@
 
     <script>
         // 게시물 api get
-        function check_local() {
-            $('#cards').empty()
-            $.ajax({
-                type: "GET",
-                url: "/trip/user/posts",
-                data: {},
-                success: function (cards) {
-                    let card = cards['result']
-                    console.log(cards['result'])
-                    for (let i = 0; i < card.length; i++) {
-                        const indec = card[i]['index']
-                        const image = card[i]['img']
-                        const title = card[i]['title']
-                        const content = card[i]['content']
-                        const temp_html = `<div class="card" id="${idex}">
-                                                <a class="card_img_box" href="detail.html">
-                                                    <img class="card_img" src="${image}"/>
-                                                </a>
-                                                <a href="detail.html">
-                                                    <p class="card_title">${title}</p>
-                                                </a>
-                                                <a href="detail.html">
-                                                    <p class="card_contents">${content}</p>
-                                                </a>
-                                        </div>`
-                                        $('#cards').append(temp_html)
-                    }
-                }
-            })
-        }
         /*
     const heatrSvg = document.querySelector('.like_icon');
     const heartPath = document.querySelector('.like_icon');

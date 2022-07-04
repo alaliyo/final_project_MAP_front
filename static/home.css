@@ -31,36 +31,43 @@ a:link {
     width: 300px;
     height: 400px;
     margin: 20px;
+    padding: 20px;
     float:left;
     position: relative;
-    
-    
 }
 /* 카드 이미지 css */
 .card_img_box {
     display: block;
-    width: 300px;
-    height: 280px;
+    width: 260px;
+    height: 240px;
 }
 .card_img {
     display: block;
     margin: auto;
-    padding-top: 25px;
-    width: 250px;
-    height: 250px;
+    width: 260px;
+    height: 240px;
 }
-
+/* 카드 제목 */
 .card_title {
     display: block;
-    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
     color: black;
     font-size: 25px;
 }
-.card_contents {
-    display: block;
-    margin-left: 15px;
-    color: black;
-    font-size: 15px;
+/* 카드 작성자 */
+.card_writer {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    font-size: 20px;
+}
+/* 카드 날짜 */
+.card_time {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    color: rgb(185, 185, 185);
 }
 
 /* 아이콘 css */

@@ -4,16 +4,17 @@
     overflow:auto;
     width: 100%;
     position: fixed;
+    top: 0;
+    background-color: aquamarine;
 }
 .menu_box {
-    height: 80px;
+    height: 60px;
     padding: 10px;
 }
 /* 로그인 여행지 MAP*/
 .menu_btn {
     color: white;
     display: block;
-    margin: aout;
 }
 /* 로그인 여행지 */
 .menu_btn:hover {
@@ -29,9 +30,10 @@
 }
 /* MAP */
 .position {
-    height: 80px;
+    height: 60px;
     padding-left: 20px;
     position:relative;
+
 }
 .z-in {
     z-index: 1;
