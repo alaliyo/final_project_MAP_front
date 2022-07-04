@@ -6,16 +6,18 @@
     <!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- css와 font -->
-    <link href="static/home.css" rel="stylesheet">
     <link href="static/main.css" rel="stylesheet">
-    <link href="static/home_header.css" rel="stylesheet">
+    <link href="static/header.css" rel="stylesheet">
+
+    <link href="static/community.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <!-- JS -->
-    <script src="JavaScript/home.js"> </script>
+    
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
 </head>
+
 
 <body>
         <!-- 윗 메뉴 바 -->
@@ -49,58 +51,24 @@
         </div>
     </nav>
 
-    <!-- 검색창 -->
-    <div class="field has-addons field_background">
-        <div class="control" style="margin:auto;">
-            <input id = "input-local" class="input" style="width: 700px; height: 40px;" type="text" placeholder="지역을 입력하세요">
-            <buttun class="button is-info" onclick="check_local()" style="height: 40px; float:right;">검색</buttun>
-        </div>
-    </div>
-
-    <!-- 카드 생성 -->
-    <div class="card_box">
-        <div id="cards" class="cards">
-            <div class="card">
-                <a class="card_img_box" href="detail.html">
-                    <img class="card_img" src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"/>
-                </a>
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <div class="community_box" style="padding-bottom: 40px;">
+            <div style="margin-bottom: 5px; font-size: 20px;">
+                <p>제목:  title</p>
+            </div>
+            <hr class="hr_top">
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+                <text style="font-size: 18px;"> 내용</text>
+            </div>
+            <hr class="hr_top">
+            <div>
+                <p style="margin-top: 10px; margin-bottom: 5px;" > 댓글</p>
+                <textarea style="resize: none; height: 80px; width: 100%; padding: 15px;"></textarea>
                 <div>
-                    <a href="detail.html">
-                        <p class="card_title">여기에 제목은 2줄까지 들어가게 됩니다.</p>
-                    </a>
-                </div>
-                <div >
-                    <p class="card_writer">작성자</p>
-                    <br>
-                    <p class="card_time">작성일자</p>
+                    <button style="float: right;">작성완료</button>
                 </div>
             </div>
         </div>
-    </div> 
-
-
-    <script>
-        // 게시물 api get
-        /*
-    const heatrSvg = document.querySelector('.like_icon');
-    const heartPath = document.querySelector('.like_icon');
-
-    heartSvg.addEventListener('click', () => changeClass(heartSvg, heartPath));
-    function fillHeartRed(heartSvg, heartPath){
-        if(heartSvg.classList.contains("like-default")){
-            heartSvg.classList.remove("like-default");
-            heartSvg.classList.add("like-fill");
-            heartPath.setAttribute('d','M34.6 3....')
-        }
-        else{
-            heartSvg.classList.remove("like-fill");
-            heartSvg.classList.add("like-default");
-            heartPath.setAttribute('d','M34.6 6....')
-        }
-    }     */   
- 
-    </script>
-
-
+    </div>
 </body>
 </html>

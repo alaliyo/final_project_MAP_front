@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Plane</title>
+    <!-- 부트스트랩 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- css와 font -->
+    <link href="static/main.css" rel="stylesheet">
+    <link href="static/header.css" rel="stylesheet">
+
+    <link href="static/community.css" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <style>
+        .title_input {
+            height: 30px; width: 400px; font: 20px
+        }
+
+        textarea {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            height: 500px;
+            resize: none;
+        }
+    </style>
+
+</head>
+
+
+<body>
+        <!-- 윗 메뉴 바 -->
+    <nav class="menu">
+        <div style="height: 80px;">
+            <div class="menu_box">
+                <a href="home.html" class="menu_btn position" style="display: block; float: left">
+                    <b style="font-size: 30px;">MAP</b>
+                    <h7>Make A Plane</h7>
+                </a>
+                <div class="position" style="float: right;" >
+                    <a class="remote_btn position_right" href="login.html">
+                        <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
+                    </a>
+                    <a class="remote_btn position_right" href="login.html">
+                        <div class="menu_btn "  style="font-size: 19px;">로그인</div>
+                    </a>
+                    <a class="remote_btn position_right" href="mypage.html">
+                        <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
+                    </a>
+                </div>
+                <div class="plan_btn_box">
+                    <a href="plan.html" class="plan_btn" >
+                        여행 설계
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <div class="community_box">
+            <div style="margin-bottom: 5px; font-size: 20px;">
+                제목 : <input type="text" class="title_input" placeholder="제목을 입력하세요">
+            </div>
+            <hr class="hr_top">
+            <textarea placeholder="내용을 입력하세요"></textarea>
+            <br>
+            <div style="float: right;">
+                <button onclick="location.href='community.html'">취소</button>
+                <button>저장</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
