@@ -8,10 +8,11 @@
     <!-- css와 font -->
     <link href="static/main.css" rel="stylesheet">
     <link href="static/header.css" rel="stylesheet">
-
     <link href="static/community.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    
+    <!-- JS -->
+    <script type="text/javascript" src="JavaScript/community.js"></script>
+    <script type="text/javascript" src="JavaScript/community_comment.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -20,7 +21,7 @@
 
 
 <body>
-        <!-- 윗 메뉴 바 -->
+    <!-- 윗 메뉴 바 -->
     <nav class="menu">
         <div style="height: 80px;">
             <div class="menu_box">
@@ -54,18 +55,28 @@
     <div style="margin-left: 20%; margin-right: 20%;">
         <div class="community_box" style="padding-bottom: 40px;">
             <div style="margin-bottom: 5px; font-size: 20px;">
-                <p>제목:  title</p>
+                <p>제목: title</p>
             </div>
             <hr class="hr_top">
             <div style="margin-top: 10px; margin-bottom: 10px;">
                 <text style="font-size: 18px;"> 내용</text>
             </div>
             <hr class="hr_top">
+            <button style="float: right; margin-top: 5px; margin-left: 10px;" id="post_delete">삭제</button>
+            <button style="float: right; margin-top: 5px;" onclick="communityPutGet()">수정</button>
             <div>
                 <p style="margin-top: 10px; margin-bottom: 5px;" > 댓글</p>
+                <div id="comments">
+                    <div id="">
+                        <p style="margin-top: 10px; margin-bottom: 5px; float: left;" > 댓글내용</p>
+                        <button class="comment" id="comment_delete">댓글 삭제</button>
+                        <p class="comment">시간</p>
+                        <p class="comment">작성자</p>
+                    </div>
+                </div>
                 <textarea style="resize: none; height: 80px; width: 100%; padding: 15px;"></textarea>
                 <div>
-                    <button style="float: right;">작성완료</button>
+                    <button style="float: right;" onclick='commentMakePosts()'>작성완료</button>
                 </div>
             </div>
         </div>
