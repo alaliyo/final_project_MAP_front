@@ -1,4 +1,4 @@
-function check_local() {
+function cards() {
     $('#cards').empty()
     $.ajax({
         type: "GET",

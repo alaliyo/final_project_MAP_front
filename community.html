@@ -8,10 +8,11 @@
     <!-- css와 font -->
     <link href="static/main.css" rel="stylesheet">
     <link href="static/header.css" rel="stylesheet">
-
     <link href="static/community.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    
+
+    <!-- JS -->
+    <script type="text/javascript" src="JavaScript/community.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -46,7 +47,7 @@
         </div>
     </nav>
 
-    <div style="margin-left: 20%; margin-right: 20%;">
+    <div id="communtity_post" style="margin-left: 20%; margin-right: 20%;">
         <div style="height: 55px;">
             <div class="community_write_back" onclick="location.href='community_make.html'">
                 <a id="community_write_btn" class="start_btn">작성하기</a>
@@ -60,15 +61,19 @@
             </div>
             <br>
             <hr class="hr_top">
-            <a class="posting_box" href="community_detail.html">
-                <p style="font-size: 20px; float: left;">title</p>
-                <div class="time_box">
-                    <p class="posting_time">1시간 전</p>
+            <div id="communtity_post">
+                <div>
+                    <a class="posting_box" href="community_detail.html">
+                        <p style="font-size: 20px; float: left;">title</p>
+                        <div class="time_box">
+                            <p class="posting_time">1시간 전</p>
+                        </div>
+                        <div class="time_box" style="text-align: center;">
+                            <p>김성원</p>
+                        </div>        
+                    </a>
                 </div>
-                <div class="time_box" style="text-align: center;">
-                    <p>김성원</p>
-                </div>        
-            </a>
+            </div>
             <hr>
         </div>
     </div>
