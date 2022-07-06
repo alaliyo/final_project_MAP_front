@@ -41,22 +41,21 @@ function time2str(date) {
 
 //게시물 GET
 function communtityPostsGet() {
-    $('#communtity_post').empty()
+    //$('#communtity_post').empty()
     $.ajax({
         type: "GET",
         url: "/user/community/posts",
         data: {},
         success: function (posts) {
-            let post = posts['result']
-            console.log(post['result'])
+            let post = posts['postId']
             for (let i = 0; i < post.length; i++) {
-                const post_id = post[i]['id']
+                const post_id = post[i]['postId']
                 const title = post[i]['title']
                 const nickname = post[i]['nickname']
                 const create_at = card[i]['createdAt']
                 const time_befor = time2str(create_at)
-                const temp_html = `<div id=${post_id}>
-                                        <a class="posting_box" href="community_detail.html">
+                const temp_html = `<div>
+                                        <a class="posting_box" href="${post_id}">
                                             <p style="font-size: 20px; float: left;">${title}</p>
                                             <div class="time_box">
                                                 <p class="posting_time">${time_befor}</p>
@@ -89,7 +88,7 @@ $(document).ready(function() {
 //게시물 수정
 function communityPutGet(post_id) {
     location.href = '/community_make.html'
-    $('#communitys').empty()
+    //$('#communitys').empty()
     $.ajax({
         type: "GET",
         url: "/user/community/posts",
