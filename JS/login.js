@@ -1,15 +1,19 @@
-function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-}
 
+let setCookie = function(name, value, exp) {
+    let date = new Date();
+    date.setTime(date.getTime() + exp*24*60*60*1000);
+    document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+};
+
+
+
+//<------------------ 로그인 기능 ----------------------->
 function sign_in() {
-    // 로그인 1
     let username = $("#input-username").val()
     let password = $("#input-password").val()
+
     if (username == "") {
-        $("#help-id-login").text("")
+        $("#help-id-login").text(alert("아이디를 입력해주세요."))
         $("#input-username").focus()
         return;
     } else {
@@ -17,7 +21,7 @@ function sign_in() {
     }
 
     if (password == "") {
-        $("#help-password-login").text("비밀번호를 입력해주세요.")
+        $("#help-password-login").text(alert("비밀번호를 입력해주세요."))
         $("#input-password").focus()
         return;
     } else {
@@ -25,30 +29,39 @@ function sign_in() {
     }
     $.ajax({
         type: "POST",
-        url: "/sign_in",
-        data: {
-            username: username,
-            password: password
-        },
-        // 토큰에는 검증 받은 사람 아이디 시간 저장 이 토큰을 받아서 브라우저에 쿠키로 저장 브라우저의 데이터 베이스 느낌 {}형으로 저장
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/login",
+        data:JSON.stringify({
+                username: username,
+                password: password,
+            }
+        ),
+        contentType: "application/json; charset=UTF-8",
         success: function (response) {
-            if (response['result'] == 'success') {
-                // 브라우저에 쿠키로 저장
-                $.cookie('mytoken', response['token'], {path: '/'});
-                window.location.replace("/")
-            } else {
-                alert(response['msg'])
+            if (response == "가입되지 않은 아이디 입니다.") {
+                alert("가입되지 않은 아이디 입니다.")
+                window.location.replace("/login.html")
+            } else if (response == "잘못된 비밀번호입니다.") {
+                alert("잘못된 비밀번호입니다.")
+                window.location.replace("/login.html")
+            } else{
+                setCookie ('X-AUTH-TOKEN', response, 1)
+                window.location.replace("/home.html")
+                alert("로그인 되었습니다.")
             }
         }
     });
 }
 
+
+//<-------------------------- 회원가입 ---------------------------->
 function sign_up() {
-    // 회원 가입시 필요한 아이디 비번, 비번확인용 회원 가입(3)
+    // 회원 가입시 아이디, 비밀번호1,2, 이메일, 이름 정보 받기
     let username = $("#input-username").val()
     let password = $("#input-password").val()
     let password2 = $("#input-password2").val()
-    console.log(username, password, password2)
+    let email = $("#input-email").val()
+    let nickname = $("#input-nickname").val()
+    console.log(username, password, password2, nickname, email)
 
     // 중복 검사 했는지 안 했는지 is-success가 있으면 아이디 중복 확인한거다
     if ($("#help-id").hasClass("is-danger")) {
@@ -59,44 +72,90 @@ function sign_up() {
         return;
     }
 
+    if ($("#help-nickname").hasClass("is-danger")) {
+        alert("닉네임을 다시 확인해주세요.")
+        return;
+    } else if (!$("#help-nickname").hasClass("is-success")) {
+        alert("닉네임 중복확인을 해주세요.")
+        return;
+    }
+
+    // <------------------------------------- 이메일 확인 ------------------------------------->
+    // 이메일 입력 확인
+    if (email == "") {
+        $("#help-email").text("이메일을 입력하세요.").removeClass("is-safe").addClass("is-danger")
+        // 아이디 입력하는 부분으로 커서가 focus 됨
+        $("#input-email").focus()
+        return;
+    } 
+    // 이메일 조건 확인
+    else if (!is_email(email)) {
+        $("#help-email").text("이메일을 확인해주세요.").removeClass("is-safe").addClass("is-danger")
+        $("#input-email").focus()
+        return;
+    }
+    // 이메일 조건 충족
+    else {
+        $("#help-password").text("").removeClass("is-danger").addClass("is-success")
+    }
+
+    // <------------------------------------- 비밀번호 확인 ------------------------------------->    
+    // 비밀번호1 입력 확인
     if (password == "") {
         $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
         $("#input-password").focus()
         return;
-    } else if (!is_password(password)) {
-        $("#help-password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+    }
+    // 비밀번호1 조건 확인
+    else if (!is_password(password)) {
+        $("#help-password").text("영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
         $("#input-password").focus()
         return
-    } else {
+    }
+    // 비밍번호1 조건 충족
+    else {
         $("#help-password").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
     }
+
+    // 비밀번호2 입력확인
     if (password2 == "") {
         $("#help-password2").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
         $("#input-password2").focus()
         return;
-    } else if (password2 != password) {
-        $("#help-password2").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
+    }
+    // 비밀번호1과 비밀번호 비교
+    else if (password2 != password) {
+        $("#help-password2").text(alert("비밀번호와 비밀번호 재입력 다릅니다")).removeClass("is-safe").addClass("is-danger")
         $("#input-password2").focus()
         return;
-    } else {
+    }
+    // 비밀번호2 조건 충족
+    else {
         $("#help-password2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
     }
     $.ajax({
         type: "POST",
-        url: "/sign_up/save",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/join",
         // 저장된 유저 네임 페스워드를 서버로 회원가입한다고 요청
-        data: {
-            username: username,
-            password: password
-        },
+        data: JSON.stringify(
+            {
+                username: username,
+                password: password,
+                email: email,
+                nickname: nickname
+            }
+        ),
+        contentType: "application/json; charset=UTF-8",
         success: function (response) {
             alert("회원가입을 축하드립니다!")
-            window.location.replace("/login")
+            window.location.replace("/login.html")
         }
     });
 
 }
 
+
+// <---------------------------- 숨기기 ---------------------------->
 function toggle_sign_up() {
     $("#sign-up-box").toggleClass("is-hidden")
     $("#div-sign-in-or-up").toggleClass("is-hidden")
@@ -105,19 +164,33 @@ function toggle_sign_up() {
     $("#help-password").toggleClass("is-hidden")
     $("#help-password2").toggleClass("is-hidden")
 }
-// a~z,A~Z사이,0~9사이 _.포함하는 2~10자리 아이디
-function is_nickname(asValue) {
-    var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+
+
+// <------------------------- 회원가입 규칙 ------------------------>
+// 아이디 규칙
+function is_username(asValue) {
+    const regExp = /^(?=.*[a-zA-Z0-9])[0-9a-zA-Z]{6,15}$/;
     return regExp.test(asValue);
 }
-//정수 포함a~z,A~Z사이,0~9사이 @#$%! 등포함
+// 비밀번호 규칙
 function is_password(asValue) {
-    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+    const regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+    return regExp.test(asValue);
+}
+//이메일 규칙
+function is_email(asValue) {
+    const regExp = /^(?=.*[a-zA-Z0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9])[0-9a-zA-Z@.]{10,30}$/;
+    return regExp.test(asValue);
+}
+//닉이름 규칙
+function is_nickname(asValue) {
+    const regExp = /^(?=.*[a-zA-Z0-9])[0-9a-zA-Z]{4,15}$/;
     return regExp.test(asValue);
 }
 
-// 아이디 중복 확인 회원 가입(1)
-function check_dup() {
+
+// 아이디 중복 확인 회원 가입
+function username_check_dup() {
     let username = $("#input-username").val()
     console.log(username)
     // 아이디 빈칸의 경우
@@ -129,32 +202,71 @@ function check_dup() {
         return;
     }
     // 정규식에 규칙에 포함이 되는가
-    if (!is_nickname(username)) {
-        $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+    if (!is_username(username)) {
+        $("#help-id").text("영문과 숫자 필수 포함. 사용가능 6-15자").removeClass("is-safe").addClass("is-danger")
         $("#input-username").focus()
         return;
     }
     // 아이디 입력후 형식메 맞는다면 서버에서 db에 맞는 이름이 있는지 확인
     $("#help-id").addClass("is-loading")
     $.ajax({
-        type: "POST",
-        url: "/sign_up/check_dup",
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-username",
         data: {
-            username : username
+                username : username
         },
+        contentType: "application/json; charset=UTF-8",
         success: function (response) {
-
-            // 위에까지 실행후 서버단에서 check_dup(2)함수에서 값을 받아옴
-            if (response["exists"]) {
-                $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
-                $("#input-username").focus()
-            }
-            // 중복 확인해서 아이디가 유효한 값인지 확인하기 위해서 is-success클래스를 추가해준다, 회원 가입 버튼 눌렀을시에 hepl-text에 is-success가 있어야 함
-            else {
+            console.log(response)
+            if (response == "중복되지 않은 아이디입니다.") {
                 $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
+                $("#help-id").removeClass("is-loading")
             }
-            $("#help-id").removeClass("is-loading")
+            else{
+                $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
+                $("#help-id").focus()
+            }
+        }
+    });
+}
 
+
+    // <------------------------------------- 닉네임 확인 ------------------------------------->
+    // 닉네임 입력 확인
+function nickname_check_dup() {
+    let nickname = $("#input-nickname").val()
+    console.log(nickname)
+    if (nickname == "") {
+        $("#help-nickname").text("닉네임을 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+        $("#input-nickname").focus()
+        return;
+    }
+    // 닉네임 조건 확인
+    if (!is_nickname(nickname)) {
+        $("#help-nickname").text("영어포함. 사용가능 4-20자").removeClass("is-safe").addClass("is-danger")
+        $("#input-nickname").focus()
+        return;
+    }
+    // 닉네임 조건 충족 시 서버에 중복 확인
+    $("#help-nickname").addClass("is-loading")
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-nickname",
+        data:{
+                nickname : nickname
+            }
+        ,
+        contentType: "application/json; charset=UTF-8",
+        success: function (response) {
+            console.log(response)
+            if (response == "중복되지 않은 닉네임입니다.") {
+                $("#help-nickname").text("사용할 수 있는 닉네임입니다.").removeClass("is-danger").addClass("is-success")
+                $("#help-nickname").removeClass("is-loading")
+            }
+            else{
+                $("#help-nickname").text("이미 존재하는 닉네임입니다.").removeClass("is-safe").addClass("is-danger")
+                $("#input-nickname").focus()
+            }
         }
     });
 }

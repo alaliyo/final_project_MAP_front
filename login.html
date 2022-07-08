@@ -23,6 +23,7 @@
     }
 </style>
 <body>
+    <!-- 해더코드 -->
     <nav class="menu">
         <div style="height: 80px;">
             <div class="menu_box">
@@ -33,37 +34,36 @@
             </div>
         </div>
     </nav>
+
+    <!-- 로그인, 회원가입 기능 -->
     <section class="section" style="padding-top: 200px">
         <div class="container">
             <div class="box" style="max-width: 480px;margin:auto">
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
+                            <!-- 아이디 입력칸 -->
                             <div class="field has-addons">
                                 <div class="control has-icons-left" style="width:100%">
                                     <input id="input-username" class="input" type="text" placeholder="아이디">
                                     <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
                                 </div>
                                 <div id="btn-check-dup" class="control is-hidden">
-                                    <button class="button is-sparta" onclick="check_dup()">중복확인</button>
+                                    <button class="button is-sparta" onclick="username_check_dup()">중복확인</button>
                                 </div>
-    
                             </div>
-                            <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                            <p id="help-id" class="help is-hidden">6-15자의 영문과 숫자 입력 필수</p>
                             <p id="help-id-login" class="help is-danger"></p>
-    
+                            <!-- 로그인 비밀번호 입력칸 -->
                             <div class="field">
                                 <div class="control has-icons-left">
                                     <input id="input-password" class="input" type="password" placeholder="비밀번호">
                                     <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                                 </div>
-                                <p id="help-password" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도
-                                    사용
-                                    가능합니다.</p>
+                                <p id="help-password" class="help is-hidden">8-20자의 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 가능</p>
                             </div>
-    
-    
                         </div>
+                        <!-- 로그인, 회원가입 버튼 -->
                         <div id="div-sign-in-or-up" class="has-text-centered">
                             <nav class="level is-mobile">
                                 <button class="level-item button is-sparta" onclick="sign_in()">
@@ -71,9 +71,6 @@
                                 </button>
                             </nav>
                             <hr>
-                            <a id="login-kakao-btn" onclick="location.href='/kauth.kakao.com/oauth/authorize?client_id=&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code'">
-                                <img href="static/kakao_login_medium_narrow.png">
-                            </a>
                             <h4 class="mb-3">아직 회원이 아니라면</h4>
                             <nav class="level is-mobile">
     
@@ -83,19 +80,46 @@
                                 </button>
                             </nav>
                         </div>
-    
+                        <!-- 회원가입에 필요한 input들 -->
                         <div id="sign-up-box" class="is-hidden">
+                            <!-- 비밀번호2 재 확인 칸 -->
                             <div class="mb-5">
                                 <div class="field">
                                     <div class="control has-icons-left" style="width:100%">
-                                        <input id="input-password2" class="input" type="password"
-                                               placeholder="비밀번호 재입력">
+                                        <input id="input-password2" class="input" type="password" placeholder="비밀번호 재입력">
                                         <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                                     </div>
-                                    <p id="help-password2" class="help is-hiddden">비밀번호를 다시 한 번 입력해주세요.</p>
-    
+                                    <p id="help-password2" class="help is-hiddden"></p>
                                 </div>
                             </div>
+                            <!-- 닉네임 입력 칸 -->
+                            <div class="content">
+                                <div class="mb-5">
+                                    <div class="field">
+                                        <div style="display: flex;">
+                                            <div class="control has-icons-left" style="width:100%;">
+                                                <input id="input-nickname" class="input" type="text" placeholder="닉네임 입력">
+                                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                            </div>
+                                            <div id="btn-check-dup" class="control">
+                                                <button class="button is-sparta" onclick="nickname_check_dup()">중복확인</button>
+                                            </div>
+                                        </div>
+                                        <p id="help-nickname" class="help is-hiddden"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 이메일 입력 칸 -->
+                            <div class="mb-5">
+                                <div class="field">
+                                    <div class="control has-icons-left" style="width:100%">
+                                        <input id="input-email" class="input" type="text" placeholder="이메일 입력">
+                                        <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    <p id="help-email" class="help is-hiddden"></p>
+                                </div>
+                            </div>
+                            <!-- 회원가입 및 취소 버튼 -->
                             <nav class="level is-mobile">
                                 <button class="level-item button is-sparta" onclick="sign_up()">
                                     회원가입

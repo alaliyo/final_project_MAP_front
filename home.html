@@ -10,11 +10,13 @@
     <link href="css/main.css" rel="stylesheet">
     <link href="css/home_header.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <!-- JS -->
-    <script type="text/javascript" src="JS/home.js"> </script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="JS/home.js"> </script>
+    <script type="text/javascript" src="JS/logout.js"> </script>
+
 </head>
 
 <body>
@@ -27,7 +29,7 @@
                     <h7>Make A Plane</h7>
                 </a>
                 <div class="position" style="float: right;" >
-                    <a class="remote_btn position_right" href="login.html">
+                    <a class="remote_btn position_right" onclick="logout()" href="login.html">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
                     </a>
                     <a class="remote_btn position_right" href="login.html">
