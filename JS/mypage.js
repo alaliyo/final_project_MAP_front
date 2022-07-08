@@ -1,7 +1,7 @@
 function logout(){
     $.removeCookie('mytoken');
     alert('로그아웃!')
-    window.location.href = '/'
+    window.location.href = '../intro.html'
 }
 
 function delete_word(postid) {
@@ -87,4 +87,20 @@ function get_mypost() {
             }
         }
     });
+}
+
+// 게시물 DELETE
+function my_plan_delete(){
+    if(confirm('삭제하겠습니까?')){
+        $.ajax({
+            type: "DELETE",
+            url: "user/plan/post/`${postId}`",
+            data: {},
+            success: function (result) {
+                console.log(result);
+            }
+        });
+        alert("삭제되었습니다.")
+    } else {
+    }
 }
