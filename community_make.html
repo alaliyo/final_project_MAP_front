@@ -10,11 +10,12 @@
     <link href="css/header.css" rel="stylesheet">
     <link href="css/community.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <!-- JS -->
-    <script type="text/javascript" src="JS/community.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="JS/community.js"></script>
+    <script type="text/javascript" src="JS/logout.js.js"></script>
 
     <style>
         .title_input {
@@ -44,11 +45,8 @@
                     <h7>Make A Plane</h7>
                 </a>
                 <div class="position" style="float: right;" >
-                    <a class="remote_btn position_right" href="login.html">
+                    <a class="remote_btn position_right" onclick="logout()">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
-                    </a>
-                    <a class="remote_btn position_right" href="login.html">
-                        <div class="menu_btn "  style="font-size: 19px;">로그인</div>
                     </a>
                     <a class="remote_btn position_right" href="mypage.html">
                         <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
@@ -78,7 +76,7 @@
             <br>
             <div style="float: right;">
                 <button onclick="location.href='community.html'">취소</button>
-                <button onclick="communtityMakePosts()">저장</button>
+                <button onclick="communityMakePost()">저장</button>
             </div>
         </div>
     </div>

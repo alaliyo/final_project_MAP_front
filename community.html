@@ -10,15 +10,19 @@
     <link href="css/header.css" rel="stylesheet">
     <link href="css/community.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
-    <!-- JS -->
-    <script type="text/javascript" src="JS/community.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="JS/community.js"></script>
+    <script type="text/javascript" src="JS/logout.js"> </script>
+
+    
 </head>
 
 <body>
+
+
         <!-- 윗 메뉴 바 -->
     <nav class="menu">
         <div style="height: 80px;">
@@ -28,11 +32,8 @@
                     <h7>Make A Plane</h7>
                 </a>
                 <div class="position" style="float: right;" >
-                    <a class="remote_btn position_right" href="login.html">
-                        <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
-                    </a>
-                    <a class="remote_btn position_right" href="login.html">
-                        <div class="menu_btn "  style="font-size: 19px;">로그인</div>
+                    <a class="remote_btn position_right" onclick="logout()">
+                        <div class="menu_btn abc" style="font-size: 19px;">로그아웃</div>
                     </a>
                     <a class="remote_btn position_right" href="mypage.html">
                         <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
@@ -47,7 +48,7 @@
         </div>
     </nav>
 
-    <div id="communtity_post" style="margin-left: 20%; margin-right: 20%;">
+    <div id="community_post" style="margin-left: 20%; margin-right: 20%;">
         <div style="height: 55px;">
             <div class="community_write_back" onclick="location.href='community_make.html'">
                 <a id="community_write_btn" class="start_btn">작성하기</a>
