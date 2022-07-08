@@ -1,12 +1,17 @@
+// 페이지 올 시 GET 함수 실핼
+$(window.document).ready(function() {
+    cards();
+})
+
 function cards() {
     $('#cards').empty()
     $.ajax({
         type: "GET",
-        url: "/plan/posts",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/plan/posts",
         data: {},
+        contentType: "application/json",
         success: function (cards) {
-            let card = cards['result']
-            console.log(cards['result'])
+            let card = cards
             for (let i = 0; i < card.length; i++) {
                 const post_id = card[i]['postId']
                 const nickname = card[i]['nickname']
