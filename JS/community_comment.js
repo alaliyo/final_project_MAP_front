@@ -1,6 +1,5 @@
 // 페이지 접속 시 초기화
 $(document).ready(function() {
-    commentMakePosts();
     commentGet()
 })
 

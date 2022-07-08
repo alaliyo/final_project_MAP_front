@@ -1,8 +1,6 @@
-
-
 /* 검색창 Backgtound img css */
 .field_background {
-    background-image: url("123.png");
+    background-image: url("../static/123.png");
     background-size: cover;
     background-position: center;
     padding-top: 300px;
