@@ -14,7 +14,7 @@ function communityPostsGet() {
     console.log(token);
     $.ajax({
         type: "GET",
-        url: "user/community/posts",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {

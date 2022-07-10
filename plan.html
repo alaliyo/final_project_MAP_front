@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <!-- css와 font -->
-    <link href="static/main.css" rel="stylesheet">
-    <link href="static/header.css" rel="stylesheet">
-    <link href="static/map.css" rel="stylesheet">
-    <link href="static/plan.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/map.css" rel="stylesheet">
+    <link href="css/plan.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <!-- jquery -->
@@ -21,6 +21,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=26ca3bb251f3783d5a218c186f922d4a&libraries=services"></script>
     <!-- map.js -->
     <script src="map.js"></script>
+    <script src="plan.js"></script>
     <style>
         
     </style>
@@ -35,7 +36,7 @@
                     <h7 style="color: black">Make A Plane</h7>
                 </a>
                 
-            </div>
+            </div>z
         </div>
     </nav>
 
@@ -71,8 +72,7 @@
             </div>
 
             <!-- 이미지 파일 업로드  -->
-            <div class="custom-file" style="margin: 10px
-            ;">
+            <div class="custom-file" style="margin: 10px;">
                 <label style="font-size: 15px" class="custom-file-label" for="file">대표 이미지</label>
                 <input type="file" class="custom-file-input" id="file">
             </div>
@@ -81,12 +81,24 @@
             <!-- 여행 기간 선택 -->
             <div>
                 <select style="float: right; margin: 10px" id="select_day">
-                    <option label="선택" selected></option>
+                    <option label="기간" selected></option>
                     <option value=1 label="하루"></option>
                     <option value=2 label="1박 2일"></option>
                     <option value=3 label="2박 3일"></option>
                     <option value=4 label="3박 4일"></option>
                     <option value=5 label="4박 5일"></option>
+                </select>
+            </div>
+            <!-- 여행 카테고리 선택 -->
+            <div>
+                <select style="float: right; margin: 10px" id="select_category">
+                    <option label="카테고리" selected></option>
+                    <option value="food" label="맛집"></option>
+                    <option value="healing" label="힐링"></option>
+                    <option value="scenery" label="풍경"></option>
+                    <option value="cafe" label="카페"></option>
+                    <option value="attraction" label="관광지"></option>
+                    <option value="date" label="데이트"></option>
                 </select>
             </div>
 
@@ -183,9 +195,8 @@
 
             <!-- 버튼 모음 -->
             <div class="bottom" style="width: 100%; height: 50px; padding: 10px">
-                <button class="button is-primary is-outlined" onclick="savepost()" style="float: right; margin-left: 10px">저장하기</button>
-                <button class="button is-primary is-outlined" onclick="route()" style="float: right; margin-left: 10px">경로보기</button>
-                <button class="button is-primary is-outlined" onclick="alldelete()" style="float: right">내용삭제</button>
+                <button class="button is-primary is-outlined" onclick="save_post()" style="float: right; margin-left: 10px">저장하기</button>
+                <button class="button is-primary is-outlined" onclick="delete_all()" style="float: right">내용삭제</button>
 
             </div>
         </div>

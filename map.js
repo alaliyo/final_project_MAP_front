@@ -1,3 +1,67 @@
+function route(post_id) {
+    removeMarker();
+    var positions = []
+    var linePath = [];
+
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            let schedules = response['result']
+            for (let i = 0; i < schedules.length; i++) {
+
+                console.log(schedules[i].place_name, schedules[i].y, schedules[i].x)
+                var position = {
+                    title: schedules[i].place_name,
+                    latlng: new kakao.maps.LatLng(parseFloat(schedules[i].y), parseFloat(schedules[i].x))
+                }
+
+                var line = new kakao.maps.LatLng(parseFloat(schedules[i].y), parseFloat(schedules[i].x))
+                positions.push(position);
+                linePath.push(line);
+
+            }
+            console.log(positions)
+            // 마커 이미지의 이미지 주소입니다
+            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+            for (var i = 0; i < positions.length; i++) {
+
+                // 마커 이미지의 이미지 크기 입니다
+                var imageSize = new kakao.maps.Size(24, 35);
+
+                // 마커 이미지를 생성합니다
+                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image: markerImage // 마커 이미지
+                });
+            }
+
+            var polyline = new kakao.maps.Polyline({
+                path: linePath, // 선을 구성하는 좌표배열 입니다
+                strokeWeight: 5, // 선의 두께 입니다
+                strokeColor: '#f50621', // 선의 색깔입니다
+                strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid' // 선의 스타일입니다
+            });
+            polyline.setMap(map);
+        }
+
+
+    })
+
+
+}
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -86,7 +150,7 @@ function displayPlaces(places) {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function(marker, title) {
+        (function(marker, title, address, y, x, phone, url) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
             });
@@ -102,7 +166,12 @@ function displayPlaces(places) {
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
-        })(marker, places[i].place_name);
+            itemEl.onclick = function () {
+                alert(title)
+                api_create_schedule(title, address, y, x, phone, url);
+
+            };
+        })(marker, places[i].place_name, places[i].address_name, places[i].y, places[i].x, places[i].phone, places[i].place_url);
 
         fragment.appendChild(itemEl);
     }
