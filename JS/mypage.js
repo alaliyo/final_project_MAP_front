@@ -1,54 +1,13 @@
-function logout(){
-    $.removeCookie('mytoken');
-    alert('로그아웃!')
-    window.location.href = '../intro.html'
-}
-
-function delete_word(postid) {
-    $.ajax({
-        type: "POST",
-        url: `/trip/posts/delete`,
-        data: {
-            postid : postid,
-        },
-        success: function (response) {
-            alert(response["msg"])
-            window.location.reload()
-        }
-    });
-}
-
 $(document).ready(function () {
     get_mypost();
 });
 
-// 시간 보기 
-function time(date) {
-    let today = new Date()
-    let time = (today - date) / 1000 / 60  // 분
-
-    if (time < 60) {
-        return parseInt(time) + "분 전"
-    }
-    time = time / 60  // 시간
-    if (time < 24) {
-        return parseInt(time) + "시간 전"
-    }
-    time = time / 24
-    if (time < 14) {
-        return parseInt(time) + "일 전"
-    }
-    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-}
-
 // 내가 작성한 글 불러오기
 function get_mypost() {
-//    if (username == undefined)
-//    username == ""
-//    console.log(username)
+
     $.ajax({
         type: "GET",
-        url: '/user/plan/my-posts',
+        url: 'http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/my-posts',
         data: {},
         success: function (response) {
             let my_posts = response['PostId']
@@ -89,12 +48,26 @@ function get_mypost() {
     });
 }
 
+function delete_word(postid) {
+    $.ajax({
+        type: "POST",
+        url: 'http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/trip/posts/delete',
+        data: {
+            postid : postid,
+        },
+        success: function (response) {
+            alert(response["msg"])
+            window.location.reload()
+        }
+    });
+}
+
 // 게시물 DELETE
 function my_plan_delete(){
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
-            url: "user/plan/post/`${postId}`",
+            url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/`${postId}`",
             data: {},
             success: function (result) {
                 console.log(result);
@@ -104,3 +77,22 @@ function my_plan_delete(){
     } else {
     }
 }
+
+// // 시간 보기 
+// function time(date) {
+//     let today = new Date()
+//     let time = (today - date) / 1000 / 60  // 분
+
+//     if (time < 60) {
+//         return parseInt(time) + "분 전"
+//     }
+//     time = time / 60  // 시간
+//     if (time < 24) {
+//         return parseInt(time) + "시간 전"
+//     }
+//     time = time / 24
+//     if (time < 14) {
+//         return parseInt(time) + "일 전"
+//     }
+//     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+// }

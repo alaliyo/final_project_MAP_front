@@ -17,6 +17,18 @@
     <script type="text/javascript" src="JS/home.js"> </script>
     <script type="text/javascript" src="JS/logout.js"> </script>
 
+    <!-- <script>
+    function go_plan(){
+        if ('{{ status }}' == 'yes'){
+            window.location.href = '/plan'
+        }
+        else{
+            alert('로그인 해주세요')
+            window.location.href = '/login'
+        }
+    }
+    </script> -->
+
 </head>
 
 <body>
@@ -26,10 +38,10 @@
             <div class="menu_box">
                 <a href="home.html" class="menu_btn position" style="display: block; float: left">
                     <b style="font-size: 30px;">MAP</b>
-                    <h7>Make A Plane</h7>
+                    <h7>Make A Plan</h7>
                 </a>
                 <div class="position" style="float: right;" >
-                    <a class="remote_btn position_right" onclick="logout()" href="login.html">
+                    <a class="remote_btn position_right" onclick="logout()">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
                     </a>
                     <a class="remote_btn position_right" href="login.html">

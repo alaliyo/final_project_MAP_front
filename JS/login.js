@@ -218,13 +218,13 @@ function username_check_dup() {
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
             console.log(response)
-            if (response == "중복되지 않은 아이디입니다.") {
-                $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
-                $("#help-id").removeClass("is-loading")
-            }
-            else{
+            if (response == "중복 유저 네임입니다") {
                 $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
                 $("#help-id").focus()
+            }
+            else{
+                $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
+                $("#help-id").removeClass("is-loading")
             }
         }
     });
@@ -259,7 +259,7 @@ function nickname_check_dup() {
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
             console.log(response)
-            if (response == "중복되지 않은 닉네임입니다.") {
+            if (response == "중복된 닉네임입니다") {
                 $("#help-nickname").text("사용할 수 있는 닉네임입니다.").removeClass("is-danger").addClass("is-success")
                 $("#help-nickname").removeClass("is-loading")
             }

@@ -15,25 +15,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!-- JS -->
     <script type="text/javascript" src="JS/community.js"></script>
-    <script type="text/javascript" src="JS/logout.js"> </script>
-
-    
+    <script type="text/javascript" src="JS/logout.js"></script>
+    <!-- <script type="text/javascript" src="JS/community_detail.js"></script> -->
 </head>
 
 <body>
-
-
         <!-- 윗 메뉴 바 -->
     <nav class="menu">
         <div style="height: 80px;">
             <div class="menu_box">
                 <a href="home.html" class="menu_btn position" style="display: block; float: left">
                     <b style="font-size: 30px;">MAP</b>
-                    <h7>Make A Plane</h7>
+                    <h7>Make A Plan</h7>
                 </a>
                 <div class="position" style="float: right;" >
-                    <a class="remote_btn position_right" onclick="logout()">
-                        <div class="menu_btn abc" style="font-size: 19px;">로그아웃</div>
+                    <a class="remote_btn position_right" onclick="logout()" >
+                        <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
                     </a>
                     <a class="remote_btn position_right" href="mypage.html">
                         <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
@@ -48,7 +45,7 @@
         </div>
     </nav>
 
-    <div id="community_post" style="margin-left: 20%; margin-right: 20%;">
+    <div id="communtity_box" style="margin-left: 20%; margin-right: 20%;">
         <div style="height: 55px;">
             <div class="community_write_back" onclick="location.href='community_make.html'">
                 <a id="community_write_btn" class="start_btn">작성하기</a>
@@ -57,25 +54,13 @@
         <div class="community_box">
             <div class="title_box">
                 <p style="float: left;">제목</p>
-                <p style="float: right; margin-left: 80px; margin-right: 10px;">작성일시</p>
-                <p style="float: right;">작성자</p>
+                <p style="float: right; margin-left: 80px; margin-right: 130px;">작성일시</p>
+                <p style="float: right; margin-right: 60px;">작성자</p>
             </div>
             <br>
             <hr class="hr_top">
-            <div id="communtity_post">
-                <div>
-                    <a class="posting_box" href="community_detail.html">
-                        <p style="font-size: 20px; float: left;">title</p>
-                        <div class="time_box">
-                            <p class="posting_time">1시간 전</p>
-                        </div>
-                        <div class="time_box" style="text-align: center;">
-                            <p>김성원</p>
-                        </div>        
-                    </a>
-                </div>
+            <div id="communtity_posts">
             </div>
-            <hr>
         </div>
     </div>
 </body>
