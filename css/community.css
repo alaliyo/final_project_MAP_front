@@ -30,21 +30,32 @@ hr {
     background-color: rgb(167, 167, 167);
 }
 
+.communtity_post_box {
+    margin: none;
+    width: 90%;
+}
 /* 작성글 설정 (박스) */
 .posting_box {
     display: block;
     padding-left: 10px;
     padding-top: 7px;
     height: 40px;
+    
 }
 /* 작성글 동적 색 반응 */
 .posting_box:hover {
     background-color: rgb(235, 235, 235);
     transition: 0.3s ease-in-out;
 }
+
+.nickname_box {
+    width: 100px;
+    float: right;
+}
+
 /* 시간 박스 */
 .time_box {
-    width: 95px;
+    width: 230px;
     margin-right: 10px;
     float: right;
 }

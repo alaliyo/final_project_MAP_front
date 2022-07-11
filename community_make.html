@@ -9,17 +9,17 @@
     <link href="css/main.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/community.css" rel="stylesheet" >
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">   
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <!-- JS -->
-    <script type="text/javascript" src="JS/community.js"></script>
-    <script type="text/javascript" src="JS/logout.js.js"></script>
+    <script type="text/javascript" src="JS/community_make.js"></script>
+    <script type="text/javascript" src="JS/logout.js"></script>
 
     <style>
         .title_input {
-            height: 30px; width: 400px; font: 20px
+            height: 30px; font: 20px
         }
 
         textarea {
@@ -42,7 +42,7 @@
             <div class="menu_box">
                 <a href="home.html" class="menu_btn position" style="display: block; float: left">
                     <b style="font-size: 30px;">MAP</b>
-                    <h7>Make A Plane</h7>
+                    <h7>Make A Plan</h7>
                 </a>
                 <div class="position" style="float: right;" >
                     <a class="remote_btn position_right" onclick="logout()">
@@ -67,10 +67,10 @@
             <div id="communitys">
                 <div>
                     <div style="margin-bottom: 5px; font-size: 20px;">
-                        제목 : <input type="text" class="title_input" id="title_box" placeholder="제목을 입력하세요">
+                        제목 : <input type="text" class="title_input" id="title_box" style="width: 90%;" placeholder="제목을 입력하세요">
                     </div>
                     <hr class="hr_top">
-                    <textarea id="content_box" placeholder="내용을 입력하세요"></textarea>
+                    <textarea type="text" id="content_box" placeholder="내용을 입력하세요"></textarea>
                 </div>
             </div>
             <br>
