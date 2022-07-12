@@ -42,7 +42,7 @@ function cards() {
                 const image = card[i]['image']
                 const create_at = card[i]['createdAt']
                 
-                const temp_html = `<div class="card" id="${post_id}">
+                const temp_html = `<div class="card" id="${post_id}" >
                                     <a class="card_img_box" href="detail.html">
                                         <img class="card_img" src="${image}"/>
                                     </a>

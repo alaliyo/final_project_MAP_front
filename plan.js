@@ -211,7 +211,6 @@ function save_post(){
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
-            console.log("여기2")
             console.log(response)
             window.location='/home.html'
         }
