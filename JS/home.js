@@ -42,12 +42,12 @@ function cards() {
                 const image = card[i]['image']
                 const create_at = card[i]['createdAt']
                 
-                const temp_html = `<div class="card" id="${post_id}" >
-                                    <a class="card_img_box" href="detail.html">
+                const temp_html = `<div class="card" id="${post_id}" onclick="window.location.href='/detail.html?id=${post_id}'" >
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
                                         <img class="card_img" src="${image}"/>
                                     </a>
                                     <div>
-                                        <a href="detail.html">
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
                                             <p class="card_title">${title}</p>
                                         </a>
                                     </div>
