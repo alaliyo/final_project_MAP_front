@@ -40,3 +40,36 @@ a:link {
     color: rgb(95, 214, 175);
     transition: 0.3s ease-in-out;
 }
+
+/* 프로필 css */
+.profil_box {
+    padding-top: 30px;
+    padding-left: 10%;
+    height: 230px;
+}
+.profil_ring {
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    margin-right: 0;
+    background-color: aquamarine;
+    float: left;
+}
+.profil {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.nickname {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 30px;
+    float: left;
+}
+.profil_revise_btn {
+    float: right;
+    margin-right: 15px;
+}

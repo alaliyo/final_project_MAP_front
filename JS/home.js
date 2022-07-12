@@ -6,7 +6,19 @@ function get_cookie(name) {
 // 페이지 올 시 GET 함수 실핼
 $(window.document).ready(function() {
     cards();
+    keep_out()
 })
+// 로그인 , 로그아웃 온 오프
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {
+        $('#login').hide()
+        $('#logout').show()
+    } else {
+        $('#logout').hide()
+        $('#login').show()
+    }
+}
 
 // function time2str(date) {
 //     let today = new Date()

@@ -73,7 +73,6 @@ function commentGet() {
 // function time3str(date) {
 //     let today = new Date()
 //     let time = (today - date) / 1000 / 60  // 분
-
 //     if (time < 60) {
 //         return parseInt(time) + "분 전"
 //     }

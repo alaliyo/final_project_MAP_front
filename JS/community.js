@@ -6,7 +6,21 @@ function get_cookie(name) {
 // 페이지 접속 시 실행하기
 $(window.document).ready(function() {
     communityPostsGet();
+    keep_out()
+    community_posts()
+    my_community_my_postid()
 })
+
+// 토큰 있을 시 이동 가능
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {}
+    else {
+        alert("로그인 후 이용해주세요")
+        location.href = '/login.html';
+    }
+}
+
 
 //게시물 GET
 function communityPostsGet() {
@@ -42,7 +56,7 @@ function communityPostsGet() {
                                             </div>
                                         </a>
                                     </div>
-                                    <button style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
+                                    <button id="delete_btn" style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
                                 </div>
                                 <hr style="width=100%">`
                 $('#communtity_posts').append(temp_html)
@@ -50,6 +64,7 @@ function communityPostsGet() {
         }
     })
 }
+
 
 // 게시물 DELETE
 function community_post_delete(postId){
@@ -79,39 +94,6 @@ function community_post_delete(postId){
 }
 
 
-//게시물 수정
-function communityPutGet(postId) {
-    location.href = '/community_make.html'
-    //$('#communitys').empty()
-    $.ajax({
-        type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
-        data: {postId: post_id},
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (post) {
-            let my_post = post['result']
-            console.log(my_post['result'])
-            const title = my_post[postId]['title']
-            const content = my_post[postId]['content']
-            const temp_html =   `<div>
-                                    <div style="margin-bottom: 5px; font-size: 20px;">
-                                        제목 : <input type="text" class="title_input" id="title_box" placeholder="제목을 입력하세요"
-                                        value="${title}">
-                                    </div>
-                                    <hr class="hr_top">
-                                    <textarea id="content_box" placeholder="내용을 입력하세요">${content}</textarea>
-                                </div>`
-            $('#communitys').append(temp_html)
-
-        }
-    })
-}
-
-
-
 // 게시물 시간
 // function time2str(date) {
 //     let today = new Date()
@@ -130,3 +112,51 @@ function communityPutGet(postId) {
 //     }
 //     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 // }
+
+
+/*
+// 삭제 버튼을 위한 커뮤티니 postId 조회
+function community_posts() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (community_id) {
+            console.log(community_id)
+            for (let i = 0; i < community_id.length; i++) {
+                let post_id = community_id[i]['postId']
+                console.log(post_id)
+            }
+        }
+    })
+}
+
+
+// 삭제 버튼을 위한 회원 커뮤니티 postId조회
+function my_community_my_postid() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (my_community_id) {
+            console.log(my_community_id)
+            for (let i = 0; i < my_community_id.length; i++) {
+                let post_id = my_community_id[i]['postId']
+                console.log(post_id)
+            }
+        }
+    })
+}
+*/
