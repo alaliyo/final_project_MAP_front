@@ -1,5 +1,3 @@
-// 게시물 보기
-
 function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
@@ -14,6 +12,8 @@ $(document).ready(function() {
     commentGet();
 })
 
+
+// 게시물 보기
 function community_detail(postId) {
     const token = get_cookie("X-AUTH-TOKEN");
     console.log(postId);
@@ -33,21 +33,26 @@ function community_detail(postId) {
             let content = post['content']
             let nickname = post['nickname']
             let created_at = post['createdAt']
-            let temp_html = `<div id="post" value="${post_id}">
-                                <div style="margin-bottom: 5px; font-size: 20px;">
-                                    <p style="float: right; font-size: 12px; margin-top: 8px; margin-left: 5px"> ${created_at}</p>
-                                    <p style="font-size: 15px; float: right; margin-top: 5px;">작성자: ${nickname}</p>
-                                    <p>제목: ${title}</p>
+            let temp_html = `<div>
+                                <div>
+                                    <div style="margin-bottom: 5px; font-size: 20px;">
+                                        <p style="float: right; font-size: 12px; margin-top: 8px; margin-left: 5px"> ${created_at}</p>
+                                        <p style="font-size: 15px; float: right; margin-top: 5px;">작성자: ${nickname}</p>
+                                        <p>제목: ${title}</p>
+                                    </div>
+                                    <hr class="hr_top">
+                                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                                        <text style="font-size: 18px;"> ${content}</text>
+                                    </div>
                                 </div>
                                 <hr class="hr_top">
-                                <div style="margin-top: 10px; margin-bottom: 10px;">
-                                    <text style="font-size: 18px;"> ${content}</text>
-                                </div>
+                                <button style="float: right; margin-top: 5px;" onclick="community_put_get(window.location.href='/community_revise.html?id=${post_id}')">수정</button>
                             </div>`
             $('#community_content').append(temp_html)
         }
     })
 }
+
 
 //게시물 댓글 GET
 function commentGet() {
@@ -86,6 +91,7 @@ function commentGet() {
     })
 }
 
+
 // 게시물 댓글 POST
 function comment_make() {
     const token = get_cookie("X-AUTH-TOKEN");
@@ -113,6 +119,7 @@ function comment_make() {
         }
     })
 }
+
 
 // 게시물 댓글 POST
 function comment_delete(comment_id) {
