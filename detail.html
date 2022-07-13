@@ -13,7 +13,7 @@
     <!-- css와 font -->
     <link href="css/home.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/home_header.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <!-- Optional JavaScript -->
@@ -29,7 +29,10 @@
     <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=26ca3bb251f3783d5a218c186f922d4a&libraries=services"></script> -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=26ca3bb251f3783d5a218c186f922d4a"></script>
     <script type="text/javascript" src="JS/detail.js"></script>
+    <script type="text/javascript" src="JS/detail_comment.js"></script>
+    <script type="text/javascript" src="JS/logout.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
     
     <style>
         .ul {
@@ -40,36 +43,68 @@
         .li {
             float: left;
         }
+
+        .comment {
+            float: right;
+        }
+
+        .comment_hr {
+            margin-bottom: 0;
+            margin-top: 40px;
+            background-color: rgb(131, 131, 131);
+        }
+
+        .detail_content_box {
+            border: 3px solid rgb(131, 131, 131);
+            padding: 20px 20px 40px 20px;
+            border-radius: 20px;
+        }
     </style>
 
 </head>
 <body>
-     <!-- 윗 메뉴 바 -->
-     <nav class="menu">
+    <!-- 윗 메뉴 바 -->
+    <nav class="menu">
         <div style="height: 80px;">
             <div class="menu_box">
                 <a href="home.html" class="menu_btn position" style="display: block; float: left">
-                    <b style="font-size: 30px; color: black;">MAP</b>
-                    <h7 style="color: black">Make A Plane</h7>
+                    <b style="font-size: 30px;">MAP</b>
+                    <h7>Make A Plan</h7>
                 </a>
-                
+                <div class="position" style="float: right;" >
+                    <a class="remote_btn position_right" onclick="logout()">
+                        <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
+                    </a>
+                    <a class="remote_btn position_right" href="mypage.html">
+                        <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
+                    </a>
+                </div>
+                <div class="plan_btn_box">
+                    <a href="plan.html" class="plan_btn" >
+                        여행 설계
+                    </a>
+                    <a href="community.html" class="plan_btn" style="margin-left: 30px;" >
+                        커뮤니티
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
+
 
     <div style="width: 100%; height: 70px">
     </div>
 
 
     <div style="margin: 30px">
-        <h1 style="font-size: 40px;">TITLE</h1>
+        <h1 style="font-size: 40px; float: left;">TITLE</h1>
         <h2 style="font-size: 30px;text-align: right;">작성자</h2>
         <h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2>
     </div>
 
     <div style=" background-color:aliceblue;">  
-        <div id="map" style="width:50%;height: 600px; margin: 30px; float: left;"></div>  
-        <div id="plan" style="width: 40%; height: 600px; margin: 30px;float: right; border: solid; border-radius: 10px;">
+        <div id="map" style="width:48%;height: 600px; margin: 3%; margin-bottom: 5px; float: left;"></div>  
+        <div id="plan" style="width: 38%; height: 600px; margin: 3%; margin-bottom: 5px; float: right; border: solid; border-radius: 10px;">
             <!-- 여행 날짜 선택 -->
             <div>
                 <select style="margin: 20px" id="select_day">
@@ -108,9 +143,38 @@
                 </ul>
             </li>
         </div>
-        
     </div>
-    
+    <br>
+    <div style="margin-left: 20%; margin-right: 20%; margin-top: 655px;">
+        <div style="padding-bottom: 40px;">
+            <div class="detail_content_box">
+                <div id="detail_content">
+                    <p style="margin-top: 10px; margin-bottom: 5px; font-size: 30px;">댓글</p>
+                    <div id="comments">
+                        <div>
+                            <div id="${comment_id}">
+                                <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
+                                <br>
+                                <button class="comment" id="comment_delete" onclick="comment_delete(comment_id)">삭제</button>
+                                <p class="comment">${create_at}</p>
+                                <p class="comment">${nickname}</p>
+                            </div>
+                            <hr class="comment_hr">
+                        </div>
+                    </div>
+                    <textarea style="resize: none; height: 80px; width: 100%; padding: 15px;" id="content_text_box"></textarea>
+                    <div>
+                        <button style="float: right;" onclick="detail_comment_make()">작성완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <script type="text/javascript" src="JS/detail_map.js"></script>
 </body>
 </html>

@@ -32,11 +32,12 @@ function community_detail(postId) {
             let title = post['title']
             let content = post['content']
             let nickname = post['nickname']
-            let created_at = post['createdAt']
+            let create_at = new Date(post['createdAt'])
+            let time_brfore = time2str(create_at)
             let temp_html = `<div>
                                 <div>
                                     <div style="margin-bottom: 5px; font-size: 20px;">
-                                        <p style="float: right; font-size: 12px; margin-top: 8px; margin-left: 5px"> ${created_at}</p>
+                                        <p style="float: right; font-size: 12px; margin-top: 8px; margin-left: 5px"> ${time_brfore}</p>
                                         <p style="font-size: 15px; float: right; margin-top: 5px;">작성자: ${nickname}</p>
                                         <p>제목: ${title}</p>
                                     </div>
@@ -74,15 +75,16 @@ function commentGet() {
         success: function (comments) {
             console.log(comments)
             for (let i = 0; i < comments.length; i++) {
-                const comment_id = comments[i]['commentId']
-                const nickname = comments[i]['nickname']
-                const comment = comments[i]['comment']
-                const create_at = comments[i]['createdAt']
-                const temp_html = `<div>
+                let comment_id = comments[i]['commentId']
+                let nickname = comments[i]['nickname']
+                let comment = comments[i]['comment']
+                let create_at = new Date(comments[i]['createdAt'])
+                let time_brfore = time2str(create_at)
+                let temp_html = `<div>
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
                                     <button class="comment" id="comment_delete" onclick="comment_delete(${comment_id})">댓글 삭제</button>
-                                    <p class="comment">${create_at}</p>
+                                    <p class="comment">${time_brfore}</p>
                                     <p class="comment">${nickname}</p>
                                 </div>`
                     $('#comments').append(temp_html)
@@ -114,8 +116,7 @@ function comment_make() {
         },
         success: function (comment) {
             console.log(comment)
-            window.location.reload(true);
-            console.log("작성완료")
+            window.location.reload();
         }
     })
 }
@@ -145,4 +146,24 @@ function comment_delete(comment_id) {
     } else {
         window.location.reload(true);
     }
+}
+
+
+// 게시물 시간
+function time2str(date) {
+    let today = new Date()
+    let time = (today - date) / 1000 / 60  // 분
+
+    if (time < 60) {
+        return parseInt(time) + "분 전"
+    }
+    time = time / 60  // 시간
+    if (time < 24) {
+        return parseInt(time) + "시간 전"
+    }
+    time = time / 24
+    if (time < 14) {
+        return parseInt(time) + "일 전"
+    }
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 }
