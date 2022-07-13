@@ -2,40 +2,13 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
-// 게시물 댓글 POST
-function comment_make(postId) {
-    const token = get_cookie("X-AUTH-TOKEN");
-    let comment = $('#comment_text_box').val();
-    console.log(comment);
-    console.log(postId);
-
-    $.ajax({
-        type: "POST",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/${postId}/comment`,
-        data: JSON.stringify({
-            comment: comment,
-        }),
-        contentType: "application/json;",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (comment) {
-            console.log(comment)
-            window.location.reload(true);
-            console.log("작성완료")
-        }
-    })
-}
-
-// 페이지 접속 시 초기화
-$(document).ready(function() {
-    commentGet();
-})
-
 //게시물 댓글 GET
 function commentGet() {
     const token = get_cookie("X-AUTH-TOKEN");
+    const para = document.location.href.split("=");
+    console.log(para);
+    const postId = para[1]
+    console.log(postId);
 
     $.ajax({
         type: "GET",
@@ -48,17 +21,17 @@ function commentGet() {
         },
         success: function (comments) {
             console.log(comments)
-            const comment = comments
-            for (let i = 0; i < comment.length; i++) {
-                const comment_id = comment[i]['commentId']
-                const nickname = comment[i]['nickname']
-                const comment = comment[i]['comment']
-                const create_at = comment[i]['createdAt']
-                const temp_html = `<div id="${comment_id}">
+            for (let i = 0; i < comments.length; i++) {
+                let comment_id = comments[i]['commentId']
+                let nickname = comments[i]['nickname']
+                let comment = comments[i]['comment']
+                let create_at = new Date(comments[i]['createdAt'])
+                let time_brfore = time2str(create_at)
+                let temp_html = `<div>
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
                                     <button class="comment" id="comment_delete" onclick="comment_delete(${comment_id})">댓글 삭제</button>
-                                    <p class="comment">${create_at}</p>
+                                    <p class="comment">${time_brfore}</p>
                                     <p class="comment">${nickname}</p>
                                 </div>`
                     $('#comments').append(temp_html)
@@ -68,29 +41,37 @@ function commentGet() {
 }
 
 
-
-// 게시물 댓글 시간
-// function time3str(date) {
-//     let today = new Date()
-//     let time = (today - date) / 1000 / 60  // 분
-//     if (time < 60) {
-//         return parseInt(time) + "분 전"
-//     }
-//     time = time / 60  // 시간
-//     if (time < 24) {
-//         return parseInt(time) + "시간 전"
-//     }
-//     time = time / 24
-//     if (time < 14) {
-//         return parseInt(time) + "일 전"
-//     }
-//     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-// }
-
-// 게시물 DELETE
-function comment_delete(commentId) {
+// 게시물 댓글 POST
+function comment_make() {
     const token = get_cookie("X-AUTH-TOKEN");
-    const comment_id = commentId;
+    let comment = $('#comment_text_box').val();
+    const para = document.location.href.split("=");
+    console.log(para);
+    const postId = para[1]
+    console.log(postId)
+
+    $.ajax({
+        type: "POST",
+        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}/comment`,
+        data: JSON.stringify({
+            comment: comment,
+        }),
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (comment) {
+            console.log(comment)
+            window.location.reload();
+        }
+    })
+}
+
+
+// 게시물 댓글 POST
+function comment_delete(comment_id) {
+    const token = get_cookie("X-AUTH-TOKEN");
     console.log(comment_id)
     if (confirm('삭제하겠습니까?')) {
         $.ajax({
@@ -114,3 +95,22 @@ function comment_delete(commentId) {
     }
 }
 
+
+// 게시물 시간
+function time2str(date) {
+    let today = new Date()
+    let time = (today - date) / 1000 / 60  // 분
+
+    if (time < 60) {
+        return parseInt(time) + "분 전"
+    }
+    time = time / 60  // 시간
+    if (time < 24) {
+        return parseInt(time) + "시간 전"
+    }
+    time = time / 24
+    if (time < 14) {
+        return parseInt(time) + "일 전"
+    }
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+}
