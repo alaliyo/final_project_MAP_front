@@ -254,21 +254,11 @@ function nickname_check_dup() {
         url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-nickname",
         data:{
                 nickname : nickname
-            }
-        ,
+            },
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
             console.log(response)
-<<<<<<< HEAD
-            if (response == "중복된 닉네임입니다") {
-                $("#help-nickname").text("이미 존재하는 닉네임입니다.").removeClass("is-safe").addClass("is-danger")
-                $("#input-nickname").focus()
-            }
-            else{
-                
-=======
             if (response == "회원 정보 중복입니다.") {
->>>>>>> my_page
                 $("#help-nickname").text("사용할 수 있는 닉네임입니다.").removeClass("is-danger").addClass("is-success")
                 $("#help-nickname").removeClass("is-loading")
             }
