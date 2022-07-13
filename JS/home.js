@@ -20,23 +20,6 @@ function keep_out() {
     }
 }
 
-// function time2str(date) {
-//     let today = new Date()
-//     let time = (today - date) / 1000 / 60  // 분
-
-//     if (time < 60) {
-//         return parseInt(time) + "분 전"
-//     }
-//     time = time / 60  // 시간
-//     if (time < 24) {
-//         return parseInt(time) + "시간 전"
-//     }
-//     time = time / 24
-//     if (time < 14) {
-//         return parseInt(time) + "일 전"
-//     }
-//     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-// }
 
 function cards() {
     $('#cards').empty()
@@ -52,8 +35,8 @@ function cards() {
                 const nickname = card[i]['nickname']
                 const title = card[i]['title']
                 const image = card[i]['image']
-                const create_at = card[i]['createdAt']
-                
+                const create_at = new Date(card[i]['createdAt'])
+                const time_brfore = time2str(create_at)
                 const temp_html = `<div class="card" id="${post_id}" onclick="window.location.href='/detail.html?id=${post_id}'" >
                                     <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
                                         <img class="card_img" src="${image}"/>
@@ -66,7 +49,7 @@ function cards() {
                                     <div >
                                         <p class="card_writer">${nickname}</p>
                                         <br>
-                                        <p class="card_time">${create_at}</p>
+                                        <p class="card_time">${time_brfore}</p>
                                     </div>
                                 </div>`
                                 $('#cards').append(temp_html)
@@ -76,3 +59,21 @@ function cards() {
     })
 }
 
+
+function time2str(createdAt) {
+    let today = new Date()
+    let time = (today - createdAt) / 1000 / 60  // 분
+
+    if (time < 60) {
+        return parseInt(time) + "분 전"
+    }
+    time = time / 60  // 시간
+    if (time < 24) {
+        return parseInt(time) + "시간 전"
+    }
+    time = time / 24
+    if (time < 14) {
+        return parseInt(time) + "일 전"
+    }
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+}

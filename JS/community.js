@@ -7,8 +7,6 @@ function get_cookie(name) {
 $(window.document).ready(function() {
     communityPostsGet();
     keep_out()
-    community_posts()
-    my_community_my_postid()
 })
 
 // 토큰 있을 시 이동 가능
@@ -41,14 +39,15 @@ function communityPostsGet() {
                 let post_id = post[i]['postId']
                 let title = post[i]['title']
                 let nickname = post[i]['nickname']
-                let create_at = post[i]['createdAt']
+                let create_at = new Date(post[i]['createdAt'])
+                let time_brfore = time2str(create_at)
                 let temp_html = `<div id="communtity_post ">
                                     <div class="communtity_post_box">
                                         <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
                                             <p style="font-size: 20px; float: left;">${title}</p>
                                             <div style="float:">
                                                 <div class="time_box">
-                                                    <p class="posting_time">${create_at}</p>
+                                                    <p class="posting_time">${time_brfore}</p>
                                                 </div>
                                                 <div class="nickname_box" style="text-align: center;">
                                                     <p>${nickname}</p>
@@ -94,24 +93,24 @@ function community_post_delete(postId){
 }
 
 
-// 게시물 시간
-// function time2str(date) {
-//     let today = new Date()
-//     let time = (today - date) / 1000 / 60  // 분
+// 게시물 시간 변경
+function time2str(date) {
+    let today = new Date()
+    let time = (today - date) / 1000 / 60  // 분
 
-//     if (time < 60) {
-//         return parseInt(time) + "분 전"
-//     }
-//     time = time / 60  // 시간
-//     if (time < 24) {
-//         return parseInt(time) + "시간 전"
-//     }
-//     time = time / 24
-//     if (time < 14) {
-//         return parseInt(time) + "일 전"
-//     }
-//     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-// }
+    if (time < 60) {
+        return parseInt(time) + "분 전"
+    }
+    time = time / 60  // 시간
+    if (time < 24) {
+        return parseInt(time) + "시간 전"
+    }
+    time = time / 24
+    if (time < 14) {
+        return parseInt(time) + "일 전"
+    }
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+}
 
 
 /*

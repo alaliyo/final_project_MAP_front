@@ -70,8 +70,8 @@ function my_plans() {
                 let post_id = postId[i]['id']
                 let title = postId[i]['title']
                 let image = postId[i]['image']
-                let createt_at = postId[i]['createdAt']
-                //let time_befor = time(createt_at)
+                let create_at = new Date(postId[i]['createdAt'])
+                let time_brfore = time2str(create_at)
                 let temp_html = `<div class="card-box box" id="my-card-box" >
                                     <div class="card-image">
                                         <a href="detail.html">
@@ -84,7 +84,7 @@ function my_plans() {
                                         <div class="media" style="padding-bottom: 15px">
                                             <div class="media-content">
                                                 <a href="detail.html" class="post-title" style="font-size: 30px">${title}</a>
-                                                <p style="float: right; margin-top: 20px;" >${createt_at}</p>
+                                                <p style="float: right; margin-top: 20px;" >${time_brfore}</p>
                                             </div>
                                         </div>
                                         <footer class="card-footer">
@@ -117,14 +117,15 @@ function my_community() {
             for (let i = 0; i < communitys.length; i++) {
                 let post_id = communitys[i]['postId']
                 let title = communitys[i]['title']
-                let create_at = communitys[i]['createdAt']
+                let create_at = new Date(communitys[i]['createdAt'])
+                let time_brfore = time2str(create_at)
                 let temp_html = `<div id="communtity_post ">
                                     <div class="communtity_post_box">
                                         <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
                                             <p style="font-size: 20px; float: left;">${title}</p>
                                             <div style="float:">
                                                 <div class="time_box">
-                                                    <p class="posting_time">${create_at}</p>
+                                                    <p class="posting_time">${time_brfore}</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -167,21 +168,21 @@ function my_plan_delete(id){
 }
 
 
-// // 시간 보기 
-// function time(date) {
-//     let today = new Date()
-//     let time = (today - date) / 1000 / 60  // 분
+// 게시물 시간
+function time2str(date) {
+    let today = new Date()
+    let time = (today - date) / 1000 / 60  // 분
 
-//     if (time < 60) {
-//         return parseInt(time) + "분 전"
-//     }
-//     time = time / 60  // 시간
-//     if (time < 24) {
-//         return parseInt(time) + "시간 전"
-//     }
-//     time = time / 24
-//     if (time < 14) {
-//         return parseInt(time) + "일 전"
-//     }
-//     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-// }
+    if (time < 60) {
+        return parseInt(time) + "분 전"
+    }
+    time = time / 60  // 시간
+    if (time < 24) {
+        return parseInt(time) + "시간 전"
+    }
+    time = time / 24
+    if (time < 14) {
+        return parseInt(time) + "일 전"
+    }
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+}
