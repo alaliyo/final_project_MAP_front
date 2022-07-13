@@ -22,6 +22,7 @@ function my_community_box() {
 
 
 
+
 // 프로필 GET 
 function profil() {
     const token = get_cookie("X-AUTH-TOKEN");
@@ -37,14 +38,15 @@ function profil() {
         },
         success: function (user) {
             console.log(user)
+            const user_id = user['id']
             let nickname = user['nickname']
             let image = user['image']
-            let temp_html = `<div class="profil_box" >
+            let temp_html = `<div class="profil_box" id="profil_box">
                                 <div class="profil_ring">
                                     <img class="profil" src="${image}" alt="Placeholder image" />
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
-                                <button class="profil_revise_btn" onclick="">프로필수정</button>
+                                <button class="profil_revise_btn" onclick="profil_revise_show(); profil_revise(${user_id});">개인정보수정</button>
                             </div>`
             $('#my_profil').append(temp_html)
         }

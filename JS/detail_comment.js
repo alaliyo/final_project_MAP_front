@@ -26,7 +26,6 @@ function detail_comment_make() {
         success: function (comment) {
             console.log(comment)
             window.location.reload(true);
-            alert("왜이러지?")
         }
     })
 }
@@ -54,8 +53,8 @@ function detail_comment_get() {
         success: function (comments) {
             console.log(comments)
             for (let i = 0; i < comments.length; i++) {
-                let comment_id = comments[i]['commentId']
-                let nickname = comments[i]['nickname']
+                let comment_id = comments[i]['id']
+                let nickname = comments[i]['member']
                 let comment = comments[i]['comment']
                 let create_at = new Date(comments[i]['createdAt'])
                 let time_brfore = time2str(create_at)
@@ -77,15 +76,15 @@ function detail_comment_get() {
 
 
 // 게시물 DELETE
-function detail_comment_delete(comment_id) {
+function detail_comment_delete(id) {
     const token = get_cookie("X-AUTH-TOKEN");
-    console.log(comment_id)
+    console.log(id)
     if (confirm('삭제하겠습니까?')) {
         $.ajax({
             type: "DELETE",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/comment/${comment_id}`,
+            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/comment/${id}`,
             data: {
-                commentId : comment_id
+                commentId : id
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Content-type","application/json");
