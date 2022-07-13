@@ -17,7 +17,8 @@
     <script type="text/javascript" src="JS/mypage.js"></script>
     <script type="text/javascript" src="JS/logout.js"></script>
     <script type="text/javascript" src="JS/community.js"></script>
-
+    <script type="text/javascript" src="JS/profil_revise.js"></script>
+    
 </head>
 <body>
     <!-- 윗 메뉴 바 -->
@@ -31,9 +32,6 @@
                 <div class="position" style="float: right;" >
                     <a class="remote_btn position_right" onclick="logout()">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
-                    </a>
-                    <a class="remote_btn position_right" href="mypage.html">
-                        <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
                     </a>
                 </div>
                 <div class="plan_btn_box">
@@ -51,19 +49,36 @@
 
 <!-- 프로필 및 게시물 박스--> 
 <div class="box" style="margin: 178px 15% 0px 15%">
+
     <!-- 프로필 -->
     <div id="my_profil">
-        <!--
-        <div class="profil_box" >
-            <div class="profil_ring">
-                <img class="profil" src="static/index_backdrop_img.jpg" alt="Placeholder image" />
-            </div>
-            <p class="nickname" id="idname">닉네임</p>
-            <button class="profil_revise_btn" onclick="">프로필수정</button>
-        </div>
-        -->
     </div>
-        <hr style="background: #c0c0c0; margin: 0;">
+
+    <!-- 프로필 수정 -->
+    <div id="my_profil_revise" style="display: none;"">
+        <div class="community_box">
+            <div id="communitys">
+                <div>
+                    <div style="margin-bottom: 5px; font-size: 20px;">
+                        닉네임 : <input type="text" class="nickname_textbox" id="nickname_textbox" style="width: 80%;">
+                        <br>
+                        이메일 : <input type="text" class="email_textbox" id="email_textbox" style="width: 80%;">
+                        <br>
+                        프로필 : <input type="text" class="image_textbox" id="image_textbox" style="width: 80%;">
+                        <br>
+                        비밀번호: <input type="text" class="image_textbox" id="password_textbox" style="width: 80%;">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div style="float: right;">
+                <button onclick="profil_revise_off()">취소</button>
+                <button onclick="profil_revise_off(); community_put_post()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <hr style="background: #c0c0c0; margin: 0;">
         <!-- 리모컨 -->
     <div>
         <button onclick="my_plan()">여행계획</button>
