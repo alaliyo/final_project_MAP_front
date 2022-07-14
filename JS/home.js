@@ -80,6 +80,23 @@ function likes_btn(post_id) {
 }
 
 
+function view(post_id) {
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "PUT",
+        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/view`,
+        data: {},
+        contentType: "application/json",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            console.log(response)
+        }
+    })
+}
+
 
 function cards() {
     $('#cards').empty()
@@ -97,6 +114,7 @@ function cards() {
                 const title = card[i]['title']
                 const image = card[i]['image']
                 const likes = card[i]['likes']
+                const views = card[i]['views']
                 const create_at = new Date(card[i]['createdAt'])
                 const time_brfore = time2str(create_at)
                 let temp_html = ``
@@ -104,19 +122,20 @@ function cards() {
                 if (like_btn.indexOf(post_id) >= 0) {
                     console.log("하트 참")
                     temp_html = `<div class="card" id="${post_id}">
-                                            <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
                                                 <img class="card_img" src="${image}"/>
                                             </a>
                                             <div>
-                                                <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                                <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
                                                     <p class="card_title">${title}</p>
                                                 </a>
                                             </div>
                                             <div>
                                                 <num style="float: right; margin-left: 3px;">${likes}</num>
                                                 <a>
-                                                    <img onclick=" likes_btn(${post_id})"class="likes likes_on" id="likes${post_id}" src="/static/like-icon-on.png">
+                                                    <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes${post_id}" src="/static/like-icon-on.png">
                                                 </a>
+                                                <P> 조회수: ${views}</P>
                                                 <br>
                                                 <p class="card_writer">${nickname}</p>
                                                 <br>
@@ -126,19 +145,20 @@ function cards() {
                 } else {
                     console.log("하트 안 참")
                     temp_html = `<div class="card" id="${post_id}">
-                                            <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
                                                 <img class="card_img" src="${image}"/>
                                             </a>
                                             <div>
-                                                <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                                <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
                                                     <p class="card_title">${title}</p>
                                                 </a>
                                             </div>
                                             <div>
                                                 <num style="float: right; margin-left: 3px;">${likes}</num>
                                                 <a>
-                                                    <img onclick=" likes_btn(${post_id})"class="likes likes_off" id="likes${post_id}" src="/static/like-icon-off.png">
+                                                    <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes${post_id}" src="/static/like-icon-off.png">
                                                 </a>
+                                                <P> 조회수: ${views}</P>
                                                 <br>
                                                 <p class="card_writer">${nickname}</p>
                                                 <br>
@@ -169,6 +189,7 @@ function cards_none_login() {
                 const title = card[i]['title']
                 const image = card[i]['image']
                 const likes = card[i]['likes']
+                const views = card[i]['views']
                 const create_at = new Date(card[i]['createdAt'])
                 const time_brfore = time2str(create_at)
                 let temp_html = `<div class="card" id="${post_id}">
@@ -185,6 +206,7 @@ function cards_none_login() {
                                         <a>
                                         <img class="likes likes_off" src="/static/like-icon-off.png">
                                         </a>
+                                        <P> 조회수: ${views}</P>
                                         <br>
                                         <p class="card_writer">${nickname}</p>
                                         <br>

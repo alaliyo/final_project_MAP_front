@@ -20,7 +20,6 @@ function communityMakePost() {
     let title = $('#title_box').val();
     let content = $('#content_box').val();
     console.log(title, content)
-
     $.ajax({
         type: "POST",
         url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post",
