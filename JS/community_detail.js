@@ -10,8 +10,23 @@ $(window.document).ready(function() {
 
 $(document).ready(function() {
     commentGet();
+    keep_out()
 })
 
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {}
+    else {
+        alert("로그인 후 이용해주세요")
+        location.href = '/login.html';
+    }
+}
+
+// 에러 발생 시 홈으로
+function relogin(){
+    window.location.replace("/home.html");
+    alert('토큰이 만료되었습니다. 다시 로그인 하세요');
+}
 
 // 게시물 보기
 function community_detail(postId) {
@@ -50,6 +65,11 @@ function community_detail(postId) {
                                 <button style="float: right; margin-top: 5px;" onclick="community_put_get(window.location.href='/community_revise.html?id=${post_id}')">수정</button>
                             </div>`
             $('#community_content').append(temp_html)
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            relogin()
         }
     })
 }

@@ -18,6 +18,11 @@ function keep_out() {
         location.href = '/login.html';
     }
 }
+// 에러 발생 시 홈으로
+function relogin(){
+    window.location.replace("/home.html");
+    alert('토큰이 만료되었습니다. 다시 로그인 하세요');
+}
 
 
 //게시물 GET
@@ -60,6 +65,11 @@ function communityPostsGet() {
                                 <hr style="width=100%">`
                 $('#communtity_posts').append(temp_html)
             }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            relogin()
         }
     })
 }
