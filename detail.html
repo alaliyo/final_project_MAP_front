@@ -97,9 +97,10 @@
 
 
     <div style="margin: 30px">
-        <h1 style="font-size: 40px; float: left;">TITLE</h1>
-        <h2 style="font-size: 30px;text-align: right;">작성자</h2>
-        <h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2>
+        <div id="title"><h1 style="font-size: 40px; float: left;">TITLE</h1></div>
+        <div id="writer"><h2 style="font-size: 30px;text-align: right;">작성자</h2></div>
+        <div id="createAt"><h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2></div>
+        
     </div>
 
     <div style=" background-color:aliceblue;">  
@@ -109,10 +110,7 @@
             <div>
                 <select style="margin: 20px" id="select_day">
                     <option value=1 label="1일" selected></option>
-                    <option value=2 label="2일"></option>
-                    <option value=3 label="3일"></option>
-                    <option value=4 label="4일"></option>
-                    <option value=5 label="5일"></option>
+                    
                 </select>
             </div>
             
@@ -166,5 +164,7 @@
 
 
     <script type="text/javascript" src="JS/detail_map.js"></script>
+
+    
 </body>
 </html>
