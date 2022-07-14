@@ -14,6 +14,11 @@ function keep_out() {
     }
 }
 
+//토근 만료 시 로그인 창으로
+function relogin(){
+    alert('토큰이 만료되었습니다. 다시 로그인 하세요');
+    window.location.replace("/login.html");
+}
 
 let day; // 여행 기간 (예 2박 3일)
 let day_status // 선택된 d y 상 태 
@@ -155,6 +160,11 @@ function read_schedule() {
                 $(`#schedule-${schedule.date}`).append(temp_html)
             }
 
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            relogin()
         }
     })
 }

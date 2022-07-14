@@ -27,8 +27,8 @@ $(window.document).ready(function() {
 
 // 에러 시 로그아웃
 function relogin(){
-    window.location.replace("/home.html");
     alert('토큰이 만료되었습니다. 다시 로그인 하세요');
+    window.location.replace("/login.html");
 }
 
 

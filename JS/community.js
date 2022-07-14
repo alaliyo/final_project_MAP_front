@@ -20,7 +20,7 @@ function keep_out() {
 }
 // 에러 발생 시 홈으로
 function relogin(){
-    window.location.replace("/home.html");
+    window.location.replace("/login.html");
     alert('토큰이 만료되었습니다. 다시 로그인 하세요');
 }
 
