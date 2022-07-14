@@ -38,6 +38,11 @@ $(window.document).ready(function() {
     });
 });
 
+// 에러 시 로그아웃
+function relogin(){
+    window.location.replace("/home.html");
+    alert('토큰이 만료되었습니다. 다시 로그인 하세요');
+}
 
 function add_day(post_id){
     let token = get_cookie("X-AUTH-TOKEN");
@@ -98,15 +103,17 @@ function read_schedules(post_id){
                                 `
                     $(`#schedules`).append(temp_html)
                 }
-                
-
-                
             }
-
-            
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            relogin()
         }
     })
 }
+
+
 
 
 

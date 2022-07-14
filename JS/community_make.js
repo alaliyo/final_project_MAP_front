@@ -2,6 +2,19 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
+$(document).ready(function() {
+    keep_out()
+})
+
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {}
+    else {
+        alert("로그인 후 이용해주세요")
+        location.href = '/login.html';
+    }
+}
+
 function communityMakePost() {
     let token = get_cookie("X-AUTH-TOKEN");
     let title = $('#title_box').val();
