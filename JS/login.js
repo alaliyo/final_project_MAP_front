@@ -184,7 +184,7 @@ function is_email(asValue) {
 }
 //닉이름 규칙
 function is_nickname(asValue) {
-    const regExp = /^(?=.*[a-zA-Z0-9])[0-9a-zA-Z]{4,15}$/;
+    const regExp = /^(?=.*[a-zA-Z0-9ㄱ-ㅎ가-힣])[0-9a-zA-Zㄱ-ㅎ가-힣]{2,30}$/;
     return regExp.test(asValue);
 }
 
@@ -243,7 +243,7 @@ function nickname_check_dup() {
     }
     // 닉네임 조건 확인
     if (!is_nickname(nickname)) {
-        $("#help-nickname").text("영어포함. 사용가능 4-20자").removeClass("is-safe").addClass("is-danger")
+        $("#help-nickname").text("2글자 이상 필요합니다.").removeClass("is-safe").addClass("is-danger")
         $("#input-nickname").focus()
         return;
     }

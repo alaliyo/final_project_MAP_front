@@ -8,6 +8,21 @@ function get_cookie(name) {
 
 
 $(window.document).ready(function() {
+    keep_out()
+})
+
+// 토큰 있을 시 이동 가능
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {}
+    else {
+        alert("로그인 후 이용해주세요")
+        location.href = '/login.html';
+    }
+}
+
+
+$(window.document).ready(function() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     post_id = params['id']
@@ -50,13 +65,8 @@ function add_day(post_id){
                                 </li>
                                 `
                     $(`#schedules`).append(temp_html)
-                }
-                
-
-                
+                }  
             }
-
-            
         }
     })
 }

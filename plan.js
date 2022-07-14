@@ -1,4 +1,20 @@
 
+// 페이지 접속 시 실행하기
+$(window.document).ready(function() {
+    keep_out()
+})
+
+// 토큰 있을 시 이동 가능
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {}
+    else {
+        alert("로그인 후 이용해주세요")
+        location.href = '/login.html';
+    }
+}
+
+
 let day; // 여행 기간 (예 2박 3일)
 let day_status // 선택된 d y 상 태 
 let post_id // 현재 작성중인 post_id
