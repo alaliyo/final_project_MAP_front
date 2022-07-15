@@ -76,7 +76,7 @@ function my_plans() {
                 let time_brfore = time2str(create_at)
                 let temp_html = `<div class="card-box box" id="my-card-box" >
                                     <div class="card-image">
-                                        <a href="detail.html">
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
                                             <figure class="image is-1by1">
                                                 <img src="${image}" alt="Placeholder image"/>
                                             </figure>
@@ -85,12 +85,12 @@ function my_plans() {
                                     <div class="card-content">
                                         <div class="media" style="padding-bottom: 15px">
                                             <div class="media-content">
-                                                <a href="detail.html" class="post-title" style="font-size: 30px">${title}</a>
+                                                <a onclick="window.location.href='/detail.html?id=${post_id}'" class="post-title" style="font-size: 30px">${title}</a>
                                                 <p style="float: right; margin-top: 20px;" >${time_brfore}</p>
                                             </div>
                                         </div>
                                         <footer class="card-footer">
-                                            <a href="#" class="card-footer-item" onclick="(${post_id})">수정</a>
+                                            <a class="card-footer-item" onclick="window.location.href='/plan.html?id=${post_id}'">수정</a>
                                             <a href="#" class="card-footer-item" onclick="my_plan_delete(${post_id})">삭제</a>
                                         </footer>
                                     </div>
