@@ -173,28 +173,3 @@ function community_user_nickname() {
         }
     })
 }
-
-
-
-// // 삭제 버튼을 위한 커뮤티니 postId 조회
-// function community_user_nickname() {
-//     const token = get_cookie("X-AUTH-TOKEN");
-//     $.ajax({
-//         type: "GET",
-//         url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
-//         data: {},
-//         contentType: "application/json;",
-//         beforeSend: function (xhr) {
-//             xhr.setRequestHeader("Content-type","application/json");
-//             xhr.setRequestHeader("X-AUTH-TOKEN", token);
-//         },
-//         success: function (community) {
-//             console.log(community)
-//             for (let i = 0; i < community.length; i++) {
-//                 let nickname = community[i]['nickname']
-//                 console.log(nickname)
-//                 user_nickname.push(nickname)
-//             }
-//         }
-//     })
-// }
