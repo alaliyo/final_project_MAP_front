@@ -3,13 +3,38 @@ function get_cookie(name) {
     return value? value[2] : null; }
 
 
-// 전역변수 community_user_nickname()가지고 있음
-let user_nickname = [];
+
 
 //페이지 입장 시 실행
 $(document).ready(function() {
-    community_user_nickname();
+    commentGet();
 })
+
+// 전역변수 comment_user_nickname()가지고 있음
+let comments_user_nicknames = [];
+
+// 삭제 버튼을 위한 닉네임 조회
+function comment_user_nickname() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (community) {
+            console.log(community)
+            for (let i = 0; i < community.length; i++) {
+                let nickname = community[i]['nickname']
+                console.log(nickname)
+                comments_user_nicknames.push(nickname)
+            }
+        }
+    })
+}
 
 
 //게시물 댓글 GET
@@ -37,8 +62,9 @@ function commentGet() {
                 let create_at = new Date(comments[i]['createdAt'])
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
-                console.log (user_nickname)
-                if (user_nickname == comments[i]['nickname']) {
+                console.log ('이런'+communitys_user_nickname)
+                if (communitys_user_nickname == nickname) {
+                    console.log("일치")
                     temp_html = `<div>
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
@@ -49,6 +75,7 @@ function commentGet() {
                                 <br>
                                 <hr style="margin-top: 5px;">`
                 } else {
+                    console.log("불일치")
                     temp_html = `<div>
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
@@ -141,25 +168,3 @@ function time2str(date) {
 }
 
 
-// 삭제 버튼을 위한 닉네임 조회
-function community_user_nickname() {
-    const token = get_cookie("X-AUTH-TOKEN");
-    $.ajax({
-        type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
-        data: {},
-        contentType: "application/json;",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (community) {
-            console.log(community)
-            for (let i = 0; i < community.length; i++) {
-                let nickname = community[i]['nickname']
-                console.log(nickname)
-                user_nickname.push(nickname)
-            }
-        }
-    })
-}

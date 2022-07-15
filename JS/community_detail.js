@@ -11,11 +11,17 @@ $(window.document).ready(function() {
 
 //페이지 접속 시 실행
 $(document).ready(function() {
-    commentGet();
     keep_out();
     community_user_nickname();
+    comment_user_nickname();
 })
 
+
+// community_user_nickname()를 넣은 전역 변수
+let communitys_user_nickname = [];
+
+
+//토큰 만료 시 로그인 페이지로
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
     if (token) {}
@@ -52,7 +58,10 @@ function community_detail(postId) {
             let nickname = post['nickname']
             let create_at = new Date(post['createdAt'])
             let time_brfore = time2str(create_at)
-            let temp_html = `<div>
+            let temp_html = ``
+            console.log('test' + communitys_user_nickname);
+            if (communitys_user_nickname == nickname) {
+                temp_html = `<div>
                                 <div>
                                     <div style="margin-bottom: 5px; font-size: 20px;">
                                         <p style="float: right; font-size: 12px; margin-top: 8px; margin-left: 5px"> ${time_brfore}</p>
@@ -67,6 +76,22 @@ function community_detail(postId) {
                                 <hr class="hr_top">
                                 <button style="float: right; margin-top: 5px;" onclick="community_put_get(window.location.href='/community_revise.html?id=${post_id}')">수정</button>
                             </div>`
+            } else {
+                temp_html = `<div>
+                                <div>
+                                    <div style="margin-bottom: 5px; font-size: 20px;">
+                                        <p style="float: right; font-size: 12px; margin-top: 8px; margin-left: 5px"> ${time_brfore}</p>
+                                        <p style="font-size: 15px; float: right; margin-top: 5px;">작성자: ${nickname}</p>
+                                        <p>제목: ${title}</p>
+                                    </div>
+                                    <hr class="hr_top">
+                                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                                        <text style="font-size: 18px;"> ${content}</text>
+                                    </div>
+                                </div>
+                                <hr class="hr_top">
+                            </div>`
+            }
             $('#community_content').append(temp_html)
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -97,7 +122,8 @@ function time2str(date) {
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 }
 
-// 삭제 버튼을 위한 닉네임 조회
+
+// 수정 버튼을 위한 닉네임 조회
 function community_user_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
@@ -114,7 +140,7 @@ function community_user_nickname() {
             for (let i = 0; i < community.length; i++) {
                 let nickname = community[i]['nickname']
                 console.log(nickname)
-                user_nickname.push(nickname)
+                communitys_user_nickname.push(nickname)
             }
         }
     })
