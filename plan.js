@@ -27,15 +27,19 @@ let post_id // 현재 작성중인 post_id
 $(document).ready(function (){
 
     day = -1;
-    day_status = 1;
+    day_status = -1;
 
     // 여행 설계 버튼 클릭시 게시물이 생성 
     if(localStorage.getItem('action') == 'create'){
         create_post();
         read_schedule();
     }else{
-        console.log('fail')
-
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        post_id = params['id']
+        get_post_info();
+        
+        console.log(day)
     }
 
     // 큰 여행 리스트, 그 안에 일정 생성
@@ -85,7 +89,7 @@ function create_plan(day){
         let temp_html = `<h4 onclick="change_status(${i + 1})">${i + 1}일</h4>
                             <li class="list-group-item">
                                 <ul class="list-group" id="schedule-${i + 1}" style="height: 200px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
-                                    fdsfsdfsesfedfesdfseg
+                                    
                                 </ul>
                             </li>`
         $('#day_plan').append(temp_html);
@@ -199,6 +203,7 @@ function save_post(){
     let token = get_cookie("X-AUTH-TOKEN");
     let title = $('#mytitle').val();
     let category = $("#select_category").val();
+    console.log(category)
     let period = $("#select_day").val();
     let file = $('#file')[0];
 
@@ -259,4 +264,25 @@ function delete_all(){
         }
     })
 
+}
+
+// 여행 게시물 정보 가져오기
+function get_post_info(){
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            console.log(response)
+            $('#mytitle').val(response.title);
+            $("#select_category").val(response.category);
+            $("#select_day").val(response.period);
+            day = response.period
+            read_schedule();
+            create_plan(day)
+        }
+    })
 }
