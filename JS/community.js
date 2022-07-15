@@ -60,7 +60,6 @@ function communityPostsGet() {
                                             </div>
                                         </a>
                                     </div>
-                                    <button id="delete_btn" style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
                                 </div>
                                 <hr style="width=100%">`
                 $('#communtity_posts').append(temp_html)
