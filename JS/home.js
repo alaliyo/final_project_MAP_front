@@ -52,6 +52,8 @@ function likes_inquiry() {
         }
     })
 }
+
+
 //게시물 좋아요 기능 추가
 function likes_btn(post_id) {
     let token = get_cookie("X-AUTH-TOKEN");
@@ -70,6 +72,8 @@ function likes_btn(post_id) {
         }
     })
 }
+
+// 이미지 클릭 시 조회수 증가 기능
 function view(post_id) {
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
@@ -86,6 +90,9 @@ function view(post_id) {
         }
     })
 }
+
+
+// 메인 페이지의 게시물 GET 기능
 function cards() {
     $('#cards').empty()
     $.ajax({
