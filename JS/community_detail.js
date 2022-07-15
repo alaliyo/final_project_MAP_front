@@ -2,15 +2,18 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
+// 새롭게 페이지 생성
 $(window.document).ready(function() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     community_detail(params['id']);
 });
 
+//페이지 접속 시 실행
 $(document).ready(function() {
     commentGet();
-    keep_out()
+    keep_out();
+    community_user_nickname();
 })
 
 function keep_out() {
@@ -92,4 +95,27 @@ function time2str(date) {
         return parseInt(time) + "일 전"
     }
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+}
+
+// 삭제 버튼을 위한 닉네임 조회
+function community_user_nickname() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (community) {
+            console.log(community)
+            for (let i = 0; i < community.length; i++) {
+                let nickname = community[i]['nickname']
+                console.log(nickname)
+                user_nickname.push(nickname)
+            }
+        }
+    })
 }

@@ -80,23 +80,12 @@ function sign_up() {
         return;
     }
 
-    // <------------------------------------- 이메일 확인 ------------------------------------->
-    // 이메일 입력 확인
-    if (email == "") {
-        $("#help-email").text("이메일을 입력하세요.").removeClass("is-safe").addClass("is-danger")
-        // 아이디 입력하는 부분으로 커서가 focus 됨
-        $("#input-email").focus()
+    if ($("#help-email").hasClass("is-danger")) {
+        alert("닉네임을 다시 확인해주세요.")
         return;
-    } 
-    // 이메일 조건 확인
-    else if (!is_email(email)) {
-        $("#help-email").text("이메일을 확인해주세요.").removeClass("is-safe").addClass("is-danger")
-        $("#input-email").focus()
+    } else if (!$("#help-email").hasClass("is-success")) {
+        alert("닉네임 중복확인을 해주세요.")
         return;
-    }
-    // 이메일 조건 충족
-    else {
-        $("#help-password").text("").removeClass("is-danger").addClass("is-success")
     }
 
     // <------------------------------------- 비밀번호 확인 ------------------------------------->    
@@ -218,9 +207,9 @@ function username_check_dup() {
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
             console.log(response)
-            if (response == "회원 정보 중복입니다.") {
+            if (response == "회원 유저네임 중복입니다.") {
                 $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
-                $("#help-id").focus()
+                $("#input-id").focus()
             }
             else{
                 $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
@@ -258,7 +247,7 @@ function nickname_check_dup() {
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
             console.log(response)
-            if (response == "회원 정보 중복입니다.") {
+            if (response == "회원 닉네임 중복입니다.") {
                 $("#help-nickname").text("이미 존재하는 닉네임입니다.").removeClass("is-safe").addClass("is-danger")
                 $("#input-nickname").focus()
             }
@@ -269,3 +258,48 @@ function nickname_check_dup() {
         }
     });
 }
+
+
+    // <------------------------------------- 이메일 확인 ------------------------------------->
+    // 이메일 입력 확인
+    function email_check_dup() {
+        let email = $("#input-email").val()
+        console.log(email)
+        if (email == "") {
+            $("#help-email").text("이메일을 입력하세요.").removeClass("is-safe").addClass("is-danger")
+            // 아이디 입력하는 부분으로 커서가 focus 됨
+            $("#input-email").focus()
+            return;
+        } 
+        // 이메일 조건 확인
+        else if (!is_email(email)) {
+            $("#help-email").text("이메일을 확인해주세요.").removeClass("is-safe").addClass("is-danger")
+            $("#input-email").focus()
+            return;
+        }
+        // 이메일 조건 충족 시 서버에 중복 확인
+        $("#help-email").addClass("is-loading")
+        $.ajax({
+            type: "GET",
+            url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-email",
+            data:{
+                    email : email
+                },
+            contentType: "application/json; charset=UTF-8",
+            success: function (response) {
+                console.log(response)
+                if (response == "회원 이메일 중복입니다.") {
+                    $("#help-email").text("이미 존재하는 이메일입니다.").removeClass("is-safe").addClass("is-danger")
+                    $("#input-email").focus()
+                }
+                else{
+                    $("#help-email").text("사용할 수 있는 이메일입니다.").removeClass("is-danger").addClass("is-success")
+                    $("#help-email").removeClass("is-loading")
+                }
+            }
+        });
+    }
+    
+
+
+

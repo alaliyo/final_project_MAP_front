@@ -7,6 +7,7 @@ function get_cookie(name) {
 $(window.document).ready(function() {
     communityPostsGet();
     keep_out()
+    community_user_nickname()
 })
 
 // 토큰 있을 시 이동 가능
@@ -23,6 +24,10 @@ function relogin(){
     window.location.replace("/login.html");
     alert('토큰이 만료되었습니다. 다시 로그인 하세요');
 }
+
+
+// community_user_nickname()를 넣은 전역 변수
+let user_nickname = [];
 
 
 //게시물 GET
@@ -46,7 +51,12 @@ function communityPostsGet() {
                 let nickname = post[i]['nickname']
                 let create_at = new Date(post[i]['createdAt'])
                 let time_brfore = time2str(create_at)
-                let temp_html = `<div id="communtity_post ">
+                let temp_html = ``
+                console.log(user_nickname)
+                if (user_nickname == post[i]['nickname']) {
+                    console.log("삭제 버튼 on")
+                    temp_html = `<div id="communtity_post ">
+                                    <button id="delete_btn" style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
                                     <div class="communtity_post_box">
                                         <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
                                             <p style="font-size: 20px; float: left;">${title}</p>
@@ -62,6 +72,25 @@ function communityPostsGet() {
                                     </div>
                                 </div>
                                 <hr style="width=100%">`
+                } else {
+                    console.log("삭제 버튼 off")
+                    temp_html =`<div id="communtity_post ">
+                                    <div class="communtity_post_box">
+                                        <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
+                                            <p style="font-size: 20px; float: left;">${title}</p>
+                                            <div style="float:">
+                                                <div class="time_box">
+                                                    <p class="posting_time">${time_brfore}</p>
+                                                </div>
+                                                <div class="nickname_box" style="text-align: center;">
+                                                    <p>${nickname}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr style="width=100%">`
+                }
                 $('#communtity_posts').append(temp_html)
             }
         },
@@ -122,32 +151,8 @@ function time2str(date) {
 }
 
 
-/*
-// 삭제 버튼을 위한 커뮤티니 postId 조회
-function community_posts() {
-    const token = get_cookie("X-AUTH-TOKEN");
-    $.ajax({
-        type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
-        data: {},
-        contentType: "application/json;",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (community_id) {
-            console.log(community_id)
-            for (let i = 0; i < community_id.length; i++) {
-                let post_id = community_id[i]['postId']
-                console.log(post_id)
-            }
-        }
-    })
-}
-
-
-// 삭제 버튼을 위한 회원 커뮤니티 postId조회
-function my_community_my_postid() {
+// 삭제 버튼을 위한 닉네임 조회
+function community_user_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
@@ -158,13 +163,38 @@ function my_community_my_postid() {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (my_community_id) {
-            console.log(my_community_id)
-            for (let i = 0; i < my_community_id.length; i++) {
-                let post_id = my_community_id[i]['postId']
-                console.log(post_id)
+        success: function (community) {
+            console.log(community)
+            for (let i = 0; i < community.length; i++) {
+                let nickname = community[i]['nickname']
+                console.log(nickname)
+                user_nickname.push(nickname)
             }
         }
     })
 }
-*/
+
+
+
+// // 삭제 버튼을 위한 커뮤티니 postId 조회
+// function community_user_nickname() {
+//     const token = get_cookie("X-AUTH-TOKEN");
+//     $.ajax({
+//         type: "GET",
+//         url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
+//         data: {},
+//         contentType: "application/json;",
+//         beforeSend: function (xhr) {
+//             xhr.setRequestHeader("Content-type","application/json");
+//             xhr.setRequestHeader("X-AUTH-TOKEN", token);
+//         },
+//         success: function (community) {
+//             console.log(community)
+//             for (let i = 0; i < community.length; i++) {
+//                 let nickname = community[i]['nickname']
+//                 console.log(nickname)
+//                 user_nickname.push(nickname)
+//             }
+//         }
+//     })
+// }
