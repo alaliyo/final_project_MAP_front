@@ -203,7 +203,6 @@ function save_post(){
     let token = get_cookie("X-AUTH-TOKEN");
     let title = $('#mytitle').val();
     let category = $("#select_category").val();
-    console.log(category)
     let period = $("#select_day").val();
     let file = $('#file')[0];
 

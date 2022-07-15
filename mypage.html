@@ -55,16 +55,21 @@
     </div>
 
     <!-- 프로필 수정 -->
-    <div id="my_profil_revise" style="display: none;"">
+    <div id="my_profil_revise" style="display: none;">
         <div class="community_box">
             <div id="communitys">
                 <div>
                     <div style="margin-bottom: 5px; font-size: 20px;">
-                        닉네임 : <input type="text" class="nickname_textbox" id="nickname_textbox" style="width: 80%;">
+                        <!-- 이미지 파일 업로드  -->
+                        <div class="custom-file" style="margin: 10px;">
+                            <label style="font-size: 15px" class="custom-file-label" for="file">프로필 이미지 : </label>
+                            <input type="file" class="custom-file-input" id="file">
+                        </div>
+                            닉네임 : <input type="text" class="nickname_textbox" id="nickname_textbox" style="width: 80%;">
                         <br>
-                        이메일 : <input type="text" class="email_textbox" id="email_textbox" style="width: 80%;">
+                            이메일 : <input type="text" class="email_textbox" id="email_textbox" style="width: 80%;">
                         <br>
-                        프로필 : <input type="text" class="image_textbox" id="image_textbox" style="width: 80%;">
+                        
                         <!-- <br>
                         비밀번호: <input type="text" class="image_textbox" id="password_textbox" style="width: 80%;"> -->
                     </div>

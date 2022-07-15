@@ -29,10 +29,9 @@ function profil_revise() {
             console.log(user)
             const nickname = user['nickname'];
             const email = user['email'];
-            const image = user['image'];
             $('#nickname_textbox').val(`${nickname}`);
             $('#email_textbox').val(`${email}`);  
-            $('#image_textbox').val(`${image}`);  
+            
             }
         }
     )
@@ -46,15 +45,18 @@ function community_put_post() {
     let email = $('#email_textbox').val();
     let image = $('#image_textbox').val();
     let password = $('#password_textbox').val();
+    let file = $('#file')[0];
+
+    let formData = new FormData();
+    formData.append("file", file.files[0]);
+
     console.log(nickname, email, image, password)
     $.ajax({
         type: "PUT",
         url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/modify`,
         data: JSON.stringify({
             nickname: nickname,
-            email: email,
-            image: image,
-            password: password
+            email: email
         }),
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -66,4 +68,20 @@ function community_put_post() {
             alert(response)
         }
     })
+    if(file.files.length != 0){
+        $.ajax({
+            type: "POST",
+            url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/profile",
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (response) {
+                console.log(response)
+            }
+        })
     }
+
+}
