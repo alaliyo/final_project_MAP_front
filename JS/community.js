@@ -10,6 +10,7 @@ $(window.document).ready(function() {
     community_user_nickname()
 })
 
+
 // 토큰 있을 시 이동 가능
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
@@ -19,6 +20,8 @@ function keep_out() {
         location.href = '/login.html';
     }
 }
+
+
 // 에러 발생 시 홈으로
 function relogin(){
     window.location.replace("/login.html");

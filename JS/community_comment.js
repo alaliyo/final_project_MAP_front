@@ -3,15 +3,15 @@ function get_cookie(name) {
     return value? value[2] : null; }
 
 
-
-
 //페이지 입장 시 실행
 $(document).ready(function() {
     commentGet();
 })
 
+
 // 전역변수 comment_user_nickname()가지고 있음
 let comments_user_nicknames = [];
+
 
 // 삭제 버튼을 위한 닉네임 조회
 function comment_user_nickname() {

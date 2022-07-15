@@ -22,7 +22,6 @@ function detail_comment_make() {
     let comment = $('#content_text_box').val();
     console.log(comment);
     console.log(postId);
-
     $.ajax({
         type: "POST",
         url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
@@ -41,10 +40,12 @@ function detail_comment_make() {
     })
 }
 
+
 // 페이지 접속 시 실행
 $(document).ready(function() {
     detail_comment_get();
 })
+
 
 //게시물 댓글 GET
 function detail_comment_get() {
