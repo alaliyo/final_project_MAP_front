@@ -12,22 +12,24 @@
 </head>
 <html>
     <!-- 인가 코드 넘어가는 부분 -->
-    <a href="https://kauth.kakao.com/oauth/authorize?client_id=1d59051c119b29f730158f41bc9c5153&redirect_uri=http://mapfront.s3-website.ap-northeast-2.amazonaws.com/kakao.html&response_type=code" target="_blank">
+    <a href="https://kauth.kakao.com/oauth/authorize?client_id=1d59051c119b29f730158f41bc9c5153&redirect_uri=http://localhost:5500/kakao.html&response_type=code" target="_blank">
         <img src="/static/kakao_login_medium_narrow.png">
-        kakao_url
     </a>
     <script>
         window.onload = function kakao_url(){
             var code = getParam("code");
             console.log(code);
-            $.ajax({
+            if(code == ""){console.log("null 값입니다.")}
+            else{
+                $.ajax({
                 type: "GET",
-                url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao?code="+code,
+                url: "http://localhost:8080/kakao?code="+code,
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     console.log(response)
-                }
-            });
+                    }
+                });
+            }
         }
         function getParam(sname) {
                 var params = location.search.substr(location.search.indexOf("?") + 1);
