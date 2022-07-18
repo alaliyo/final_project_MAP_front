@@ -2,12 +2,14 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
+
 // 새롭게 페이지 생성
 $(window.document).ready(function() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     community_detail(params['id']);
 });
+
 
 //페이지 접속 시 실행
 $(document).ready(function() {
@@ -31,11 +33,13 @@ function keep_out() {
     }
 }
 
+
 // 에러 발생 시 홈으로
 function relogin(){
     window.location.replace("/home.html");
     alert('토큰이 만료되었습니다. 다시 로그인 하세요');
 }
+
 
 // 게시물 보기
 function community_detail(postId) {

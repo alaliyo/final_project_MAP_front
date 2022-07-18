@@ -1,12 +1,16 @@
-
 function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
+
+
 // 페이지 올 시 GET 함수 실핼
 $(window.document).ready(function() {
     keep_out();
     likes_inquiry();
+    //search_cards();
 })
+
+
 // 로그인 , 로그아웃 온 오프
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
@@ -18,11 +22,8 @@ function keep_out() {
         $('#login').show()
     }
 }
-//좋아요 반응형
-// function likes_psotid(post_id) {
-//     console.log(post_id)
-//     $(`#likes${post_id}`).attr('src', '/static/like-icon-on.png');
-// }
+
+
 // 내가 좋아요 한 post_id 값 조회
 let like_btn = [];
 function likes_inquiry() {
@@ -72,6 +73,7 @@ function likes_btn(post_id) {
         }
     })
 }
+
 
 // 이미지 클릭 시 조회수 증가 기능
 function view(post_id) {
@@ -166,6 +168,9 @@ function cards() {
         }
     })
 }
+
+
+// 미 로그인 시 띄우는 게시물 함수
 function cards_none_login() {
     $('#cards').empty()
     $.ajax({
@@ -206,11 +211,15 @@ function cards_none_login() {
                                         <p class="card_time">${time_brfore}</p>
                                     </div>
                                 </div>`
-                                $('#cards').append(temp_html)
+                $('#cards').append(temp_html)
+                cards_none_login_post_asc.push(post_id)
                 }
             }
         })
     }
+
+
+// 시간 변경 함수
 function time2str(createdAt) {
     let today = new Date() 
     console.log(today)

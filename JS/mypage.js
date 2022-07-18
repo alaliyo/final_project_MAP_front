@@ -2,6 +2,8 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
+
+// 페이지 생성 및 시작
 $(window.document).ready(function() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
@@ -11,6 +13,8 @@ $(window.document).ready(function() {
     my_community()
 });
 
+
+// 게시물 및 커뮤니티 조회 버튼
 function my_plan() {
     $('#my_communtity_box').hide()
     $('#mycards').show()

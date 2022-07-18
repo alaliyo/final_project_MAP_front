@@ -2,10 +2,14 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
+
+// 페이지 접속 시 시작
 $(document).ready(function() {
     keep_out()
 })
 
+
+// 로그아웃 기능
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
     if (token) {}
@@ -15,6 +19,8 @@ function keep_out() {
     }
 }
 
+
+// 게시물 만들기 api
 function communityMakePost() {
     let token = get_cookie("X-AUTH-TOKEN");
     let title = $('#title_box').val();

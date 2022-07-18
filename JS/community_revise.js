@@ -2,6 +2,8 @@ function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
 
+
+// 페이지 접속 시 시작
 $(document).ready(function() {
     community_put_get();
 })

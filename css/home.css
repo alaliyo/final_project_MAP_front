@@ -14,10 +14,9 @@ a:link {
 
 /* 카드_박스_css */
 .card_box {
-    height: auto;
-    min-height: 100px;
-    width: 1040px;
-    margin: auto;
+    height: 100px;
+    margin-right: 13.8%;
+    margin-left: 13.8%;
 }
 .cards {
     margin: auto;
