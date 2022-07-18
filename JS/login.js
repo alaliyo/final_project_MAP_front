@@ -299,20 +299,3 @@ function email_check_dup() {
         }
     });
 }
-
-function kakao_login() {
-    $.ajax({
-        type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/auth/kakao/callback",
-        data : {
-            code : document.location.href.split("?")
-        },
-        console.log(data),
-        contentType: "application/json; charset=UTF-8",
-        success: function (response) {
-            console.log(response)
-        }
-    });
-}
-http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/auth/kakao/callback?
-// code=qPBc8bX_NCmX7bRHlHl8go3ZzM-e2e8jYs9I8oZQrE1tIZwQIgxCum-EdcdGCwvJy4pc6Qo9c-wAAAGCD2Euzw
