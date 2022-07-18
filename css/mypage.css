@@ -5,6 +5,7 @@
     padding: 20px;
     border: 5px solid #c3c8cd;
     border-radius: 15px;
+    float: left;
 }
 
 .card-image {
@@ -23,9 +24,14 @@ a:link {
     color: black;
 }
 
+#mycards {
+    margin-left: 8%;
+}
+
 .cards {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .post-title {

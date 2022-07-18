@@ -168,11 +168,9 @@ function community_user_nickname() {
         },
         success: function (community) {
             console.log(community)
-            for (let i = 0; i < community.length; i++) {
-                let nickname = community[i]['nickname']
+                let nickname = community[0]['nickname']
                 console.log(nickname)
                 user_nickname.push(nickname)
-            }
         }
     })
 }

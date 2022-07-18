@@ -86,9 +86,9 @@ function create_plan(day){
     $('#day_plan').empty()
 
     for(let i=0; i<day; i++){
-        let temp_html = `<h4 onclick="change_status(${i + 1})">${i + 1}일</h4>
+        let temp_html = `<h4 class="on_active" onclick="change_status(${i + 1});" >${i + 1}일</h4>
                             <li class="list-group-item">
-                                <ul class="list-group" id="schedule-${i + 1}" style="height: 200px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
+                                <ul class="list-group" id="schedule-${i + 1}" style="height: 200px; border-bottom: solid 2px rgb(194, 194, 194); list-style: none; overflow: auto;">
                                     
                                 </ul>
                             </li>`
@@ -153,12 +153,15 @@ function read_schedule() {
                 console.log(schedules)
                 let schedule = schedules[i];
 
-                let temp_html = `<li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
-                                    <button  onclick="delete_schedule(${schedule.id})" style="float: right">취소</button>
-                                    <h5><a href="${schedule.link}">${schedule.placeName}</a></h5>
+                let temp_html = `<li class="list-group-item" style="padding: 7px;">
+                                        <a onclick="delete_schedule(${schedule.id})" style="float: right; color: red; font-size: 20px">×</a>
+                                        <h5 style="display: flex;">
+                                        <a href="${schedule.link}">${schedule.placeName}</a>
+                                        </h5>
                                     <p style="font-size: 15px">${schedule.address}</p>
                                     <p style="font-size: 12px; color: green">${schedule.phone}</p>
                                 </li>
+                                <hr>
                                 `
 
                 $(`#schedule-${schedule.date}`).append(temp_html)
