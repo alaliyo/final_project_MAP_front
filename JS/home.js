@@ -255,12 +255,7 @@ function cards_none_login() {
                                         <p class="card_time">${time_brfore}</p>
                                     </div>
                                 </div>`
-<<<<<<< HEAD
-
                                 $('#cards').append(temp_html)
-=======
-                $('#cards').append(temp_html)
->>>>>>> Remark
                 }
             }
         })
