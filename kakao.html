@@ -1,0 +1,43 @@
+<!-- import {KAKAO_AUTH_URL} from "oauth";
+    <KAKAOBTN href = KAKAO_AUTH_URL>
+        <img src="/static/kakao_login_medium_narrow.png"></img>
+        <span>카카오계정 로그인</span> -->
+    <!-- </KAKAOBTN href = KAKAO_AUTH_URL> -->
+<head>
+    <meta charset="UTF-8">
+    <title>Make A Plan community</title>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+<html>
+    <!-- 인가 코드 넘어가는 부분 -->
+    <a href="https://kauth.kakao.com/oauth/authorize?client_id=1d59051c119b29f730158f41bc9c5153&redirect_uri=http://mapfront.s3-website.ap-northeast-2.amazonaws.com/kakao.html&response_type=code" target="_blank">
+        <img src="/static/kakao_login_medium_narrow.png">
+        kakao_url
+    </a>
+    <script>
+        window.onload = function kakao_url(){
+            var code = getParam("code");
+            console.log(code);
+            $.ajax({
+                type: "GET",
+                url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao?code="+code,
+                contentType: "application/json; charset=UTF-8",
+                success: function (response) {
+                    console.log(response)
+                }
+            });
+        }
+        function getParam(sname) {
+                var params = location.search.substr(location.search.indexOf("?") + 1);
+                var sval = "";
+                params = params.split("&");
+                for (var i = 0; i < params.length; i++) {
+                    temp = params[i].split("=");
+                    if ([temp[0]] == sname) { sval = temp[1]; }
+                }
+                return sval;
+        }
+    </script>
+</html>
