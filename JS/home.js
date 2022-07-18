@@ -110,7 +110,7 @@ function cards() {
                 const image = card[i]['image']
                 const likes = card[i]['likes']
                 const views = card[i]['views']
-                const create_at = new Date(card[i]['createdAt'])
+                const create_at = new Date(card[i]['modifiedAt'])
                 const time_brfore = time2str(create_at)
                 let temp_html = ``
                 console.log("like_btn"+like_btn)
@@ -212,8 +212,9 @@ function cards_none_login() {
         })
     }
 function time2str(createdAt) {
-    let today = new Date()
-    let time = (today - createdAt) / 1000 / 60  // 분
+    let today = new Date() 
+    console.log(today)
+    let time = (today - createdAt) / 1000 / 60 - 9 * 60// 분
     if (time < 60) {
         return parseInt(time) + "분 전"
     }

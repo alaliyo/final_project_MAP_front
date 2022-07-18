@@ -21,8 +21,6 @@ function my_community_box() {
 }
 
 
-
-
 // 프로필 GET 
 function profil() {
     const token = get_cookie("X-AUTH-TOKEN");
