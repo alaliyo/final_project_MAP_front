@@ -11,13 +11,13 @@
 /* 로그인 여행지 MAP*/
 .menu_btn {
     color: black;
-    display: block;
+    display: black;
     margin: aout;
 }
 /* 로그인 여행지 */
 .menu_btn:hover {
-        color: rgb(95, 214, 175);
-        transition: 0.3s ease-in-out;
+    color: rgb(95, 214, 175);
+    transition: 0.3s ease-in-out;
 }
 .remote_btn {
     list-style-type: disc;
@@ -43,20 +43,21 @@
     float: left;
     width: 40%;
     text-align:center;
-    padding : 100px 0;
+    padding : 180px 0;
 }
 .start_btn_back {
     background-color: aquamarine;
-    height: 100px;
-    width: 200px;
+    height: 150px;
+    width: 300px;
     margin: 0px auto;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
     line-height : 100px;
+    padding-top: 25px;
 }
 .start_btn {
     color: white;
-    font-size: 30px;
+    font-size: 60px;
     
 }
 /* 테그 마우스 오버 시 색 변환 */

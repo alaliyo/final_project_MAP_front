@@ -7,7 +7,7 @@ function get_cookie(name) {
 $(window.document).ready(function() {
     keep_out();
     likes_inquiry();
-    search_cards();
+    //search_cards();
 })
 
 
@@ -212,6 +212,7 @@ function cards_none_login() {
                                     </div>
                                 </div>`
                 $('#cards').append(temp_html)
+                cards_none_login_post_asc.push(post_id)
                 }
             }
         })
