@@ -55,6 +55,11 @@
     line-height : 100px;
     padding-top: 25px;
 }
+
+.start_btn_back:hover {
+    background-color: rgb(28, 255, 179);
+    transition: 0.5s ease-in-out;
+}
 .start_btn {
     color: white;
     font-size: 60px;
@@ -62,5 +67,6 @@
 }
 /* 테그 마우스 오버 시 색 변환 */
 .start_btn:hover {
-    color: white;
+    color: rgb(255, 255, 255);
+   
 }

@@ -24,8 +24,25 @@
     <script src="plan.js"></script>
     <script type="text/javascript" src="JS/logout.js"></script>
     <style>
-        
+        .plan_make_box {
+            margin: 70px 7% 0px 7% ;
+            height: 700px;
+            padding: 25px;
+            box-shadow: 1px 1px 7px gray ;
+        }
+
+        .meun_interval {
+            margin-top: 10px;
+            margin-left: 10px;
+            display: flex;
+        }
+
+        .list-group::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera*/
+        }
     </style>
+
+
 </head>
 <body>
     <!-- 윗 메뉴 바 -->
@@ -33,10 +50,22 @@
         <div style="height: 80px;">
             <div class="menu_box">
                 <a href="home.html" class="menu_btn position" style="display: block; float: left">
-                    <b style="font-size: 30px; color: black;">MAP</b>
-                    <h7 style="color: black">Make A Plane</h7>
+                    <b style="font-size: 30px;">MAP</b>
+                    <h7>Make A Plan</h7>
                 </a>
-                
+                <div class="position" style="float: right;" >
+                    <a class="remote_btn position_right" onclick="logout()" id="logout">
+                        <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
+                    </a>
+                    <a class="remote_btn position_right" onclick="window.location.href='/mypage.html'">
+                        <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
+                    </a>
+                </div>
+                <div class="plan_btn_box">
+                    <a href="community.html" class="plan_btn" style="margin-left: 30px;" >
+                        커뮤니티
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -45,7 +74,7 @@
     <div style="width: 100%; height: 70px"></div>
 
     <!-- 내용 -->
-    <div style="padding: 30px;">
+    <div class="plan_make_box">
         <!-- 지도 부분 -->
         <div class="map_wrap">
             <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -66,33 +95,36 @@
         </div>
 
         <!-- 계획짜는 부분 -->
-        <div class="plan_wrap" style="border-radius: 10px; width: 25%; height: 600px;float: right;border: 1px solid black; margin: 10px;">
+        <div class="plan_wrap" style="width: 30%; height: 600px;float: right;border: 2px solid rgb(194, 194, 194); ">
             <!-- 게시물 제목 -->
-            <div class="plan_title" style="width:100%; margin:20px 10px 20px 20px; border-radius: 10px;">
-                <input type="text" id="mytitle" style="font-size: 30px; text-align:center;">
+            <div class="plan_title " style="border: 10px;  margin: 20px 20px 10px 10px; display: flex;">
+                <p style="width: 55px; float: left; font-size: 22px;">제목:</p>
+                <input type="text" id="mytitle" style="font-size: 16px;height: 33px; width: 100%; padding-left: 5px;">
             </div>
 
             <!-- 이미지 파일 업로드  -->
-            <div class="custom-file" style="margin: 10px;">
-                <label style="font-size: 15px" class="custom-file-label" for="file">대표 이미지</label>
+            <div class="custom-file meun_interval" >
+                <label style="font-size: 16px; white-space: nowrap; margin-right: 5px;" class="custom-file-label" for="file">대표 이미지: </label>
                 <input type="file" class="custom-file-input" id="file">
             </div>
             
 
             <!-- 여행 기간 선택 -->
-            <div>
-                <select style="float: right; margin: 10px" id="select_day">
-                    <option label="기간" selected></option>
-                    <option value=1 label="하루"></option>
-                    <option value=2 label="1박 2일"></option>
-                    <option value=3 label="2박 3일"></option>
-                    <option value=4 label="3박 4일"></option>
-                    <option value=5 label="4박 5일"></option>
-                </select>
+            <div class="meun_interval">
+                <h3 style="margin-right: 5px;">일정 기간: </h3>
+                    <select id="select_day">
+                        <option label="기간" selected></option>
+                        <option value=1 label="하루"></option>
+                        <option value=2 label="1박 2일"></option>
+                        <option value=3 label="2박 3일"></option>
+                        <option value=4 label="3박 4일"></option>
+                        <option value=5 label="4박 5일"></option>
+                    </select>
             </div>
             <!-- 여행 카테고리 선택 -->
-            <div>
-                <select style="float: right; margin: 10px" id="select_category">
+            <div class="meun_interval">
+                <h3 style="margin-right: 5px;">카테고리: </h3>
+                <select id="select_category">
                     <option label="카테고리" selected></option>
                     <option value="food" label="맛집"></option>
                     <option value="healing" label="힐링"></option>
@@ -102,15 +134,16 @@
                     <option value="date" label="데이트"></option>
                 </select>
             </div>
+            
 
             <!-- 여행 스케줄 -->
-            <div class="myplan" style="padding: 20px;">
-                <h3 style="margin-bottom: 20px">여행 계획</h3>
+            <p style="margin-left: 10px; margin-top: 10px;">일정추가 </p>
+            <div class="myplan">
                 <div>
-                    <ul id="day_plan" class="list-group" style="height: 400px; overflow: auto; border-radius: 10px; border: solid; padding: 10px;">
-                        <h4>1일</h4>
+                    <ul id="day_plan" class="list-group" style="height: 400px; border-top: solid 2px rgb(194, 194, 194);padding: 10px; overflow-y: scroll;">
+                        <h4 class="on_active">1일</h4>
                         <li class="list-group-item">
-                            <ul class="list-group" style="height: 200px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
+                            <ul class="list-group" style="display: block; height: 200px; border-top: solid 2px rgb(194, 194, 194); overflow-y: scroll;">
     
                                 <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 10px;">
                                     <button style="float: right">취소</button>
@@ -195,7 +228,7 @@
             </div>
 
             <!-- 버튼 모음 -->
-            <div class="bottom" style="width: 100%; height: 50px; padding: 10px">
+            <div class="bottom" style="width: 100%; height: 50px; padding: 25px">
                 <button class="button is-primary is-outlined" onclick="save_post()" style="float: right; margin-left: 10px">저장하기</button>
                 <button class="button is-primary is-outlined" onclick="delete_all()" style="float: right">내용삭제</button>
 
@@ -205,5 +238,7 @@
     
 
     <script type="text/javascript" src="map.js"></script>
+
+
 </body>
 </html>

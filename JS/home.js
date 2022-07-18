@@ -212,7 +212,6 @@ function cards_none_login() {
                                     </div>
                                 </div>`
                 $('#cards').append(temp_html)
-                cards_none_login_post_asc.push(post_id)
                 }
             }
         })

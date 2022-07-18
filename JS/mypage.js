@@ -124,6 +124,7 @@ function my_community() {
                 let create_at = new Date(communitys[i]['createdAt'])
                 let time_brfore = time2str(create_at)
                 let temp_html = `<div id="communtity_post ">
+                                    <button style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
                                     <div class="communtity_post_box">
                                         <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
                                             <p style="font-size: 20px; float: left;">${title}</p>
@@ -134,7 +135,6 @@ function my_community() {
                                             </div>
                                         </a>
                                     </div>
-                                    <button style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
                                 </div>
                                 <hr style="width=100%">`
                 $('#my_communtity').append(temp_html)
