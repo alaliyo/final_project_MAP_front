@@ -121,7 +121,7 @@ function my_community() {
             for (let i = 0; i < communitys.length; i++) {
                 let post_id = communitys[i]['postId']
                 let title = communitys[i]['title']
-                let create_at = new Date(communitys[i]['createdAt'])
+                let create_at = new Date(communitys[i]['modifiedAt'])
                 let time_brfore = time2str(create_at)
                 let temp_html = `<div id="communtity_post ">
                                     <div class="communtity_post_box">
@@ -172,11 +172,11 @@ function my_plan_delete(id){
 }
 
 
-// 게시물 시간
-function time2str(date) {
-    let today = new Date()
-    let time = (today - date) / 1000 / 60  // 분
-
+// 시간 변경 함수
+function time2str(createdAt) {
+    let today = new Date() 
+    let time = (today - createdAt) / 1000 / 60 - (9*60)// 분
+    console.log(time)
     if (time < 60) {
         return parseInt(time) + "분 전"
     }

@@ -63,19 +63,29 @@
     <div class="field has-addons field_background">
         <div class="control" style="margin:auto;">
             <input id = "input-local" class="input" style="width: 700px; height: 40px;" type="text" placeholder="지역을 입력하세요">
-            <buttun class="button is-info" onclick="check_local()" style="height: 40px; float:right;">검색</buttun>
+            <buttun class="button is-info" onclick="search_btn()" style="height: 40px; float:right;">검색</buttun>
         </div>
     </div>
 
     <!-- 카드 생성 -->
     
-    <select name="dog-names" id="dog-names" style="margin-left: 10%;">
-        <option value="post-asc" id="post-asc" >최신순▲</option>
-        <option value="post-desc" id="post-desc">최신순▼</option>
-        <option value="views-asc" id="views-asc">조회수▲</option>
-        <option value="views-desc" id="views-desc">조회수▼</option>
-        <option value="likes-asc" id="likes-asc">좋아요▲</option>
-        <option value="lokes-desc" id="lokes-desc">좋아요▼</option>
+    <select id="select_sort" style="margin-left: 10%;">
+        <option value="modifiedAt,desc">최신순▲</option>
+        <option value="modifiedAt,asc">최신순▼</option>
+        <option value="views,asc">조회수▲</option>
+        <option value="views,desc">조회수▼</option>
+        <option value="likes,asc">좋아요▲</option>
+        <option value="likes,desc">좋아요▼</option>
+    </select>
+
+    <select id="select_category" style="margin-left: 10%;">
+        <option value="ALL">모두</option>
+        <option value="FOOD">맛집투어</option>
+        <option value="HEALING">힐링여행</option>
+        <option value="SCENERY">풍경</option>
+        <option value="CAFE">카페투어</option>
+        <option value="ATTRACTION">관광지</option>
+        <option value="DATE">데이트</option>
     </select>
       
     <div class="card_box">
