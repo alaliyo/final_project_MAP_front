@@ -6,13 +6,13 @@
 <html>
     <a href="https://kauth.kakao.com/oauth/authorize?client_id=1d59051c119b29f730158f41bc9c5153&redirect_uri=http://mapfront.s3-website.ap-northeast-2.amazonaws.com/kakao&response_type=code" target="_blank">
         <img src="/static/kakao_login_medium_narrow.png">
+        <button onclick="kakao_url()">업데이트</button>
     </a>
     <script>
         function kakao_url(){
-            const kakao_code = new URL(window.location.href).searchParams.get('code')
             $.ajax({
                 type: "GET",
-                url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao?code=",
+                url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao",
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     console.log(response)
