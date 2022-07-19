@@ -33,6 +33,7 @@
 }
 /* MAP */
 .position {
+    
     height: 80px;
     padding-left: 20px;
 }
@@ -40,26 +41,26 @@
 
 /* 시작하기 스위치 css */
 .title-_box {
+    margin-top: 3%;
     float: left;
     width: 40%;
     text-align:center;
-    padding : 180px 0;
 }
 .start_btn_back {
-    background-color: aquamarine;
-    height: 150px;
-    width: 300px;
+    /* background-color: aquamarine; */
+    width: 50%;
     margin: 0px auto;
     border-radius: 20px;
     text-align: center;
     line-height : 100px;
-    padding-top: 25px;
+    padding-top: 6%;
+    display: block;
 }
 
-.start_btn_back:hover {
+/* .start_btn_back:hover {
     background-color: rgb(28, 255, 179);
     transition: 0.5s ease-in-out;
-}
+} */
 .start_btn {
     color: white;
     font-size: 60px;
@@ -70,3 +71,4 @@
     color: rgb(255, 255, 255);
    
 }
+

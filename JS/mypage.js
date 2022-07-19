@@ -74,7 +74,8 @@ function my_plans() {
                 let post_id = postId[i]['id']
                 let title = postId[i]['title']
                 let image = postId[i]['image']
-                let create_at = new Date(postId[i]['createdAt'])
+                let createdAt = postId[i]['createdAt'] + '+0000'
+                let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = `<div class="card-box box" id="my-card-box" >
                                     <div class="card-image">
@@ -121,7 +122,8 @@ function my_community() {
             for (let i = 0; i < communitys.length; i++) {
                 let post_id = communitys[i]['postId']
                 let title = communitys[i]['title']
-                let create_at = new Date(communitys[i]['modifiedAt'])
+                let modifiedAt = communitys[i]['modifiedAt'] + '+0000'
+                let create_at = new Date(modifiedAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = `<div id="communtity_post ">
                                     <button style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
