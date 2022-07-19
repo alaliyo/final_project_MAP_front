@@ -12,6 +12,7 @@ function keep_out() {
         alert("로그인 후 이용해주세요")
         location.href = '/login.html';
     }
+    
 }
 
 //토근 만료 시 로그인 창으로
@@ -26,11 +27,12 @@ let post_id // 현재 작성중인 post_id
 
 $(document).ready(function (){
 
-    day = -1;
+    day = 1;
     day_status = -1;
 
     // 여행 설계 버튼 클릭시 게시물이 생성 
     if(localStorage.getItem('action') == 'create'){
+        console.log("action 들어왔다.")
         create_post();
         read_schedule();
     }else{
