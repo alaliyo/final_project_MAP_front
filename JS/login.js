@@ -302,18 +302,21 @@ function email_check_dup() {
 
 window.onload = function kakao_url(){
     var code = getParam("code");
-    console.log(code);
     if(code == ""){
         console.log("빈칸 입니다.")
-    }
-    $.ajax({
+    }else{
+        $.ajax({
         type: "GET",
         url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao/login?code="+code,
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
+            alert(response)
             console.log(response)
+                setCookie ('X-AUTH-TOKEN', response, 1)
+                window.location.replace("/home.html")
+                alert("로그인 되었습니다.")
         }
-    });
+    })};
 }
 function getParam(sname) {
         var params = location.search.substr(location.search.indexOf("?") + 1);
