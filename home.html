@@ -67,27 +67,28 @@
         </div>
     </div>
 
-    <!-- 카드 생성 -->
+    <!-- 정렬 -->
+    <nav style="margin-left: 15%; margin-top: 20px;">
+        <select id="select_sort" style="font-size: 15px;">
+            <option value="modifiedAt,desc">최신순▲</option>
+            <option value="modifiedAt,asc">최신순▼</option>
+            <option value="views,asc">조회수▲</option>
+            <option value="views,desc">조회수▼</option>
+            <option value="likes,asc">좋아요▲</option>
+            <option value="likes,desc">좋아요▼</option>
+        </select>
+        <select id="select_category" style="font-size: 15px; margin-left: 5px;">
+            <option value="ALL">모두</option>
+            <option value="FOOD">맛집투어</option>
+            <option value="HEALING">힐링여행</option>
+            <option value="SCENERY">풍경</option>
+            <option value="CAFE">카페투어</option>
+            <option value="ATTRACTION">관광지</option>
+            <option value="DATE">데이트</option>
+        </select>
+    </nav>
     
-    <select id="select_sort" style="margin-left: 10%;">
-        <option value="modifiedAt,desc">최신순▲</option>
-        <option value="modifiedAt,asc">최신순▼</option>
-        <option value="views,asc">조회수▲</option>
-        <option value="views,desc">조회수▼</option>
-        <option value="likes,asc">좋아요▲</option>
-        <option value="likes,desc">좋아요▼</option>
-    </select>
-
-    <select id="select_category" style="margin-left: 10%;">
-        <option value="ALL">모두</option>
-        <option value="FOOD">맛집투어</option>
-        <option value="HEALING">힐링여행</option>
-        <option value="SCENERY">풍경</option>
-        <option value="CAFE">카페투어</option>
-        <option value="ATTRACTION">관광지</option>
-        <option value="DATE">데이트</option>
-    </select>
-      
+    <!-- 카드 생성 -->
     <div class="card_box">
         <div id="cards" class="cards">
         </div>
