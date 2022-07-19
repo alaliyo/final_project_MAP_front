@@ -59,7 +59,7 @@ function commentGet() {
                 let comment_id = comments[i]['commentId']
                 let nickname = comments[i]['nickname']
                 let comment = comments[i]['comment']
-                let createdAt = cards[i]['createdAt'] + '+0000'
+                let createdAt = comments[i]['createdAt'] + '+0000'
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``

@@ -54,9 +54,9 @@ function add_day(post_id){
                 $(`#select_day`).append(temp_html)
             }
 
-            $(`#title`).append(`<h1 style="font-size: 40px; float: left;">${response['title']}</h1></div>`)
-            $(`#writer`).append(`<h2 style="font-size: 30px;text-align: right;"> 작성자 : ${response['nickname']}</h2></div>`)
-            $(`#createAt`).append(`<h2 style="font-size: 25px;text-align: right;">작성 날짜 : ${response['createdAt'].substring(0,10)}</h2></div>`)
+            $(`#title`).append(`<p style="float: left; font-size: 23px;">제목 : ${response['title']}</h1></div>`)
+            $(`#writer`).append(`<p style="float: right; font-size: 18px;"> 작성자 : ${response['nickname']}</h2></div>`)
+            $(`#createAt`).append(`<p style="float: right; font-size: 18px;">작성 날짜 : ${response['createdAt'].substring(0,10)}</h2></div>`)
             
         }
     })
@@ -80,9 +80,9 @@ function read_schedules(post_id){
                 let schedule = schedules[i];
                 console.log(schedule)
                 if(day_status == schedule['date']){
-                    let temp_html = `<li class="list-group-item" style="border: solid; border-radius: 10px; padding: 20px;">
-                                        <a href="https://map.kakao.com/link/to/${schedule.placeName},${schedule.y},${schedule.x}" style="float: right">길 찾기</a>
-                                        <h5 style="font-size: 30px;"><a href="${schedule.link}">${schedule.placeName}</a></h5>
+                    let temp_html = `<li class="list-group-item" style="padding: 10px;">
+                                        <a href="https://map.kakao.com/link/to/${schedule.placeName},${schedule.y},${schedule.x}" target="_blank" style="float: right">길 찾기</a>
+                                        <h5 style="font-size: 30px;"><a href="${schedule.link}" target="_blank" >${schedule.placeName}</a></h5>
                                         <p style="font-size: 20px">${schedule.address}</p>
                                         <p style="font-size: 15px; color: green">${schedule.phone}</p>
                                     </li>
