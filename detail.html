@@ -52,11 +52,11 @@
             margin-bottom: 0;
             margin-top: 40px;
             background-color: rgb(131, 131, 131);
+            
         }
 
         .detail_content_box {
-            border: 3px solid rgb(131, 131, 131);
-            padding: 20px 20px 40px 20px;
+            padding: 10px;
             border-radius: 20px;
         }
 
@@ -65,6 +65,19 @@
             height: 750px;
             padding: 20px;
             box-shadow: 1px 1px 7px gray ;
+        }
+
+        .list-group-item::-webkit-scrollbar {
+            display: none;
+        }
+
+        #comments::-webkit-scrollbar {
+            display: none;
+        }
+
+        .list-group-item {
+            border: 0;
+            overflow-y: scroll;
         }
     </style>
 
@@ -124,7 +137,7 @@
                     </select>
                 </div>
                 
-                <li class="list-group-item" style=" border: 0;" id="schedules" >
+                <div class="list-group-item" id="schedules" style="height: 250px;" >
                     <ul class="list-group" style="height: 500px; overflow: auto; padding: 10px; border: solid; border-radius: 10px;">
 
                         <li class="list-group-item" style="border: solid; border-radius: 10px; padding: 20px;">
@@ -149,16 +162,19 @@
                         </li>
                         <br>
                     </ul>
-                </li>
-                <div style="padding-bottom: 40px;">
+                </div>
+                <hr style="margin: 0; background-color: rgb(194, 194, 194); height: 3px;">
+                <div style="padding-bottom: 20px;">
                     <div class="detail_content_box">
-                        <div id="detail_content">
-                            <p style="margin-top: 10px; margin-bottom: 5px; font-size: 30px;">댓글</p>
-                            <div id="comments">
+                        <div id="detail_content" style="height: 280px;">
+                            <p style="margin-bottom: 5px; font-size: 23px;">댓글</p>
+                            <div id="comments" style="height: 210px; overflow: auto; ">
                             </div>
-                            <input style="resize: none; height: 30px; width: 100%; padding: 15px;" id="content_text_box"></textarea>
-                            <div>
-                                <button style="float: right;" onclick="detail_comment_make()">작성완료</button>
+                            <div style=" vertical-align: bottom;">
+                                <div style="display: flex;">
+                                    <input style="resize: none; height: 30px; width: 100%; padding: 2px;" id="content_text_box"></textarea>
+                                    <button class="button is-sparta" style="width: 40px; height: 30px; padding-top: 2px; padding-bottom: 2px;" onclick="detail_comment_make()">완료</button>
+                                </div>
                             </div>
                         </div>
                     </div>
