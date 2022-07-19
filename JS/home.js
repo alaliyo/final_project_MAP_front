@@ -187,7 +187,7 @@ function add_cards(cards){
         const likes = cards[i]['likes']
         const views = cards[i]['views']
         const category = cards[i]['category']
-        const createdAt = cards[i]['createdAt'] + '+0000'
+        const createdAt = cards[i]['createdAt'] + "+0000"
         console.log(category)
         const create_at = new Date(createdAt)
         const time_brfore = time2str(create_at)
@@ -205,12 +205,13 @@ function add_cards(cards){
                                         </a>
                                     </div>
                                     <div>
-                                        <num style="float: right; margin-left: 3px;">${likes}</num>
-                                        <a>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
                                             <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
-                                        </a>
-                                        <P> 조회수: ${views}</P>
-                                        <br>
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
                                         <p class="card_writer">${nickname}</p>
                                         <br>
                                         <p class="card_time">${time_brfore}</p>
@@ -228,12 +229,13 @@ function add_cards(cards){
                                         </a>
                                     </div>
                                     <div>
-                                        <num style="float: right; margin-left: 3px;">${likes}</num>
-                                        <a>
-                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
-                                        </a>
-                                        <P> 조회수: ${views}</P>
-                                        <br>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
                                         <p class="card_writer">${nickname}</p>
                                         <br>
                                         <p class="card_time">${time_brfore}</p>
@@ -274,7 +276,7 @@ function cards_none_login() {
                 const image = card[i]['image']
                 const likes = card[i]['likes']
                 const views = card[i]['views']
-                const createdAt = cards[i]['createdAt'] + '+0000'
+                const createdAt = cards[i]['createdAt'] + "+0000"
                 const create_at = new Date(createdAt) 
                 const time_brfore = time2str(create_at)
                 let temp_html = `<div class="card" id="${post_id}">
@@ -287,15 +289,16 @@ function cards_none_login() {
                                         </a>
                                     </div>
                                     <div>
-                                        <num style="float: right; margin-left: 3px;">${likes}</num>
-                                        <a>
-                                        <img class="likes likes_off" src="/static/like-icon-off.png">
-                                        </a>
-                                        <P> 조회수: ${views}</P>
-                                        <br>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
                                         <p class="card_writer">${nickname}</p>
                                         <br>
-                                        <p class="card_time">${time_brfore}</p>
+                                        <p class="card_time">${time_brfore}</p>                                
                                     </div>
                                 </div>`
                     if(my_category=="ALL" || category == my_category){
@@ -343,7 +346,7 @@ function cards_none_login() {
 // 시간 변경 함수
 function time2str(createdAt) {
     let today = new Date() 
-    let time = (today - createdAt) / 1000 / 60  // 분
+    let time = (today - createdAt) / 1000 / 60 // 분
     console.log(time)
     if (time < 60) {
         return parseInt(time) + "분 전"
@@ -353,7 +356,7 @@ function time2str(createdAt) {
         return parseInt(time) + "시간 전"
     }
     time = time / 24
-    if (time < 14) {
+    if (time < 7) {
         return parseInt(time) + "일 전"
     }
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`

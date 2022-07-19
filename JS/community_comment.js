@@ -69,7 +69,7 @@ function commentGet() {
                     temp_html = `<div>
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
-                                    <button class="comment" id="comment_delete" onclick="comment_delete(${comment_id})">삭제</button>
+                                    <a class="comment" style="margin-right: 10px;" id="comment_delete" onclick="comment_delete(${comment_id})">×</a>
                                     <p class="comment">${time_brfore}</p>
                                     <p class="comment">${nickname}</p>
                                 </div>

@@ -1,6 +1,6 @@
 /* 검색창 Backgtound img css */
 .field_background {
-    background-image: url("../static/123.png");
+    background-image: url("/static/sample5.png");
     background-size: cover;
     background-position: center;
     padding-top: 300px;
@@ -50,7 +50,7 @@ a:link {
     margin-top: 15px;
     margin-bottom: 10px;
     color: black;
-    font-size: 25px;
+    font-size: 20px;
 }
 /* 카드 작성자 */
 .card_writer {

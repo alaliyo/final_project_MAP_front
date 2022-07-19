@@ -74,12 +74,13 @@ function community_detail(postId) {
                                         <p>제목: ${title}</p>
                                     </div>
                                     <hr class="hr_top">
-                                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                                    <div class="community_content" style="margin-top: 10px; margin-bottom: 10px; height:100px; overflow-y: scroll;">
+                                        <p>내용: </p>
                                         <text style="font-size: 18px;"> ${content}</text>
                                     </div>
                                 </div>
                                 <hr class="hr_top">
-                                <button style="float: right; margin-top: 5px;" onclick="community_put_get(window.location.href='/community_revise.html?id=${post_id}')">수정</button>
+                                <button class="button is-light" style="float: right; margin-top: 5px; width:50px; height:30px" onclick="community_put_get(window.location.href='/community_revise.html?id=${post_id}')">수정</button>
                             </div>`
             } else {
                 temp_html = `<div>
