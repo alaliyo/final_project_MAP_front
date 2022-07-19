@@ -301,7 +301,7 @@ function email_check_dup() {
 }
 
 window.onload = function kakao_url(){
-    let code = getParam("code");
+    var code = getParam("code");
     console.log(code);
     if(code == ""){
         console.log("빈칸 입니다.")
@@ -316,10 +316,10 @@ window.onload = function kakao_url(){
     });
 }
 function getParam(sname) {
-        let params = location.search.substr(location.search.indexOf("?") + 1);
-        let sval = "";
+        var params = location.search.substr(location.search.indexOf("?") + 1);
+        var sval = "";
         params = params.split("&");
-        for (let i = 0; i < params.length; i++) {
+        for (var i = 0; i < params.length; i++) {
             temp = params[i].split("=");
             if ([temp[0]] == sname) { sval = temp[1]; }
         }
