@@ -13,12 +13,22 @@ $(window.document).ready(function() {
 
     // 정렬 변경시 작동
     $('#select_sort').on('change', function () {
+        console.log(user_role)
+        if(user_role!="user"){
+            alert("로그인 해주세요")
+            window.location.replace("/login.html");
+        }
         likes_inquiry();
         cards();
     });
 
     // 카테고리 변경시 작동
     $('#select_category').on('change', function () {
+        console.log(user_role)
+        if(user_role!="user"){
+            alert("로그인 해주세요")
+            window.location.replace("/login.html");
+        }
         likes_inquiry();
         cards();
     });
@@ -45,7 +55,6 @@ function keep_out() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
-            console.log("login_+____")
             user_role = "user"        
             $('#login').hide()
             $('#logout').show()
@@ -317,6 +326,12 @@ function cards_none_login() {
                     console.log(response)
                     my_cards = response
                     add_cards(my_cards)
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                    alert("로그인 해주세요")
+                    window.location.replace("/login.html");
                 }
             })
         }
