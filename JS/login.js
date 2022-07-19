@@ -299,3 +299,29 @@ function email_check_dup() {
         }
     });
 }
+
+window.onload = function kakao_url(){
+    let code = getParam("code");
+    console.log(code);
+    if(code == ""){
+        console.log("빈칸 입니다.")
+    }
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao/login?code="+code,
+        contentType: "application/json; charset=UTF-8",
+        success: function (response) {
+            console.log(response)
+        }
+    });
+}
+function getParam(sname) {
+        let params = location.search.substr(location.search.indexOf("?") + 1);
+        let sval = "";
+        params = params.split("&");
+        for (let i = 0; i < params.length; i++) {
+            temp = params[i].split("=");
+            if ([temp[0]] == sname) { sval = temp[1]; }
+        }
+        return sval;
+}
