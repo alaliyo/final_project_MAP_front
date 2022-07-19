@@ -213,7 +213,7 @@ function save_post(){
     let period = $("#select_day").val();
     let file = $('#file')[0];
 
-    console.log(title, category, period, my_size)
+    console.log(title, category, period, my_size, title.length)
 
     if(file.files.length === 0){
         alert("대표 이미지를 선택해주세요");
@@ -223,7 +223,10 @@ function save_post(){
         alert("제목을 입력해주세요")
         return;
     }
-
+    else if(title.length>30){
+        alert("제목을 30글자 내로 지정해주세요")
+        return;
+    }
     let formData = new FormData();
     formData.append("file", file.files[0]);
 
