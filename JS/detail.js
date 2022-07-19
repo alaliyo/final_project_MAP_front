@@ -80,10 +80,10 @@ function read_schedules(post_id){
                 let schedule = schedules[i];
                 console.log(schedule)
                 if(day_status == schedule['date']){
-                    let temp_html = `<li class="list-group-item" style="padding: 10px;">
-                                        <a href="https://map.kakao.com/link/to/${schedule.placeName},${schedule.y},${schedule.x}" target="_blank" style="float: right">길 찾기</a>
-                                        <h5 style="font-size: 30px;"><a href="${schedule.link}" target="_blank" >${schedule.placeName}</a></h5>
-                                        <p style="font-size: 20px">${schedule.address}</p>
+                    let temp_html = `<li class="list-group-item" style="padding: 5px;">
+                                        <a href="https://map.kakao.com/link/to/${schedule.placeName},${schedule.y},${schedule.x}" target="_blank" style="float: right; color: rgb(50, 115, 220);"">길 찾기</a>
+                                        <h5 style="font-size: 20px;"><a style="color: rgb(50, 115, 220);" href="${schedule.link}" target="_blank" >${schedule.placeName}</a></h5>
+                                        <p style="font-size: 17px">${schedule.address}</p>
                                         <p style="font-size: 15px; color: green">${schedule.phone}</p>
                                     </li>
                                     <br>

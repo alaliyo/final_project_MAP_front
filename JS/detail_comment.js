@@ -77,13 +77,13 @@ function detail_comment_get() {
                     console.log("일치")
                     temp_html = `<div>
                                     <div>
-                                        <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
+                                        <p style="float: left;">${comment}</p>
                                         <br>
-                                        <button class="comment" id="comment_delete" onclick="detail_comment_delete(${comment_id})">삭제</button>
-                                        <p class="comment">${time_brfore}</p>
-                                        <p class="comment">${nickname}</p>
+                                        <a class="comment" style="margin-right: 10px; color: red;" id="comment_delete" onclick="detail_comment_delete(${comment_id})">×</a>
+                                        <p class="comment" style="margin-right: 10px">${time_brfore}</p>
+                                        <p class="comment" style="margin-right: 10px">${nickname}</p>
                                     </div>
-                                    <hr class="comment_hr">
+                                    <hr style="margin-bottom: 10px;">
                                 </div>`
                 } else {
                     console.log('불일치')
@@ -94,7 +94,7 @@ function detail_comment_get() {
                                         <p class="comment">${time_brfore}</p>
                                         <p class="comment">${nickname}</p>
                                     </div>
-                                    <hr class="comment_hr">
+                                    <hr style="margin-bottom: 10px;">
                                 </div>`
                 }
                     $('#comments').append(temp_html)
@@ -163,13 +163,12 @@ function detail_community_users_nickname() {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (community) {
-            console.log(community)
-            for (let i = 0; i < community.length; i++) {
-                let nickname = community[i]['nickname']
-                console.log(nickname)
-                detail_community_user_nickname.push(nickname)
-            }
+        success: function (communitys) {
+            console.log(communitys)
+            let nickname = communitys[0]['nickname']
+            console.log(nickname)
+            detail_community_user_nickname.push(nickname)
+        
         }
     })
 }
