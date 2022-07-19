@@ -1,4 +1,5 @@
 let my_cards = []
+let user_role = null;
 function get_cookie(name) {
     let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null; }
@@ -27,15 +28,38 @@ $(window.document).ready(function() {
 // 로그인 , 로그아웃 온 오프
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
-    if (token) {
-        $('#login').hide()
-        $('#logout').show()
-    } else {
-        $('#logout').hide()
-        $('#login').show()
-    }
+    
 }
 
+// 로그인 , 로그아웃 온 오프
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    
+    
+    $.ajax({
+        type: "GET",
+        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user`,
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            console.log("login_+____")
+            user_role = "user"        
+            $('#login').hide()
+            $('#logout').show()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);    
+            $('#logout').hide()
+            $('#login').show()
+        }
+    })
+
+    
+}
 
 // 내가 좋아요 한 post_id 값 조회
 let like_btn = [];
@@ -218,12 +242,20 @@ function add_cards(cards){
 // 미 로그인 시 띄우는 게시물 함수
 function cards_none_login() {
     $('#cards').empty()
+    let sorted = $('#select_sort').val()
+    let my_category = $('#select_category').val()
+    console.log(sorted)
+    console.log(my_category)
+    if(cards.length !=0){
+        cards = sortJSON(cards,sorted.split(',')[0],sorted.split(',')[1])
+    }
     $.ajax({
         type: "GET",
         url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/plan/posts",
         data: {},
         contentType: "application/json",
         success: function (cards) {
+            $('#cards').empty()
             console.log(cards)
             let card = cards
             for (let i = 0; i < card.length; i++) {
@@ -257,7 +289,9 @@ function cards_none_login() {
                                         <p class="card_time">${time_brfore}</p>
                                     </div>
                                 </div>`
-                                $('#cards').append(temp_html)
+                    if(my_category=="ALL" || category == my_category){
+                        $('#cards').append(temp_html)
+                    }
                 }
             }
         })
