@@ -91,7 +91,8 @@ function community_detail(postId) {
                                         <p>제목: ${title}</p>
                                     </div>
                                     <hr class="hr_top">
-                                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                                    <div class="community_content" style="margin-top: 10px; margin-bottom: 10px; height:100px; overflow-y: scroll;">
+                                        <p>내용: </p>
                                         <text style="font-size: 18px;"> ${content}</text>
                                     </div>
                                 </div>
