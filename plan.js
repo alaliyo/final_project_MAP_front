@@ -24,11 +24,12 @@ function relogin(){
 let day; // 여행 기간 (예 2박 3일)
 let day_status // 선택된 d y 상 태 
 let post_id // 현재 작성중인 post_id
-
+let my_size = 0;
 $(document).ready(function (){
 
     day = 1;
-    day_status = -1;
+    day_status = 1;
+
 
     // 여행 설계 버튼 클릭시 게시물이 생성 
     if(localStorage.getItem('action') == 'create'){
@@ -151,6 +152,7 @@ function read_schedule() {
         
         success: function (response) {
             let schedules = response
+            my_size = response.length;
             for (let i = 0; i < schedules.length; i++) {
                 console.log(schedules)
                 let schedule = schedules[i];
@@ -211,13 +213,20 @@ function save_post(){
     let period = $("#select_day").val();
     let file = $('#file')[0];
 
+    console.log(title, category, period, my_size)
+
     if(file.files.length === 0){
-        alert("대표 이지미를 선택해주세요");
+        alert("대표 이미지를 선택해주세요");
+        return;
+    }
+    else if(title==""){
+        alert("제목을 입력해주세요")
         return;
     }
 
     let formData = new FormData();
     formData.append("file", file.files[0]);
+
 
     $.ajax({
         type: "PUT",
