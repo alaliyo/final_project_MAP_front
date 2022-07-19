@@ -293,7 +293,7 @@ function cards_none_login() {
 // 시간 변경 함수
 function time2str(createdAt) {
     let today = new Date() 
-    let time = (today - createdAt) / 1000 / 60 // 분
+    let time = (today - createdAt) / 1000 / 60  // 분
     console.log(time)
     if (time < 60) {
         return parseInt(time) + "분 전"
