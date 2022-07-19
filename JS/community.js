@@ -25,7 +25,7 @@ function keep_out() {
 // 에러 발생 시 홈으로
 function relogin(){
     window.location.replace("/login.html");
-    alert('토큰이 만료되었습니다. 다시 로그인 하세요');
+    alert('다시 로그인 하세요');
 }
 
 
@@ -60,7 +60,7 @@ function communityPostsGet() {
                 if (user_nickname == post[i]['nickname']) {
                     console.log("삭제 버튼 on")
                     temp_html = `<div id="communtity_post ">
-                                    <button id="delete_btn" style="float: right;" onclick="community_post_delete(${post_id})" >삭제</button>
+                                    <a id="delete_btn" style="float: right; margin-top: 8px; margin-right: 20px; color: red;" onclick="community_post_delete(${post_id})" >삭제</a>
                                     <div class="communtity_post_box">
                                         <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
                                             <p style="font-size: 20px; float: left;">${title}</p>
@@ -172,6 +172,24 @@ function community_user_nickname() {
                 let nickname = community[0]['nickname']
                 console.log(nickname)
                 user_nickname.push(nickname)
+        }
+    })
+}
+
+
+function community_paging() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts/paging",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (paging) {
+            console.log(paging)
         }
     })
 }

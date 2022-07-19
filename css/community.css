@@ -1,15 +1,17 @@
-/* 바디 마진 설정 */
-body {
-    margin-top: 120px;
-}
 
 /* a 테그 설정 */
 a {
     color: black;
 }
 
+#comment_delete {
+    color: rgb(255, 0, 0);
+}
+
 /* 작성글 전체 박스 */
 .community_box {
+    margin-top: 50px;
+    height: 600px;
     padding: 10px;
     padding-bottom: 30px;
     border: 2px solid rgb(194, 194, 194);
@@ -30,6 +32,10 @@ hr {
     background-color: rgb(167, 167, 167);
 }
 
+#communtity_posts {
+    height: 500px;
+}
+
 .communtity_post_box {
     margin: none;
     width: 90%;
@@ -40,7 +46,6 @@ hr {
     padding-left: 10px;
     padding-top: 7px;
     height: 40px;
-    
 }
 /* 작성글 동적 색 반응 */
 .posting_box:hover {
@@ -48,14 +53,19 @@ hr {
     transition: 0.3s ease-in-out;
 }
 
+/* 커뮤니티 내용 상자 */
+.community_content::-webkit-scrollbar {
+    display: none;
+}
+
 .nickname_box {
-    width: 100px;
+    width: 50px;
     float: right;
 }
 
 /* 시간 박스 */
 .time_box {
-    width: 230px;
+    width: 100px;
     margin-right: 10px;
     float: right;
 }
@@ -66,7 +76,8 @@ hr {
 
 /* 적성하기 스위치 css */
 .community_write_back {
-    background-color: aquamarine;
+    margin-top: 50px;
+    background-color: rgb(216, 216, 216);
     height: 35px;
     width: 65px;
     padding-top: 7px;
@@ -76,7 +87,8 @@ hr {
     float: right;
 }
 .community_write_back:hover {
-    background-color: rgb(71, 255, 194);
+    background-color: rgb(0, 255, 170);
+    transition: 0.5s ease-in-out;
 }
 #community_write_btn {
     color: white;
