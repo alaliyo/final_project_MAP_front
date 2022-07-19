@@ -52,7 +52,8 @@ function communityPostsGet() {
                 let post_id = post[i]['postId']
                 let title = post[i]['title']
                 let nickname = post[i]['nickname']
-                let create_at = new Date(post[i]['createdAt'])
+                let createdAt = post[i]['createdAt'] + '+0000'
+                let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
                 console.log(user_nickname)
@@ -168,11 +169,9 @@ function community_user_nickname() {
         },
         success: function (community) {
             console.log(community)
-            for (let i = 0; i < community.length; i++) {
-                let nickname = community[i]['nickname']
+                let nickname = community[0]['nickname']
                 console.log(nickname)
                 user_nickname.push(nickname)
-            }
         }
     })
 }

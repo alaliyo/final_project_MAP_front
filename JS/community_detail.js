@@ -60,7 +60,8 @@ function community_detail(postId) {
             let title = post['title']
             let content = post['content']
             let nickname = post['nickname']
-            let create_at = new Date(post['createdAt'])
+            let createdAt = post['createdAt'] + '+0000'
+            let create_at = new Date(createdAt)
             let time_brfore = time2str(create_at)
             let temp_html = ``
             console.log('test' + communitys_user_nickname);
@@ -141,11 +142,9 @@ function community_user_nickname() {
         },
         success: function (community) {
             console.log(community)
-            for (let i = 0; i < community.length; i++) {
-                let nickname = community[i]['nickname']
-                console.log(nickname)
-                communitys_user_nickname.push(nickname)
-            }
+            let nickname = community[0]['nickname']
+            console.log(nickname)
+            communitys_user_nickname.push(nickname)
         }
     })
 }
