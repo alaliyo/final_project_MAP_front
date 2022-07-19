@@ -154,9 +154,9 @@ function add_cards(cards){
         const likes = cards[i]['likes']
         const views = cards[i]['views']
         const category = cards[i]['category']
-        const modifiedAt = cards[i]['modifiedAt'] + '+0000'
+        const createdAt = cards[i]['createdAt'] + '+0000'
         console.log(category)
-        const create_at = new Date(modifiedAt)
+        const create_at = new Date(createdAt)
         const time_brfore = time2str(create_at)
         let temp_html = ``
         console.log("like_btn"+like_btn)
@@ -233,8 +233,8 @@ function cards_none_login() {
                 const image = card[i]['image']
                 const likes = card[i]['likes']
                 const views = card[i]['views']
-                const modifiedAt = cards[i]['modifiedAt'] + '+0000'
-                const create_at = new Date(modifiedAt) 
+                const createdAt = cards[i]['createdAt'] + '+0000'
+                const create_at = new Date(createdAt) 
                 const time_brfore = time2str(create_at)
                 let temp_html = `<div class="card" id="${post_id}">
                                     <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">

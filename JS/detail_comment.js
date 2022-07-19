@@ -68,7 +68,8 @@ function detail_comment_get() {
                 let comment_id = comments[i]['id']
                 let nickname = comments[i]['member']
                 let comment = comments[i]['comment']
-                let create_at = new Date(comments[i]['createdAt'])
+                let createdAt = comments[i]['createdAt'] + '+0000'
+                let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
                 console.log('에휴'+ detail_community_user_nickname)
