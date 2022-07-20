@@ -88,9 +88,9 @@ function my_plans() {
                                         </a>
                                     </div>
                                     <div class="card-content">
-                                        <div class="media" style="padding-bottom: 15px">
+                                        <div class="media">
                                             <div class="media-content">
-                                                <a onclick="window.location.href='/detail.html?id=${post_id}'" class="post-title" style="font-size: 30px">${title}</a>
+                                                <a onclick="window.location.href='/detail.html?id=${post_id}'" class="post-title" style="font-size: 22px">${title}</a>
                                                 <p style="float: right; margin-top: 20px;" >${time_brfore}</p>
                                             </div>
                                         </div>
@@ -302,3 +302,29 @@ let user_nickname = []; // community_user_nickname()를 넣은 전역 변수
             }
             }
 
+// 게시물 DELETE
+function community_post_delete(postId){
+    const token = get_cookie("X-AUTH-TOKEN");
+    const post_id= postId
+    console.log(post_id)
+    if(confirm('삭제하겠습니까?')){
+        $.ajax({
+            type: "DELETE",
+            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${post_id}`,
+            data: {
+                postId : post_id,
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (result) {
+                window.location.reload('/');
+                console.log(result);
+            }
+        })
+        alert("삭제되었습니다.")
+    } else {
+        window.location.reload('/');
+    }
+}

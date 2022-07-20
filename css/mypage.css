@@ -1,23 +1,39 @@
 .card-box {
     width: 320px;
-    height: auto;
+    height: 450px;
     margin: 20px;
-    padding: 20px;
+    padding: 10px;
     border: 5px solid #c3c8cd;
     border-radius: 15px;
     float: left;
 }
 
 .card-image {
+    padding-top: 10px;
     width: 250px;
     height: 250px;
     margin: auto;
     display: block;
 }
 
+/* 카드 하단 박스 */
+.card-content {
+    position:relative;
+    margin: 10px;
+    padding: 10px;
+    height: 180px;
+}
+
+/* 카드 하단 수정 삭제 박스 */
+.card-footer {
+    width: 250px;
+    position:absolute;
+    bottom:40px;
+}
+
 .card-footer-item {
     margin-bottom: -20px;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 a:link {
