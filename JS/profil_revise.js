@@ -30,8 +30,8 @@ function profil_revise() {
             console.log(user)
             const nickname = user['nickname'];
             const email = user['email'];
-            $('#nickname_textbox').val(`${nickname}`);
-            $('#email_textbox').val(`${email}`);  
+            $('.nickname_textbox').val(`${nickname}`);
+            $('.email_textbox').val(`${email}`);  
             
             }
         }
@@ -42,8 +42,8 @@ function profil_revise() {
 // 게시물 수정 
 function community_put_post() {
     let token = get_cookie("X-AUTH-TOKEN");
-    let nickname = $('#nickname_textbox').val();
-    let email = $('#email_textbox').val();
+    let nickname = $('.nickname_textbox').val();
+    let email = $('.email_textbox').val();
     let image = $('#image_textbox').val();
     let password = $('#password_textbox').val();
     let file = $('#file')[0];
