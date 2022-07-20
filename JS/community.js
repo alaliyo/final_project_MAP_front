@@ -100,9 +100,9 @@ let user_nickname = []; // community_user_nickname()를 넣은 전역 변수
             for (var i = first; i <= last; i++) {
                 if (currentPage == i) {
                     pageHtml +=
-                        "<li class='on' style='float: left; margin-left: 5px; margin-right: 5px;'><a href='#' id='" + i + "'>" + i + "</a></li>";
+                        "<li class='on' style='float: left; margin-left: 5px; margin-right: 5px;'><a class='paging_remotr href='#' id='" + i + "'>" + i + "</a></li>";
                 } else {
-                    pageHtml += "<li style='float: left; margin-left: 5px; margin-right: 5px;'><a href='#' id='" + i + "'>" + i + "</a></li>";
+                    pageHtml += "<li style='float: left; margin-left: 5px; margin-right: 5px;'><a class='paging_remotr' href='#' id='" + i + "'>" + i + "</a></li>";
                 }
             }
 

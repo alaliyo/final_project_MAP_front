@@ -80,6 +80,17 @@ a:link {
     margin-right: 15px;
 }
 
+/* 나의 커뮤니티 상자 */
+.my_community_box {
+    height: 540px;
+    margin-top: 50px;
+    padding: 10px;
+    padding-bottom: 30px;
+    border: 2px solid rgb(194, 194, 194);
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px gray ;
+}
+
 /* 게시물, 게시판 리모컨 */
 .menu_remote {
     width: 80px;
@@ -88,7 +99,6 @@ a:link {
     display : flex;
     justify-content : center;
     align-items : center;
-    
 }
 
 .menu_remote:hover {

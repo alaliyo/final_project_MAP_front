@@ -16,7 +16,7 @@
     <!-- JS -->
     <script type="text/javascript" src="JS/mypage.js"></script>
     <script type="text/javascript" src="JS/logout.js"></script>
-    <script type="text/javascript" src="JS/community.js"></script>
+    <!-- <script type="text/javascript" src="JS/community.js"></script> -->
     <script type="text/javascript" src="JS/profil_revise.js"></script>
     
 </head>
@@ -56,7 +56,7 @@
 
     <!-- 프로필 수정 -->
     <div id="my_profil_revise" style="display: none;">
-        <div class="community_box">
+        <div class="community_box" style="height: 180px;">
             <div id="communitys">
                 <div>
                     <div style="margin-bottom: 5px; font-size: 20px;">
@@ -125,33 +125,38 @@
     </div>
     <!-- 커뮤니티 -->
     <div id="my_communtity_box" style="margin-left: 5%; margin-right: 5%;">
-        <div class="community_box" style="height: auto;">
-            <div class="title_box">
-                <p style="float: left;">제목</p>
-                <p style="float: right; margin-left: 80px; margin-right: 15%;">작성일시</p>
-            </div>
-            <br>
-            <hr class="hr_top">
-            <div id="my_communtity">
-                <!--
-                <div >
-                    <div class="communtity_post_box">
-                        <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
-                            <p style="font-size: 20px; float: left;">${title}</p>
-                            <div>
-                                <div class="time_box">
-                                    <p class="posting_time">${create_at}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <button style="float: right;" onclick="community_post_delete()" >삭제</button>
+        <div class="my_community_box" >
+            <div  style="height: 480px;">
+                <div class="title_box">
+                    <p style="float: left;">제목</p>
+                    <p style="float: right; margin-left: 80px; margin-right: 15%;">작성일시</p>
                 </div>
-                <hr style="width : 100%">
-                -->
+                <br>
+                <hr class="hr_top">
+                <div id="my_communtity">
+                    <!--
+                    <div >
+                        <div class="communtity_post_box">
+                            <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
+                                <p style="font-size: 20px; float: left;">${title}</p>
+                                <div>
+                                    <div class="time_box">
+                                        <p class="posting_time">${create_at}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <button style="float: right;" onclick="community_post_delete()" >삭제</button>
+                    </div>
+                    <hr style="width : 100%">
+                    -->
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <ul id="pagingul"></ul>
+                <p id="displayCount"></p>
             </div>
         </div>
     </div>
-
 </body>
 </html>
