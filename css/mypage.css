@@ -43,7 +43,7 @@ a:link {
 }
 
 .card-footer-item:hover {
-    color: rgb(95, 214, 175);
+    color: rgb(168, 226, 236);
     transition: 0.3s ease-in-out;
 }
 
@@ -58,7 +58,7 @@ a:link {
     width: 160px;
     height: 160px;
     margin-right: 0;
-    background-color: aquamarine;
+    background-color: rgb(168, 226, 236);
     float: left;
 }
 .profil {
@@ -78,4 +78,24 @@ a:link {
 .profil_revise_btn {
     float: right;
     margin-right: 15px;
+}
+
+/* 게시물, 게시판 리모컨 */
+.menu_remote {
+    width: 80px;
+    text-align : center;
+    height: 30px;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    
+}
+
+.menu_remote:hover {
+    background-color: rgb(168, 226, 236);
+    transition: 0.5s ease-in-out;
+}
+
+.menu_remote_btm:hover {
+    color: white; transition: 0.3s ease-in-out;
 }

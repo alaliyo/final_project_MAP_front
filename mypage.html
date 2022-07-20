@@ -85,10 +85,14 @@
 
     <hr style="background: #c0c0c0; margin: 0;">
         <!-- 리모컨 -->
-    <div>
-        <a onclick="my_plan()">여행계획</a>
-        <a onclick="my_community_box()">커뮤니티</a>
-
+    <div style="display: flex;">
+        <div class="menu_remote">
+            <a class="menu_remote_btm" onclick="my_plan()">여행계획</a>
+        </div>
+        <div class="menu_remote">
+            <a class="menu_remote_btm" onclick="my_community_box()">커뮤니티</a>
+        </div>
+    </div>
     <!-- 게시물 -->
     <div class="cards" id="card-box">
         <div id="mycards">

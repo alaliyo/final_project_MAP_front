@@ -48,7 +48,9 @@ function profil() {
                                     <img class="profil" src="${image}" alt="Placeholder image" />
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
-                                <button class="profil_revise_btn" onclick="profil_revise_show(); profil_revise(${user_id});">개인정보수정</button>
+                                <div class="community_write_back" style="width: 110px;" onclick="profil_revise_show(); profil_revise(${user_id});">
+                                    <a class="profil_revise_btn">개인정보수정</a>
+                                </div>
                             </div>`
             $('#my_profil').append(temp_html)
         }
