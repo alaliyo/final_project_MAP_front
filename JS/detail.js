@@ -40,7 +40,7 @@ function add_day(post_id){
     $(`#createAt`).empty()
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
@@ -67,7 +67,7 @@ function read_schedules(post_id){
     $('#schedules').empty()
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);

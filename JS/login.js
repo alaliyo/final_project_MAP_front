@@ -29,7 +29,7 @@ function sign_in() {
     }
     $.ajax({
         type: "POST",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/login",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/login",
         data:JSON.stringify({
                 username: username,
                 password: password,
@@ -124,7 +124,7 @@ function sign_up() {
     }
     $.ajax({
         type: "POST",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/join",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/join",
         // 저장된 유저 네임 페스워드를 서버로 회원가입한다고 요청
         data: JSON.stringify(
             {
@@ -200,7 +200,7 @@ function username_check_dup() {
     $("#help-id").addClass("is-loading")
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-username",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/overlap-username",
         data: {
                 username : username
         },
@@ -240,7 +240,7 @@ function nickname_check_dup() {
     $("#help-nickname").addClass("is-loading")
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-nickname",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/overlap-nickname",
         data:{
                 nickname : nickname
             },
@@ -281,7 +281,7 @@ function email_check_dup() {
     $("#help-email").addClass("is-loading")
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/overlap-email",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/overlap-email",
         data:{
                 email : email
             },
@@ -307,7 +307,7 @@ window.onload = function kakao_url(){
     }else{
         $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/kakao/login?code="+code,
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/kakao/login?code="+code,
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
             alert(response)

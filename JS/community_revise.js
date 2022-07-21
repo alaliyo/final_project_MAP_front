@@ -19,7 +19,7 @@ function community_put_get() {
 
     $.ajax({
         type: "GET",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -50,7 +50,7 @@ function community_put_post() {
     console.log(title, content)
     $.ajax({
         type: "PUT",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
         data: JSON.stringify({
             title: title,
             content: content,

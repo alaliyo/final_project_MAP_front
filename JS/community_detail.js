@@ -47,7 +47,7 @@ function community_detail(postId) {
     console.log(postId);
     $.ajax({
         type: "GET",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -135,7 +135,7 @@ function community_user_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {

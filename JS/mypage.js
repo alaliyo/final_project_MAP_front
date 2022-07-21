@@ -47,7 +47,7 @@ function profil() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -59,7 +59,20 @@ function profil() {
             const user_id = user['id']
             let nickname = user['nickname']
             let image = user['image']
-            let temp_html = `<div class="profil_box" id="profil_box">
+            let temp_html = ''
+            console.log(image)
+            if (image === null) {
+                temp_html = `<div class="profil_box" id="profil_box">
+                                <div class="profil_ring">
+                                    <img class="profil" src="/static/default_profile.png" alt="Placeholder image" />
+                                </div>
+                                <p class="nickname" id="idname">${nickname}</p>
+                                <div class="community_write_back" style="width: 110px;" onclick="profil_revise_show(); profil_revise(${user_id});">
+                                    <a class="profil_revise_btn" onclick="password_inquiry();" >개인정보수정</a>
+                                </div>
+                            </div>`
+            } else {
+                temp_html = `<div class="profil_box" id="profil_box">
                                 <div class="profil_ring">
                                     <img class="profil" src="${image}" alt="Placeholder image" />
                                 </div>
@@ -68,6 +81,8 @@ function profil() {
                                     <a class="profil_revise_btn" onclick="password_inquiry();" >개인정보수정</a>
                                 </div>
                             </div>`
+            }
+            console.log(temp_html)
             $('#my_profil').append(temp_html)
         }
     })
@@ -79,7 +94,7 @@ function my_plans() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: 'http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/my-posts',
+        url: 'http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/my-posts',
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -131,7 +146,7 @@ function my_plan_delete(id){
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}`,
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}`,
             data: {
                 postId : post_id,
             },
@@ -185,7 +200,7 @@ function my_community() {
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -327,7 +342,7 @@ function community_post_delete(postId){
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${post_id}`,
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${post_id}`,
             data: {
                 postId : post_id,
             },
@@ -354,7 +369,7 @@ function withdrawal(){
         if(confirm('탈퇴하시겠습니까? 모든 정보가 삭제됩니다.')){
             $.ajax({
                 type: "DELETE",
-                url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/member`,
+                url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/member`,
                 data: {
                 },
                 beforeSend: function (xhr) {
@@ -385,7 +400,7 @@ function password_inquiry() {
     } else {
         $.ajax({
             type: "GET",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
             data:{},
             contentType: "application/json; charset=UTF-8",
             beforeSend: function (xhr) {

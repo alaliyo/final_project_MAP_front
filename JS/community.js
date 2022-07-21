@@ -43,7 +43,7 @@ let user_nickname = []; // community_user_nickname()를 넣은 전역 변수
             let token = get_cookie("X-AUTH-TOKEN");
             $.ajax({
                 type: "GET",
-                url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
+                url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/posts",
                 data: {},
                 contentType: "application/json;",
                 beforeSend: function (xhr) {
@@ -207,7 +207,7 @@ function community_post_delete(postId){
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${post_id}`,
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${post_id}`,
             data: {
                 postId : post_id,
             },
@@ -252,7 +252,7 @@ function community_user_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {

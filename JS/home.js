@@ -48,7 +48,7 @@ function keep_out() {
     
     $.ajax({
         type: "GET",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,
         contentType: "application/json;",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
@@ -77,7 +77,7 @@ function likes_inquiry() {
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/posts/my-like",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/posts/my-like",
         data: {},
         contentType: "application/json",
         beforeSend: function (xhr) {
@@ -109,7 +109,7 @@ function likes_btn(post_id) {
     
     $.ajax({
         type: "POST",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/like`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/like`,
         contentType: "application/json;",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
@@ -132,7 +132,7 @@ function view(post_id) {
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "PUT",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/view`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/view`,
         data: {},
         contentType: "application/json",
         beforeSend: function (xhr) {
@@ -151,7 +151,7 @@ function cards() {
     $('#cards').empty()
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/plan/posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/posts",
         data: {},
         contentType: "application/json",
         success: function (cards) {
@@ -262,7 +262,7 @@ function cards_none_login() {
     }
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/plan/posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/posts",
         data: {},
         contentType: "application/json",
         success: function (cards) {
@@ -319,7 +319,7 @@ function cards_none_login() {
         }else{
             $.ajax({
                 type: "GET",
-                url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/schedule?local=${local}`,
+                url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/schedule?local=${local}`,
                 contentType: "application/json",
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("Content-type","application/json");

@@ -37,7 +37,7 @@ function communityMakePost() {
         console.log(title, content)
         $.ajax({
             type: "POST",
-            url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post",
+            url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post",
             data: JSON.stringify({
                 title: title,
                 content: content,

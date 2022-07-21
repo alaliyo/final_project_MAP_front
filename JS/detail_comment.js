@@ -28,7 +28,7 @@ function detail_comment_make() {
     } else {
         $.ajax({
             type: "POST",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
             data: JSON.stringify({
                 comment: comment,
             }),
@@ -60,7 +60,7 @@ function detail_comment_get() {
     console.log(postId);
     $.ajax({
         type: "GET",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -116,7 +116,7 @@ function detail_comment_delete(id) {
     if (confirm('삭제하겠습니까?')) {
         $.ajax({
             type: "DELETE",
-            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/comment/${id}`,
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/comment/${id}`,
             data: {
                 commentId : id
             },
@@ -161,7 +161,7 @@ function detail_community_users_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {

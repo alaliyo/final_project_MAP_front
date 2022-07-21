@@ -1,5 +1,7 @@
 
-
+$(window.document).ready(function() {
+    profil_revise()
+})
 
 function profil_revise_off() {
     $('#my_profil_revise').hide();
@@ -16,7 +18,7 @@ function profil_revise() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
@@ -25,11 +27,11 @@ function profil_revise() {
         },
         success: function (user) {
             console.log(user)
-            const nickname = user['nickname'];
-            const email = user['email'];
+            let nickname = user['nickname'];
+            let email = user['email'];
+            console.log(nickname, email)
             $('.nickname_textbox').val(`${nickname}`);
             $('.email_textbox').val(`${email}`);  
-            
             }
         }
     )
@@ -51,7 +53,7 @@ function community_put_post() {
     console.log(nickname, email, image, password)
     $.ajax({
         type: "PUT",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/modify`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/modify`,
         data: JSON.stringify({
             nickname: nickname,
             email: email
@@ -69,7 +71,7 @@ function community_put_post() {
     if(file.files.length != 0){
         $.ajax({
             type: "POST",
-            url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/profile",
+            url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/profile",
             data: formData,
             processData: false,
             contentType: false,
