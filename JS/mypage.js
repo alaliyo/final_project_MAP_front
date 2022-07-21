@@ -394,7 +394,7 @@ function withdrawal(){
 //페스워드 비교 조회 password_inquiry();
 function password_inquiry() {
     const token = get_cookie("X-AUTH-TOKEN");
-    let password = prompt ("페스워드를 입렵하세요")
+    let password = prompt ("페스워드를 입력하세요")
     console.log(password)
     if (password === null) {
     } else {

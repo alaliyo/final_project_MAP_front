@@ -23,7 +23,7 @@ function detail_comment_make() {
     console.log(comment);
     if (comment.length == 0) {
         alert('뎃글을 입력해주세요.')
-    } else if (comment > 40) {
+    } else if (comment.length > 40) {
         alert('뎃글은 40자까지 입력가능합니다.')
     } else {
         $.ajax({

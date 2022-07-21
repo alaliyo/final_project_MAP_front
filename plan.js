@@ -135,9 +135,7 @@ function api_create_schedule(title, address, y, x, phone, url) {
 
 // 디비에서 일정 받아와 화면에 그려주기
 function read_schedule() {
-    
     let token = get_cookie("X-AUTH-TOKEN");
-
     for (let i = 0; i < day; i++) {
         $(`#schedule-${i + 1}`).empty()
     }
@@ -149,14 +147,12 @@ function read_schedule() {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        
         success: function (response) {
             let schedules = response
             my_size = response.length;
             for (let i = 0; i < schedules.length; i++) {
                 console.log(schedules)
                 let schedule = schedules[i];
-
                 let temp_html = `<li class="list-group-item" style="padding: 7px;">
                                         <a onclick="delete_schedule(${schedule.id})" style="float: right; color: red; font-size: 20px">×</a>
                                         <h5 style="display: flex;">
@@ -167,10 +163,8 @@ function read_schedule() {
                                 </li>
                                 <hr>
                                 `
-
                 $(`#schedule-${schedule.date}`).append(temp_html)
             }
-
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
@@ -215,7 +209,7 @@ function save_post(){
 
     console.log(title, category, period, my_size, title.length)
 
-    if(title==""){
+    if(title.length == 0){
         alert("제목을 입력해주세요")
         return;
     }
