@@ -11,7 +11,7 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <!-- css와 font -->
-    <link href="css/home.css" rel="stylesheet">
+    <link href="css/detail.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -33,53 +33,6 @@
     <script type="text/javascript" src="JS/logout.js"></script>
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
 
-    
-    <style>
-        .ul {
-            list-style: none;
-            overflow: auto;
-        }
-
-        .li {
-            float: left;
-        }
-
-        .comment {
-            float: right;
-        }
-
-        .comment_hr {
-            margin-bottom: 0;
-            margin-top: 40px;
-            background-color: rgb(131, 131, 131);
-            
-        }
-
-        .detail_content_box {
-            padding: 10px;
-            border-radius: 20px;
-        }
-
-        .detail_box {
-            margin: 0px 7% 0px 7% ;
-            height: 750px;
-            padding: 20px;
-            box-shadow: 1px 1px 7px gray ;
-        }
-
-        .list-group-item::-webkit-scrollbar {
-            display: none;
-        }
-
-        #comments::-webkit-scrollbar {
-            display: none;
-        }
-
-        .list-group-item {
-            border: 0;
-            overflow-y: scroll;
-        }
-    </style>
 
 </head>
 <body>
@@ -87,23 +40,23 @@
     <nav class="menu">
         <div style="height: 80px;">
             <div class="menu_box">
-                <a href="home.html" class="menu_btn position" style="display: block; float: left; width: 200px;">
+                <a href="home.html" class="menu_btn position" style="display: block; float: left; width: 200px; text-decoration: none;">
                     <img src="/static/logo_white0.png" style="width: 60px; float: left; margin-right: 5px; margin-left: 10px;">
                     <p style="margin-top: 37px; font-size: 12px;">make a plan</p>
                 </a>
                 <div class="position" style="float: right;" >
-                    <a class="remote_btn position_right" onclick="logout()">
+                    <a class="remote_btn position_right" onclick="logout()" style="text-decoration: none;">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
                     </a>
-                    <a class="remote_btn position_right" href="mypage.html">
+                    <a class="remote_btn position_right" href="mypage.html" style="text-decoration: none;">
                         <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
                     </a>
                 </div>
                 <div class="plan_btn_box">
-                    <a href="plan.html" class="plan_btn" >
+                    <a href="plan.html" class="plan_btn" style="text-decoration: none;">
                         여행 설계
                     </a>
-                    <a href="community.html" class="plan_btn" style="margin-left: 30px;" >
+                    <a href="community.html" class="plan_btn" style="margin-left: 30px; text-decoration: none;" >
                         커뮤니티
                     </a>
                 </div>
@@ -172,7 +125,7 @@
                             </div>
                             <div style=" vertical-align: bottom;">
                                 <div style="display: flex;">
-                                    <input style="resize: none; height: 30px; width: 100%; padding: 2px;" id="content_text_box"></textarea>
+                                    <input style="resize: none; height: 30px; width: 100%; padding: 2px;" id="content_text_box" placeholder="댓글을 입력하세요 (40자까지만)">
                                     <button class="button is-sparta" style="width: 40px; height: 30px; padding-top: 2px; padding-bottom: 2px;" onclick="detail_comment_make()">완료</button>
                                 </div>
                             </div>

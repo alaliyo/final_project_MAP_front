@@ -1,0 +1,44 @@
+.ul {
+    list-style: none;
+    overflow: auto;
+}
+
+.li {
+    float: left;
+}
+
+.comment {
+    float: right;
+}
+
+.comment_hr {
+    margin-bottom: 0;
+    margin-top: 40px;
+    background-color: rgb(131, 131, 131);
+    
+}
+
+.detail_content_box {
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.detail_box {
+    margin: 0px 7% 0px 7% ;
+    height: 750px;
+    padding: 20px;
+    box-shadow: 1px 1px 7px gray ;
+}
+
+.list-group-item::-webkit-scrollbar {
+    display: none;
+}
+
+#comments::-webkit-scrollbar {
+    display: none;
+}
+
+.list-group-item {
+    border: 0;
+    overflow-y: scroll;
+}

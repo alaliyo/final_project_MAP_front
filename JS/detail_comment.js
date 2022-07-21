@@ -18,26 +18,31 @@ function detail_comment_make() {
     const token = get_cookie("X-AUTH-TOKEN");
     const para = document.location.href.split("=");
     const postId = para[1];
-    console.log(postId);
     let comment = $('#content_text_box').val();
-    console.log(comment);
     console.log(postId);
-    $.ajax({
-        type: "POST",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
-        data: JSON.stringify({
-            comment: comment,
-        }),
-        contentType: "application/json;",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (comment) {
-            console.log(comment)
-            window.location.reload(true);
-        }
-    })
+    console.log(comment);
+    if (comment.length == 0) {
+        alert('뎃글을 입력해주세요.')
+    } else if (comment > 40) {
+        alert('뎃글은 40자까지 입력가능합니다.')
+    } else {
+        $.ajax({
+            type: "POST",
+            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
+            data: JSON.stringify({
+                comment: comment,
+            }),
+            contentType: "application/json;",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (comment) {
+                console.log(comment)
+                window.location.reload(true);
+            }
+        })
+    }
 }
 
 
@@ -76,25 +81,25 @@ function detail_comment_get() {
                 if (detail_community_user_nickname == nickname ) {
                     console.log("일치")
                     temp_html = `<div>
-                                    <div>
+                                    <div style="overflow:hidden; height: auto;">
                                         <p style="float: left;">${comment}</p>
                                         <br>
                                         <a class="comment" style="margin-right: 10px; color: red;" id="comment_delete" onclick="detail_comment_delete(${comment_id})">×</a>
                                         <p class="comment" style="margin-right: 10px">${time_brfore}</p>
                                         <p class="comment" style="margin-right: 10px">${nickname}</p>
                                     </div>
-                                    <hr style="margin-bottom: 10px;">
+                                    <hr style="margin: 0;">
                                 </div>`
                 } else {
                     console.log('불일치')
                     temp_html = `<div>
-                                    <div>
+                                    <div style="overflow:hidden; height: auto;">
                                         <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                         <br>
                                         <p class="comment">${time_brfore}</p>
                                         <p class="comment">${nickname}</p>
                                     </div>
-                                    <hr style="margin-bottom: 10px;">
+                                    <hr style="margin: 0;">
                                 </div>`
                 }
                     $('#comments').append(temp_html)

@@ -215,12 +215,12 @@ function save_post(){
 
     console.log(title, category, period, my_size, title.length)
 
-    if(file.files.length === 0){
-        alert("대표 이미지를 선택해주세요");
+    if(title==""){
+        alert("제목을 입력해주세요")
         return;
     }
-    else if(title==""){
-        alert("제목을 입력해주세요")
+    else if(file.files.length === 0){
+        alert("대표 이미지를 선택해주세요");
         return;
     }
     else if(title.length>30){

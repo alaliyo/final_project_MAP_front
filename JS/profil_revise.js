@@ -1,9 +1,6 @@
 
 
-function profil_revise_show() {
-    $('#my_profil').hide();
-    $('#my_profil_revise').show();
-}
+
 function profil_revise_off() {
     $('#my_profil_revise').hide();
     $('#my_profil').show();

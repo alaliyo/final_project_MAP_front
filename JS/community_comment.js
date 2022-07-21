@@ -5,14 +5,13 @@ function get_cookie(name) {
 
 //페이지 입장 시 실행
 $(document).ready(function() {
+    comment_user_nickname()
     commentGet();
 })
 
 
 // 전역변수 comment_user_nickname()가지고 있음
 let comments_user_nicknames = [];
-
-
 // 삭제 버튼을 위한 닉네임 조회
 function comment_user_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
@@ -27,12 +26,10 @@ function comment_user_nickname() {
         },
         success: function (community) {
             console.log(community)
-            for (let i = 0; i < community.length; i++) {
-                let nickname = community[i]['nickname']
-                console.log(nickname)
-                comments_user_nicknames.push(nickname)
-            }
-        }
+            let nickname = community[0]['nickname']
+            console.log(nickname)
+            comments_user_nicknames.push(nickname)
+    }
     })
 }
 
@@ -63,27 +60,25 @@ function commentGet() {
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
-                console.log ('이런'+communitys_user_nickname)
+                console.log (communitys_user_nickname)
                 if (communitys_user_nickname == nickname) {
                     console.log("일치")
-                    temp_html = `<div>
+                    temp_html = `<div style="overflow:hidden; height: auto;">
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
                                     <a class="comment" style="margin-right: 10px;" id="comment_delete" onclick="comment_delete(${comment_id})">×</a>
                                     <p class="comment">${time_brfore}</p>
                                     <p class="comment">${nickname}</p>
                                 </div>
-                                <br>
                                 <hr style="margin-top: 5px;">`
                 } else {
                     console.log("불일치")
-                    temp_html = `<div>
+                    temp_html = `<div style="overflow:hidden; height: auto;">
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
                                     <p class="comment">${time_brfore}</p>
                                     <p class="comment">${nickname}</p>
                                 </div>
-                                <br>
                                 <hr style="margin-top: 5px;">`
                 }
 
@@ -97,32 +92,36 @@ function commentGet() {
 // 게시물 댓글 POST
 function comment_make() {
     const token = get_cookie("X-AUTH-TOKEN");
-    let comment = $('#comment_text_box').val();
     const para = document.location.href.split("=");
-    console.log(para);
     const postId = para[1]
     console.log(postId)
-
-    $.ajax({
-        type: "POST",
-        url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}/comment`,
-        data: JSON.stringify({
-            comment: comment,
-        }),
-        contentType: "application/json;",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (comment) {
-            console.log(comment)
-            window.location.reload();
-        }
-    })
+    let comment = $('#comment_text_box').val();
+    if (comment.length == 0) {
+        alert('댓글 내용을 입력하세요.');
+    } else if (comment.length > 40){
+        alert('40자까지 입력가능합니다.')
+    } else {
+        $.ajax({
+            type: "POST",
+            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}/comment`,
+            data: JSON.stringify({
+                comment: comment,
+            }),
+            contentType: "application/json;",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (comment) {
+                console.log(comment)
+                window.location.reload();
+            }
+        })
+    }
 }
 
 
-// 게시물 댓글 POST
+// 게시물 댓글 DELETE
 function comment_delete(comment_id) {
     const token = get_cookie("X-AUTH-TOKEN");
     console.log(comment_id)

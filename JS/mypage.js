@@ -45,7 +45,6 @@ function my_community_box() {
 // 프로필 GET 
 function profil() {
     const token = get_cookie("X-AUTH-TOKEN");
-
     $.ajax({
         type: "GET",
         url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user`,
@@ -66,7 +65,7 @@ function profil() {
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
                                 <div class="community_write_back" style="width: 110px;" onclick="profil_revise_show(); profil_revise(${user_id});">
-                                    <a class="profil_revise_btn" onclick="password_inquiry()" >개인정보수정</a>
+                                    <a class="profil_revise_btn" onclick="password_inquiry();" >개인정보수정</a>
                                 </div>
                             </div>`
             $('#my_profil').append(temp_html)
@@ -181,143 +180,144 @@ let globalData; //controller에서 가져온 data 전역변수
 let user_nickname = []; // community_user_nickname()를 넣은 전역 변수
 
 
-        //나의 커뮤니티 게시물 GET
-        function my_community() {
-            let token = get_cookie("X-AUTH-TOKEN");
-            $.ajax({
-                type: "GET",
-                url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
-                data: {},
-                contentType: "application/json;",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Content-type","application/json");
-                    xhr.setRequestHeader("X-AUTH-TOKEN", token);
-                },
-                success: function (communitys)  {
-                    totalData = communitys.length
-                    globalData = communitys
-                    console.log(totalData)
-                    console.log(globalData)
-                    //글 목록 표시 호출 (테이블 생성)
-                    displayData(1, dataPerPage, globalData);
-                    //페이징 표시 호출
-                    paging(totalData, dataPerPage, pageCount, 1);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                    relogin()
-                }
-            })
+//나의 커뮤니티 게시물 GET
+function my_community() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (communitys)  {
+            totalData = communitys.length
+            globalData = communitys
+            console.log(totalData)
+            console.log(globalData)
+            //글 목록 표시 호출 (테이블 생성)
+            displayData(1, dataPerPage, globalData);
+            //페이징 표시 호출
+            paging(totalData, dataPerPage, pageCount, 1);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            relogin()
         }
+    })
+}
 
 
-        function paging(totalData, dataPerPage, pageCount, currentPage) {
-            console.log(totalData, dataPerPage, pageCount, currentPage)
+function paging(totalData, dataPerPage, pageCount, currentPage) {
+    console.log(totalData, dataPerPage, pageCount, currentPage)
 
-            totalPage = Math.ceil(totalData / dataPerPage); //총 페이지 수
-            console.log(totalPage)
+    totalPage = Math.ceil(totalData / dataPerPage); //총 페이지 수
+    console.log(totalPage)
 
-            if (totalPage < pageCount) {
-                pageCount = totalPage;
-            }
+    if (totalPage < pageCount) {
+        pageCount = totalPage;
+    }
 
-            let pageGroup = Math.ceil(currentPage / pageCount); // 페이지 그룹
-            let last = pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
+    let pageGroup = Math.ceil(currentPage / pageCount); // 페이지 그룹
+    let last = pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
 
-            if (last > totalPage) {
-                last = totalPage;
-            }
+    if (last > totalPage) {
+        last = totalPage;
+    }
 
-            let first = last - (pageCount - 1); //화면에 보여질 첫번째 페이지 번호
-            let next = last + 1;
-            let prev = first - 1;
+    let first = last - (pageCount - 1); //화면에 보여질 첫번째 페이지 번호
+    let next = last + 1;
+    let prev = first - 1;
 
-            let pageHtml = "";
+    let pageHtml = "";
 
-            if (prev > 0) {
-                pageHtml += "<li><a href='#' id='prev'> 이전 </a></li>";
-            }
+    if (prev > 0) {
+        pageHtml += "<li><a href='#' id='prev'> 이전 </a></li>";
+    }
 
-            //페이징 번호 표시 
-            for (var i = first; i <= last; i++) {
-                if (currentPage == i) {
-                    pageHtml +=
-                        "<li class='on' style='float: left; margin-left: 5px; margin-right: 5px;'><a class='paging_remotr href='#' id='" + i + "'>" + i + "</a></li>";
-                } else {
-                    pageHtml += "<li style='float: left; margin-left: 5px; margin-right: 5px;'><a class='paging_remotr' href='#' id='" + i + "'>" + i + "</a></li>";
-                }
-            }
+    //페이징 번호 표시 
+    for (var i = first; i <= last; i++) {
+        if (currentPage == i) {
+            pageHtml +=
+                "<li class='on' style='float: left; margin-left: 5px; margin-right: 5px;'><a class='paging_remotr href='#' id='" + i + "'>" + i + "</a></li>";
+        } else {
+            pageHtml += "<li style='float: left; margin-left: 5px; margin-right: 5px;'><a class='paging_remotr' href='#' id='" + i + "'>" + i + "</a></li>";
+        }
+    }
 
-            if (last < totalPage) {
-                pageHtml += "<li><a href='#' id='next'> 다음 </a></li>";
-            }
+    if (last < totalPage) {
+        pageHtml += "<li><a href='#' id='next'> 다음 </a></li>";
+    }
 
-            $("#pagingul").html(pageHtml);
-            let displayCount = "";
-            displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
-            $("#displayCount").text(displayCount);
-
-
-            //페이징 번호 클릭 이벤트 
-            $("#pagingul li a").click(function () {
-                globalData
-
-                let $id = $(this).attr("id");
-                selectedPage = $(this).text();
-
-                if ($id == "next") selectedPage = next;
-                if ($id == "prev") selectedPage = prev;
-
-                //전역변수에 선택한 페이지 번호를 담는다...
-                globalCurrentPage = selectedPage;
-                //페이징 표시 재호출
-                paging(totalData, dataPerPage, pageCount, selectedPage);
-                //글 목록 표시 재호출
-                displayData(selectedPage, dataPerPage, globalData);
-            });
-            }
+    $("#pagingul").html(pageHtml);
+    let displayCount = "";
+    displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
+    $("#displayCount").text(displayCount);
 
 
-            //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
-            function displayData(currentPage, dataPerPage, globalData) {
-            let chartHtml = "";
+    //페이징 번호 클릭 이벤트 
+    $("#pagingul li a").click(function () {
+        globalData
 
-            //Number로 변환하지 않으면 아래에서 +를 할 경우 스트링 결합이 되어버림.. 
-            currentPage = Number(currentPage);
-            dataPerPage = Number(dataPerPage);
+        let $id = $(this).attr("id");
+        selectedPage = $(this).text();
 
-            $("#my_communtity").empty();
-            for (var i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++)
-            {
+        if ($id == "next") selectedPage = next;
+        if ($id == "prev") selectedPage = prev;
 
-                if (globalData[i] == undefined)
-                {
-                    console.log(globalData);
-                    break;
-                }
-                let post_id = globalData[i]['postId']
-                let title = globalData[i]['title']
-                let modifiedAt = globalData[i]['modifiedAt'] + '+0000'
-                let create_at = new Date(modifiedAt)
-                let time_brfore = time2str(create_at)
-                let temp_html = `<div id="communtity_post ">
-                                        <a id="delete_btn" style="float: right; margin-top: 8px; margin-right: 20px; color: red;" onclick="community_post_delete(${post_id})" >삭제</a>
-                                        <div class="communtity_post_box">
-                                            <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
-                                                <p style="font-size: 20px; float: left;">${title}</p>
-                                                <div style="float:">
-                                                    <div class="time_box">
-                                                        <p class="posting_time">${time_brfore}</p>
-                                                    </div>
-                                                </div>
-                                            </a>
+        //전역변수에 선택한 페이지 번호를 담는다...
+        globalCurrentPage = selectedPage;
+        //페이징 표시 재호출
+        paging(totalData, dataPerPage, pageCount, selectedPage);
+        //글 목록 표시 재호출
+        displayData(selectedPage, dataPerPage, globalData);
+    });
+    }
+
+
+    //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
+    function displayData(currentPage, dataPerPage, globalData) {
+    let chartHtml = "";
+
+    //Number로 변환하지 않으면 아래에서 +를 할 경우 스트링 결합이 되어버림.. 
+    currentPage = Number(currentPage);
+    dataPerPage = Number(dataPerPage);
+
+    $("#my_communtity").empty();
+    for (var i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++)
+    {
+
+        if (globalData[i] == undefined)
+        {
+            console.log(globalData);
+            break;
+        }
+        let post_id = globalData[i]['postId']
+        let title = globalData[i]['title']
+        let modifiedAt = globalData[i]['modifiedAt'] + '+0000'
+        let create_at = new Date(modifiedAt)
+        let time_brfore = time2str(create_at)
+        let temp_html = `<div id="communtity_post ">
+                                <a id="delete_btn" style="float: right; margin-top: 8px; margin-right: 20px; color: red;" onclick="community_post_delete(${post_id})" >삭제</a>
+                                <div class="communtity_post_box">
+                                    <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
+                                        <p style="font-size: 20px; float: left;">${title}</p>
+                                        <div style="float:">
+                                            <div class="time_box">
+                                                <p class="posting_time">${time_brfore}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr style="width=100%">`
-                $('#my_communtity').append(temp_html)
-            }
-            }
+                                    </a>
+                                </div>
+                            </div>
+                            <hr style="width=100%">`
+        $('#my_communtity').append(temp_html)
+    }
+    }
+
 
 // 게시물 DELETE
 function community_post_delete(postId){
@@ -346,6 +346,7 @@ function community_post_delete(postId){
     }
 }
 
+
 // 게시물 DELETE
 function withdrawal(){
     const token = get_cookie("X-AUTH-TOKEN");
@@ -371,5 +372,36 @@ function withdrawal(){
         }
     } else {
         alert("잘못 입력하셨습니다. 다시 입력해 주세요");
+    }
+}
+
+
+//페스워드 비교 조회 password_inquiry();
+function password_inquiry() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    let password = prompt ("페스워드를 입렵하세요")
+    console.log(password)
+    if (password === null) {
+    } else {
+        $.ajax({
+            type: "GET",
+            url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
+            data:{},
+            contentType: "application/json; charset=UTF-8",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (response) {
+                console.log(response)
+                if ("비밀번호 확인이 완료되었습니다." == response) {
+                        $('#my_profil').hide();
+                        $('#my_profil_revise').show();
+                } else {
+                    alert("비밀번호를 확인해 주세요");
+                    password_inquiry();
+                }
+            }
+        });
     }
 }
