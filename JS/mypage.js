@@ -8,11 +8,28 @@ $(window.document).ready(function() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     profil(params['id']);
+    keep_out()
     my_plan()
     my_plans()
     my_community()
 });
 
+
+function keep_out() {
+    let token = get_cookie("X-AUTH-TOKEN");
+    if (token) {}
+    else {
+        alert("로그인 후 이용해주세요")
+        location.href = '/login.html';
+    }
+    
+}
+
+//토근 만료 시 로그인 창으로
+function relogin(){
+    alert('다시 로그인 하세요');
+    window.location.replace("/login.html");
+}
 
 // 게시물 및 커뮤니티 조회 버튼
 function my_plan() {
@@ -49,7 +66,7 @@ function profil() {
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
                                 <div class="community_write_back" style="width: 110px;" onclick="profil_revise_show(); profil_revise(${user_id});">
-                                    <a class="profil_revise_btn">개인정보수정</a>
+                                    <a class="profil_revise_btn" onclick="password_inquiry()" >개인정보수정</a>
                                 </div>
                             </div>`
             $('#my_profil').append(temp_html)
@@ -326,5 +343,33 @@ function community_post_delete(postId){
         alert("삭제되었습니다.")
     } else {
         window.location.reload('/');
+    }
+}
+
+// 게시물 DELETE
+function withdrawal(){
+    const token = get_cookie("X-AUTH-TOKEN");
+    if (prompt("탈퇴하시려면 '탈퇴하기' 입력해주세요") == "탈퇴하기"){
+        if(confirm('탈퇴하시겠습니까? 모든 정보가 삭제됩니다.')){
+            $.ajax({
+                type: "DELETE",
+                url: `http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/member`,
+                data: {
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Content-type","application/json");
+                    xhr.setRequestHeader("X-AUTH-TOKEN", token);
+                },
+                success: function (result) {
+                    window.location.replace('/home.html');
+                    console.log(result);
+                }
+            })
+            alert("탈퇴되습니다. 그동안 서비스를 이용해 주셔서 감사합니다.");
+        } else {
+            alert("취소하였습니다.");
+        }
+    } else {
+        alert("잘못 입력하셨습니다. 다시 입력해 주세요");
     }
 }

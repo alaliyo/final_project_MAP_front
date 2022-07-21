@@ -16,7 +16,7 @@
 }
 /* 로그인 여행지 */
 .menu_btn:hover {
-    color: rgb(95, 214, 175);
+    color: black;
     transition: 0.3s ease-in-out;
 }
 .remote_btn {

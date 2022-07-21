@@ -17,7 +17,6 @@
     <script type="text/javascript" src="JS/mypage.js"></script>
     <script type="text/javascript" src="JS/logout.js"></script>
     <script type="text/javascript" src="JS/login.js"></script>
-    <!-- <script type="text/javascript" src="JS/community.js"></script> -->
     <script type="text/javascript" src="JS/profil_revise.js"></script>
     
 </head>
@@ -52,8 +51,7 @@
 <div class="box" style="margin: 80px 15% 0px 15%">
 
     <!-- 프로필 -->
-    <div id="my_profil">
-    </div>
+    <div id="my_profil"></div>
 
     <!-- 프로필 수정 -->
     <div id="my_profil_revise" style="display: none;">
@@ -61,6 +59,10 @@
             <div id="communitys">
                 <div>
                     <div style="margin-bottom: 5px; font-size: 20px;">
+                        <!-- 탈퇴 기능 -->
+                        <a class="withdrawal_case" onclick="withdrawal()">
+                            회원탈퇴
+                        </a>
                         <!-- 이미지 파일 업로드  -->
                         <div class="custom-file" style="margin: 10px;">
                             <label style="font-size: 15px" class="custom-file-label" for="file">프로필 이미지 : </label>

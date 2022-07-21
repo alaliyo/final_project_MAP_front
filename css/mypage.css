@@ -123,5 +123,28 @@ a:link {
 }
 
 .menu_remote_btm:hover {
-    color: white; transition: 0.3s ease-in-out;
+    color: white;
+    transition: 0.3s ease-in-out;
+}
+
+/* 회원탈퇴 버튼 */
+.withdrawal_case {
+    display: block;
+    width: 55px;
+    height: 20px;
+    background-color: rgb(255, 61, 61);
+    color: white;
+    font-size: 12px;
+    font-weight: bold ;
+    border-radius: 10px;
+    border-width: 0;
+    text-align:center ;
+    line-height: 20px;
+    float: right;
+}
+
+.withdrawal_case:hover {
+    color: white;
+    background-color: rgb(255, 110, 110);
+    transition: 0.5s ease-in-out;
 }

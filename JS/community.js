@@ -5,8 +5,8 @@ function get_cookie(name) {
 
 // 페이지 접속 시 실행하기
 $(window.document).ready(function() {
-    communityPostsGet();
     keep_out()
+    communityPostsGet();
     community_user_nickname()
 })
 
@@ -60,11 +60,6 @@ let user_nickname = []; // community_user_nickname()를 넣은 전역 변수
                     //페이징 표시 호출
                     paging(totalData, dataPerPage, pageCount, 1);
                 },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                    relogin()
-                }
             })
         }
 
@@ -164,7 +159,7 @@ let user_nickname = []; // community_user_nickname()를 넣은 전역 변수
                     if (user_nickname == globalData[i]['nickname']) {
                         console.log("삭제 버튼 on")
                         temp_html = `<div id="communtity_post ">
-                                        <a id="delete_btn" style="float: right; margin-top: 8px; margin-right: 20px; color: red;" onclick="community_post_delete(${post_id})" >삭제</a>
+                                        <a id="delete_btn" style="float: right; margin-top: 8px; margin-right: 10px; color: red;" onclick="community_post_delete(${post_id})" >삭제</a>
                                         <div class="communtity_post_box">
                                             <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
                                                 <p style="font-size: 20px; float: left;">${title}</p>
@@ -269,6 +264,11 @@ function community_user_nickname() {
                 let nickname = community[0]['nickname']
                 console.log(nickname)
                 user_nickname.push(nickname)
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            relogin()
         }
     })
 }
