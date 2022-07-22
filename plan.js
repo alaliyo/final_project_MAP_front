@@ -6,7 +6,6 @@ function get_cookie(name) {
 // 페이지 접속 시 실행하기
 $(window.document).ready(function() {
     keep_out()
-    relogin()
 })
 
 // 토큰 있을 시 이동 가능
@@ -291,6 +290,7 @@ function get_post_info(){
             day = response.period
             read_schedule();
             create_plan(day)
+            relogin()
         }
     })
 }
