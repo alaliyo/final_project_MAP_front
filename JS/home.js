@@ -178,59 +178,350 @@ function add_cards(cards){
         const views = cards[i]['views']
         const category = cards[i]['category']
         const createdAt = cards[i]['createdAt'] + "+0000"
-        console.log(category)
         const create_at = new Date(createdAt)
         const time_brfore = time2str(create_at)
         let temp_html = ``
         console.log("like_btn"+like_btn)
         if (like_btn.indexOf(post_id) >= 0) {
-            console.log("하트 참")
-            temp_html = `<div class="card" id="${post_id}">
-                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
-                                        <img class="card_img" src="${image}"/>
+            if (category == 'FOOD') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
                                     </a>
-                                    <div>
-                                        <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
-                                            <p class="card_title">${title}</p>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <div style="position : absolute; bottom : 5px; width:150px;">
-                                            <P style="float: left;"> 조회수: ${views}</P>
-                                            <a style="float: left;  margin-left: 20px;">
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 맛집투어</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
                                             <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
-                                            </a>
-                                            <num style="float: left; margin-left: 3px;">${likes}</num>
-                                        </div>
-                                        <p class="card_writer">${nickname}</p>
-                                        <br>
-                                        <p class="card_time">${time_brfore}</p>
-                                    </div>
-                                </div>`
-        } else {
-            console.log("하트 안 참")
-            temp_html = `<div class="card" id="${post_id}">
-                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
-                                        <img class="card_img" src="${image}"/>
-                                    </a>
-                                    <div>
-                                        <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
-                                            <p class="card_title">${title}</p>
                                         </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
                                     </div>
-                                    <div>
-                                        <div style="position : absolute; bottom : 5px; width:150px;">
-                                            <P style="float: left;"> 조회수: ${views}</P>
-                                            <a style="float: left;  margin-left: 20px;">
-                                                <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
-                                            </a>
-                                            <num style="float: left; margin-left: 3px;">${likes}</num>
-                                        </div>
-                                        <p class="card_writer">${nickname}</p>
-                                        <br>
-                                        <p class="card_time">${time_brfore}</p>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'HEALING') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 힐링여행</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
                                     </div>
-                                </div>`
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'SCENERY') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 풍경</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'CAFE') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 카페투어</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'ATTRACTION') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 관광지</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'DATE') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 데이트</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 없음</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            }
+        } else {
+            if (category == 'FOOD') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 맛집투어</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'HEALING') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 힐링여행</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'SCENERY') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 풍경</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'CAFE') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 카페투어</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'ATTRACTION') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 관광지</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else if (category == 'DATE') {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 데이트</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            } else {
+                temp_html = `<div class="card" id="${post_id}">
+                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                    <img class="card_img" src="${image}"/>
+                                </a>
+                                <div>
+                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                        <p class="card_title">${title}</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="position : absolute; bottom : 30px;">카테고리: 없음</p>
+                                    <div style="position : absolute; bottom : 5px; width:150px;">
+                                        <P style="float: left;"> 조회수: ${views}</P>
+                                        <a style="float: left;  margin-left: 20px;">
+                                            <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
+                                        </a>
+                                        <num style="float: left; margin-left: 3px;">${likes}</num>
+                                    </div>
+                                    <p class="card_writer">${nickname}</p>
+                                    <br>
+                                    <p class="card_time">${time_brfore}</p>
+                                </div>
+                            </div>`
+            }
         }
         if(my_category=="ALL" || category == my_category){
             $('#cards').append(temp_html)
@@ -266,10 +557,13 @@ function cards_none_login() {
                 const image = card[i]['image']
                 const likes = card[i]['likes']
                 const views = card[i]['views']
+                const category = card[i]['category']
                 const createdAt = cards[i]['createdAt'] + "+0000"
                 const create_at = new Date(createdAt) 
                 const time_brfore = time2str(create_at)
-                let temp_html = `<div class="card" id="${post_id}">
+                let temp_html = ''
+                if (category == 'FOOD') {
+                    temp_html = `<div class="card" id="${post_id}">
                                     <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
                                         <img class="card_img" src="${image}"/>
                                     </a>
@@ -279,6 +573,7 @@ function cards_none_login() {
                                         </a>
                                     </div>
                                     <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 맛집투어</p>
                                         <div style="position : absolute; bottom : 5px; width:150px;">
                                             <P style="float: left;"> 조회수: ${views}</P>
                                             <a style="float: left;  margin-left: 20px;">
@@ -291,9 +586,154 @@ function cards_none_login() {
                                         <p class="card_time">${time_brfore}</p>                                
                                     </div>
                                 </div>`
-                    if(my_category=="ALL" || category == my_category){
-                        $('#cards').append(temp_html)
-                    }
+                } else if (category == 'HEALING') {
+                    temp_html = `<div class="card" id="${post_id}">
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                        <img class="card_img" src="${image}"/>
+                                    </a>
+                                    <div>
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <p class="card_title">${title}</p>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 힐링여행</p>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
+                                        <p class="card_writer">${nickname}</p>
+                                        <br>
+                                        <p class="card_time">${time_brfore}</p>                                
+                                    </div>
+                                </div>`
+                } else if (category == 'SCENERY') {
+                    temp_html = `<div class="card" id="${post_id}">
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                        <img class="card_img" src="${image}"/>
+                                    </a>
+                                    <div>
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <p class="card_title">${title}</p>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 풍경</p>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
+                                        <p class="card_writer">${nickname}</p>
+                                        <br>
+                                        <p class="card_time">${time_brfore}</p>                                
+                                    </div>
+                                </div>`
+                } else if (category == 'CAFE') {
+                    temp_html = `<div class="card" id="${post_id}">
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                        <img class="card_img" src="${image}"/>
+                                    </a>
+                                    <div>
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <p class="card_title">${title}</p>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 카페투어</p>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
+                                        <p class="card_writer">${nickname}</p>
+                                        <br>
+                                        <p class="card_time">${time_brfore}</p>                                
+                                    </div>
+                                </div>`
+                } else if (category == 'ATTRACTION') {
+                    temp_html = `<div class="card" id="${post_id}">
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                        <img class="card_img" src="${image}"/>
+                                    </a>
+                                    <div>
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <p class="card_title">${title}</p>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 관광지</p>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
+                                        <p class="card_writer">${nickname}</p>
+                                        <br>
+                                        <p class="card_time">${time_brfore}</p>                                
+                                    </div>
+                                </div>`
+                } else if (category == 'DATE') {
+                    temp_html = `<div class="card" id="${post_id}">
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                        <img class="card_img" src="${image}"/>
+                                    </a>
+                                    <div>
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <p class="card_title">${title}</p>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 데이트</p>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
+                                        <p class="card_writer">${nickname}</p>
+                                        <br>
+                                        <p class="card_time">${time_brfore}</p>                                
+                                    </div>
+                                </div>`
+                } else {
+                    temp_html = `<div class="card" id="${post_id}">
+                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
+                                        <img class="card_img" src="${image}"/>
+                                    </a>
+                                    <div>
+                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
+                                            <p class="card_title">${title}</p>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p style="position : absolute; bottom : 30px;">카테고리: 없음</p>
+                                        <div style="position : absolute; bottom : 5px; width:150px;">
+                                            <P style="float: left;"> 조회수: ${views}</P>
+                                            <a style="float: left;  margin-left: 20px;">
+                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
+                                            </a>
+                                            <num style="float: left; margin-left: 3px;">${likes}</num>
+                                        </div>
+                                        <p class="card_writer">${nickname}</p>
+                                        <br>
+                                        <p class="card_time">${time_brfore}</p>                                
+                                    </div>
+                                </div>`
+                }
+                if(my_category=="ALL" || category == my_category){
+                    $('#cards').append(temp_html)
+                } 
                 }
             }
         })
