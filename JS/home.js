@@ -38,14 +38,6 @@ $(window.document).ready(function() {
 // 로그인 , 로그아웃 온 오프
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
-    
-}
-
-// 로그인 , 로그아웃 온 오프
-function keep_out() {
-    let token = get_cookie("X-AUTH-TOKEN");
-    
-    
     $.ajax({
         type: "GET",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,

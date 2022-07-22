@@ -32,7 +32,31 @@
     <script type="text/javascript" src="JS/detail_comment.js"></script>
     <script type="text/javascript" src="JS/logout.js"></script>
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
+    <!-- 카카로 공유 -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+    <style>
+        .link-icon { 
+            position: relative;
+            display: inline-block;
+            width: auto;
+            font-size: 10px;
+            color: #333;
+            margin-right: 5px;
+            padding-top: 33px; }
+        .link-icon.facebook {
+            background-image: url(/static/icon-facebook.png);
+            background-repeat: no-repeat;
+            background-size: 34px;
+            
+        } 
+        .link-icon.kakao {
+            background-image: url(/static/icon-kakao.png);
+            background-repeat: no-repeat;
+            background-size: 34px;
+        }
+
+    </style>
 
 </head>
 <body>
@@ -120,8 +144,16 @@
                 <div style="padding-bottom: 20px;">
                     <div class="detail_content_box">
                         <div id="detail_content" style="height: 280px;">
-                            <p style="margin-bottom: 5px; font-size: 23px;">댓글</p>
-                            <div id="comments" style="height: 210px; overflow: auto; ">
+                            <div style="height: 60px;">
+                                <p style="margin-bottom: 5px; font-size: 23px; float: left;">댓글</p>
+                                <!-- 공유 기능 -->
+                                <div style="float:right;">
+                                    <a id="btnFacebook" class="link-icon facebook" onclick="shareFacebook();">페이스북</a>    
+                                    <a id="btnKakao" class="link-icon kakao" onclick="shareKakao();">카카오톡</a>
+                                </div>
+                                <p style="float:right; margin-right: 7px; margin-top: 8px;">공유:</p>
+                            </div>
+                            <div id="comments" style="height: 210px; overflow: auto;">
                             </div>
                             <div style=" vertical-align: bottom;">
                                 <div style="display: flex;">
@@ -135,13 +167,7 @@
             </div>
             <br>
         </div>
-        <div>
-            
-        </div>
     </div>
-
-
-
 
     <script type="text/javascript" src="JS/detail_map.js"></script>
 
