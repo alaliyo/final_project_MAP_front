@@ -33,18 +33,18 @@ function relogin(){
 
 
 function add_day(post_id){
-    let token = get_cookie("X-AUTH-TOKEN");
+    // let token = get_cookie("X-AUTH-TOKEN");
     $('#schedules').empty()
     $(`#title`).empty()
     $(`#writer`).empty()
     $(`#createAt`).empty()
     $.ajax({
         type: "GET",
-        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/" + post_id,
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader("Content-type","application/json");
+        //     xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        // },
         success: function (response) {
             console.log(response)
 
@@ -63,15 +63,15 @@ function add_day(post_id){
 }
 
 function read_schedules(post_id){
-    let token = get_cookie("X-AUTH-TOKEN");
+    // let token = get_cookie("X-AUTH-TOKEN");
     $('#schedules').empty()
     $.ajax({
         type: "GET",
-        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/" + post_id + "/schedules",
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader("Content-type","application/json");
+        //     xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        // },
         success: function (response) {
             console.log(response)
 

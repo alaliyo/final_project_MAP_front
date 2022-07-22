@@ -66,7 +66,7 @@ function detail_comment_get() {
     console.log(postId);
     $.ajax({
         type: "GET",
-        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${postId}/comment`,
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/${postId}/comment`,
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
