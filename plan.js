@@ -66,11 +66,10 @@ function get_cookie(name) {
 // 게시물 생성하는 함수
 function create_post(){
     let token = get_cookie("X-AUTH-TOKEN");
-    console.log(token)
     console.log("craete_post in")
     $.ajax({
         type: "POST",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post",
         contentType: "application/json;",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
@@ -109,7 +108,7 @@ function api_create_schedule(title, address, y, x, phone, url) {
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "POST",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/schedule",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/schedule",
         data: JSON.stringify({
             'postId': post_id,
             'date': day_status,
@@ -142,7 +141,7 @@ function read_schedule() {
 
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
@@ -180,7 +179,7 @@ function delete_schedule(scheduleId) {
     console.log("들어왔다")
     $.ajax({
         type: "DELETE",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/schedule/" + scheduleId,
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/schedule/" + scheduleId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
@@ -227,7 +226,7 @@ function save_post(){
 
     $.ajax({
         type: "PUT",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
         data: JSON.stringify({
             'title' : title,
             'category' : category,
@@ -244,7 +243,7 @@ function save_post(){
 
     $.ajax({
         type: "POST",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/image?path=images",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/image?path=images",
         data: formData,
         processData: false,
         contentType: false,
@@ -263,7 +262,7 @@ function delete_all(){
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "DELETE",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
@@ -281,7 +280,7 @@ function get_post_info(){
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
