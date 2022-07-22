@@ -223,45 +223,39 @@ function save_post(){
     let formData = new FormData();
     formData.append("file", file.files[0]);
 
-    const para = document.location.href.split("=");
-    console.log(para);
-    const postId = para[1]
-    console.log(postId);
-    if (postId >= 0) {
-        console.log ('1번')
-        $.ajax({
-            type: "PUT",
-            url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
-            data: JSON.stringify({
-                'title' : title,
-                'category' : category,
-                'period' : period
-            }),
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Content-type","application/json");
-                xhr.setRequestHeader("X-AUTH-TOKEN", token);
-            },
-            success: function (response) {
-                console.log(response)
-            }
-        })
-    } else {
-        console.log ('2번')
-        $.ajax({
-            type: "POST",
-            url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/image?path=images",
-            data: formData,
-            processData: false,
-            contentType: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("X-AUTH-TOKEN", token);
-            },
-            success: function (response) {
-                console.log(response)
-                window.location='/home.html'
-            }
-        })
-    }
+
+    $.ajax({
+        type: "PUT",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
+        data: JSON.stringify({
+            'title' : title,
+            'category' : category,
+            'period' : period
+        }),
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            console.log(response)
+        }
+    })
+
+    console.log ('2번')
+    $.ajax({
+        type: "POST",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/image?path=images",
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            console.log(response)
+            window.location='/home.html'
+        }
+    })
 }
 
 // 여행 게시물의 모든 일정 삭제
