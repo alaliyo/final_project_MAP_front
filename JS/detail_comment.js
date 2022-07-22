@@ -17,16 +17,16 @@ function detail_community_users_nickname() {
     const token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user",
         data: {},
         contentType: "application/json;",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (communitys) {
-            console.log(communitys)
-            let nickname = communitys[0]['nickname']
+        success: function (user) {
+            console.log(user)
+            let nickname = user['nickname']
             console.log(nickname)
             detail_community_user_nickname.push(nickname)
             detail_comment_get();
