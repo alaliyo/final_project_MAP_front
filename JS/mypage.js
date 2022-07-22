@@ -15,6 +15,7 @@ $(window.document).ready(function() {
 });
 
 
+// 토큰 없을 시 페이지 접속 막음
 function keep_out() {
     let token = get_cookie("X-AUTH-TOKEN");
     if (token) {}
@@ -25,11 +26,13 @@ function keep_out() {
     
 }
 
+
 //토근 만료 시 로그인 창으로
 function relogin(){
     alert('다시 로그인 하세요');
     window.location.replace("/login.html");
 }
+
 
 // 게시물 및 커뮤니티 조회 버튼
 function my_plan() {
@@ -40,6 +43,8 @@ function my_community_box() {
     $('#mycards').hide()
     $('#my_communtity_box').show()
 }
+
+let profil_email = []
 
 
 // 프로필 GET 
@@ -60,7 +65,6 @@ function profil() {
             let nickname = user['nickname']
             let image = user['image']
             let temp_html = ''
-            console.log(image)
             if (image === null) {
                 temp_html = `<div class="profil_box" id="profil_box">
                                 <div class="profil_ring">
@@ -82,8 +86,9 @@ function profil() {
                                 </div>
                             </div>`
             }
-            console.log(temp_html)
             $('#my_profil').append(temp_html)
+            let email = user['email'];
+            profil_email.push(nickname)
         }
     })
 }
@@ -362,7 +367,7 @@ function community_post_delete(postId){
 }
 
 
-// 게시물 DELETE
+// 탈퇴기능
 function withdrawal(){
     const token = get_cookie("X-AUTH-TOKEN");
     if (prompt("탈퇴하시려면 '탈퇴하기' 입력해주세요") == "탈퇴하기"){
@@ -391,32 +396,38 @@ function withdrawal(){
 }
 
 
-//페스워드 비교 조회 password_inquiry();
+//페스워드 비교 조회 호 수정 기능 띄우기
 function password_inquiry() {
     const token = get_cookie("X-AUTH-TOKEN");
-    let password = prompt ("페스워드를 입력하세요")
-    console.log(password)
-    if (password === null) {
+    if (profil_email == 'kakako') {
+        $('#my_profil').hide();
+        $('#my_profil_revise').show();
     } else {
-        $.ajax({
-            type: "GET",
-            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
-            data:{},
-            contentType: "application/json; charset=UTF-8",
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Content-type","application/json");
-                xhr.setRequestHeader("X-AUTH-TOKEN", token);
-            },
-            success: function (response) {
-                console.log(response)
-                if ("비밀번호 확인이 완료되었습니다." == response) {
-                        $('#my_profil').hide();
-                        $('#my_profil_revise').show();
-                } else {
-                    alert("비밀번호를 확인해 주세요");
-                    password_inquiry();
+        let password = prompt ("페스워드를 입력하세요")
+        console.log(password)
+        if (password === null) {
+        } else {
+            $.ajax({
+                type: "GET",
+                url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
+                data:{},
+                contentType: "application/json; charset=UTF-8",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Content-type","application/json");
+                    xhr.setRequestHeader("X-AUTH-TOKEN", token);
+                },
+                success: function (response) {
+                    console.log(response)
+                    if ("비밀번호 확인이 완료되었습니다." == response) {
+                            $('#my_profil').hide();
+                            $('#my_profil_revise').show();
+                    } else {
+                        alert("비밀번호를 확인해 주세요");
+                        password_inquiry();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
+
 }

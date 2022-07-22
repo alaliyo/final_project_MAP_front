@@ -6,6 +6,7 @@ function get_cookie(name) {
 // 페이지 접속 시 실행하기
 $(window.document).ready(function() {
     keep_out()
+    relogin()
 })
 
 // 토큰 있을 시 이동 가능
@@ -62,10 +63,6 @@ $(document).ready(function (){
 
 })
 
-//쿠키 
-function get_cookie(name) {
-    let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null; }
 
 // 게시물 생성하는 함수
 function create_post(){
@@ -142,7 +139,6 @@ function read_schedule() {
     for (let i = 0; i < day; i++) {
         $(`#schedule-${i + 1}`).empty()
     }
-
     $.ajax({
         type: "GET",
         url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/" + post_id + "/schedules",
@@ -172,7 +168,6 @@ function read_schedule() {
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
             console.log(thrownError);
-            relogin()
         }
     })
 }
