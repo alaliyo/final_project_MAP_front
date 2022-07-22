@@ -15,7 +15,6 @@ $(window.document).ready(function() {
 $(document).ready(function() {
     keep_out();
     community_user_nickname();
-    comment_user_nickname();
 })
 
 

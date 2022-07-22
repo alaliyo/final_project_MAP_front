@@ -5,8 +5,7 @@ function get_cookie(name) {
 
 //페이지 입장 시 실행
 $(document).ready(function() {
-    comment_user_nickname()
-    commentGet();
+    comment_user_nickname();
 })
 
 
@@ -29,6 +28,7 @@ function comment_user_nickname() {
             let nickname = community[0]['nickname']
             console.log(nickname)
             comments_user_nicknames.push(nickname)
+            commentGet();
     }
     })
 }
