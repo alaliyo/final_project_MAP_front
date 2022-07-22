@@ -399,7 +399,9 @@ function withdrawal(){
 //페스워드 비교 조회 호 수정 기능 띄우기
 function password_inquiry() {
     const token = get_cookie("X-AUTH-TOKEN");
-    if (profil_email == 'kakako') {
+    let email = profil_email
+    console.log(email)
+    if (email == 'kakako') {
         $('#my_profil').hide();
         $('#my_profil_revise').show();
     } else {
