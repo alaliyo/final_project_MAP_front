@@ -89,7 +89,7 @@ function create_plan(day){
 
     for(let i=0; i<day; i++){
         let temp_html = `<div style="display: flex;" onclick="change_status(${i + 1});">
-                            <a class="on_active">${i + 1}일 </a>
+                            <a class="on_active" style="color: black;">${i + 1}일 </a>
                             <h6 style="margin:3px; float: reft; font-size: 14px;color: rgb(170, 170, 170);">← 눌러야 일정이 추가됨</h6>
                          </div>
                             <li class="list-group-item">
