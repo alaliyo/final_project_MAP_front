@@ -68,7 +68,7 @@
                     <img src="/static/logo_white0.png" style="width: 60px; float: left; margin-right: 5px; margin-left: 10px;">
                     <p style="margin-top: 37px; font-size: 12px;">make a plan</p>
                 </a>
-                <div class="position" style="float: right;" >
+                <!-- <div class="position" style="float: right;" >
                     <a class="remote_btn position_right" onclick="logout()" style="text-decoration: none;">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
                     </a>
@@ -83,7 +83,7 @@
                     <a href="community.html" class="plan_btn" style="margin-left: 30px; text-decoration: none;" >
                         커뮤니티
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </nav>
@@ -99,10 +99,12 @@
             <div id="plan" style="width: 45%; height: 680px; float: right; border: 2px solid rgb(194, 194, 194); ">
                 <!-- 작성자 정보 -->
                 <div style="margin: 10px; height: 30px;">
-                    <div id="title"><h1 style="font-size: 40px; float: left;">TITLE</h1></div>
-                    <div >
-                        <div id="writer"><h2 style="font-size: 30px;text-align: right;">작성자</h2></div>
-                        <div id="createAt"><h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2></div>
+                    <div id="title" style="float: left;">
+                        <h1 style="font-size: 40px; float: left; margin-bottom: 2px;">TITLE</h1>
+                    </div>
+                    <div>
+                        <div id="writer" ><h2 style="font-size: 30px;text-align: right;">작성자</h2></div>
+                        <div id="createAt"style="float: right;"><h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2></div>
                     </div>
                 </div>
                 <!-- 여행 날짜 선택 -->
@@ -144,15 +146,7 @@
                 <div style="padding-bottom: 20px;">
                     <div class="detail_content_box">
                         <div id="detail_content" style="height: 280px;">
-                            <div style="height: 60px;">
-                                <p style="margin-bottom: 5px; font-size: 23px; float: left;">댓글</p>
-                                <!-- 공유 기능 -->
-                                <div style="float:right;">
-                                    <a id="btnFacebook" class="link-icon facebook" onclick="shareFacebook();">페이스북</a>    
-                                    <a id="btnKakao" class="link-icon kakao" onclick="shareKakao();">카카오톡</a>
-                                </div>
-                                <p style="float:right; margin-right: 7px; margin-top: 8px;">공유:</p>
-                            </div>
+                            <p style="margin-bottom: 5px; font-size: 23px;">댓글</p>
                             <div id="comments" style="height: 210px; overflow: auto;">
                             </div>
                             <div style=" vertical-align: bottom;">
@@ -171,6 +165,11 @@
 
     <script type="text/javascript" src="JS/detail_map.js"></script>
 
-    
+        <!-- 공유 기능
+    <div style="float:right;">
+        <a id="btnFacebook" class="link-icon facebook" onclick="shareFacebook();">페이스북</a>    
+        <a id="btnKakao" class="link-icon kakao" onclick="shareKakao();">카카오톡</a>
+    </div>
+    <p style="float:right; margin-right: 7px; margin-top: 8px;">공유:</p> -->
 </body>
 </html>

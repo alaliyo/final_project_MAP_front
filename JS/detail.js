@@ -56,7 +56,7 @@ function add_day(post_id){
 
             $(`#title`).append(`<p style="float: left; font-size: 23px;">제목 : ${response['title']}</h1></div>`)
             $(`#writer`).append(`<p style="text-align: right; font-size: 18px;"> 작성자 : ${response['nickname']}</h2></div>`)
-            $(`#createAt`).append(`<p style="text-align: right; font-size: 18px;">작성 날짜 : ${response['createdAt'].substring(0,10)}</h2></div>`)
+            $(`#createAt`).append(`<p style="text-align: right; font-size: 18px;"> 날짜 : ${response['createdAt'].substring(0,10)}</h2></div>`)
             
         }
     })
@@ -101,33 +101,33 @@ function read_schedules(post_id){
 }
 
 
-// 페이스북 공유
-function shareFacebook() {
-    let sendUrl = document.location.href; // 전달할 URL
-    console.log(sendUrl)
-    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
-}
+// // 페이스북 공유
+// function shareFacebook() {
+//     let sendUrl = document.location.href; // 전달할 URL
+//     console.log(sendUrl)
+//     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+// }
 
 
-// 카카오톡 공유
-function shareKakao() {
-    let sendUrl = document.location.href;
-    // 사용할 앱의 JavaScript 키 설정
-    console.log()
-    Kakao.init('34a4374ea4bd8acb6de7112e2f55b723');
-    // 카카오링크 버튼 생성
-    Kakao.Link.createDefaultButton({
-      container: '#btnKakao', // 카카오공유버튼ID
-      objectType: 'feed',
-      content: {
-        title: "make a plan", // 보여질 제목
-        description: "국내 여행을 성계하고 공유하자", // 보여질 설명
-        imageUrl: sendUrl, // 콘텐츠 URL
-        link: {
-           mobileWebUrl: sendUrl,
-           webUrl: sendUrl
-        }
-      }
-    });
-  }
+// // 카카오톡 공유
+// function shareKakao() {
+//     let sendUrl = document.location.href;
+//     // 사용할 앱의 JavaScript 키 설정
+//     console.log()
+//     Kakao.init('34a4374ea4bd8acb6de7112e2f55b723');
+//     // 카카오링크 버튼 생성
+//     Kakao.Link.createDefaultButton({
+//       container: '#btnKakao', // 카카오공유버튼ID
+//       objectType: 'feed',
+//       content: {
+//         title: "make a plan", // 보여질 제목
+//         description: "국내 여행을 성계하고 공유하자", // 보여질 설명
+//         imageUrl: sendUrl, // 콘텐츠 URL
+//         link: {
+//            mobileWebUrl: sendUrl,
+//            webUrl: sendUrl
+//         }
+//       }
+//     });
+//   }
   

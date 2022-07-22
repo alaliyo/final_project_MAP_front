@@ -4,7 +4,7 @@ function get_cookie(name) {
 
 
 // 페이지 접속 시 실행
-$(window.document).ready(function() {
+$(document).ready(function() {
     detail_community_users_nickname();
 })
 
@@ -12,6 +12,28 @@ $(window.document).ready(function() {
 // 전역 변수 detail_community_users_nickname() 넣기
 let detail_community_user_nickname = [];
 
+// 삭제 버튼을 위한 닉네임 조회
+function detail_community_users_nickname() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (communitys) {
+            console.log(communitys)
+            let nickname = communitys[0]['nickname']
+            console.log(nickname)
+            detail_community_user_nickname.push(nickname)
+            detail_comment_get();
+        
+        }
+    })
+}
 
 // 게시물 댓글 POST
 function detail_comment_make() {
@@ -49,12 +71,6 @@ function detail_comment_make() {
         })
     }
 }
-
-
-// 페이지 접속 시 실행
-$(document).ready(function() {
-    detail_comment_get();
-})
 
 
 //게시물 댓글 GET
@@ -158,27 +174,4 @@ function time2str(date) {
         return parseInt(time) + "일 전"
     }
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-}
-
-
-// 삭제 버튼을 위한 닉네임 조회
-function detail_community_users_nickname() {
-    const token = get_cookie("X-AUTH-TOKEN");
-    $.ajax({
-        type: "GET",
-        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/my-posts",
-        data: {},
-        contentType: "application/json;",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type","application/json");
-            xhr.setRequestHeader("X-AUTH-TOKEN", token);
-        },
-        success: function (communitys) {
-            console.log(communitys)
-            let nickname = communitys[0]['nickname']
-            console.log(nickname)
-            detail_community_user_nickname.push(nickname)
-        
-        }
-    })
 }
