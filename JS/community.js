@@ -5,21 +5,11 @@ function get_cookie(name) {
 
 // 페이지 접속 시 실행하기
 $(window.document).ready(function() {
-    keep_out()
     communityPostsGet();
     community_user_nickname()
 })
 
 
-// 토큰 있을 시 이동 가능
-function keep_out() {
-    let token = get_cookie("X-AUTH-TOKEN");
-    if (token) {}
-    else {
-        alert("로그인 후 이용해주세요")
-        location.href = '/login.html';
-    }
-}
 
 
 // 에러 발생 시 홈으로

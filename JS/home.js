@@ -58,8 +58,6 @@ function keep_out() {
             $('#login').show()
         }
     })
-
-    
 }
 
 // 내가 좋아요 한 post_id 값 조회
@@ -334,6 +332,73 @@ function cards_none_login() {
         
     }
 
+function go_plan(){
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            user_role = "user"
+            localStorage.setItem('action','create')        
+            window.location.replace("/plan.html");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);    
+            alert("로그인 해주세요")
+            window.location.replace("/login.html");
+        }
+    })
+}
+
+function go_community(){
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            window.location.replace("/community.html");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);    
+            alert("로그인 해주세요")
+            window.location.replace("/login.html");
+        }
+    })
+}
+
+function go_mypage(){
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user`,
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (response) {
+            window.location.replace("/mypage.html");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);    
+            alert("로그인 해주세요")
+            window.location.replace("/login.html");
+        }
+    })
+}
 
 // 시간 변경 함수
 function time2str(createdAt) {
