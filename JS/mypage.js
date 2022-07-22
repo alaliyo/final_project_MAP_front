@@ -64,6 +64,7 @@ function profil() {
             const user_id = user['id']
             let nickname = user['nickname']
             let image = user['image']
+            console.log(image)
             let temp_html = ''
             if (image === null) {
                 temp_html = `<div class="profil_box" id="profil_box">
