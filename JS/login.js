@@ -310,7 +310,6 @@ window.onload = function kakao_url(){
         url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/kakao/login?code="+code,
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
-            alert(response)
             console.log(response)
                 setCookie ('X-AUTH-TOKEN', response, 1)
                 window.location.replace("/home.html")
