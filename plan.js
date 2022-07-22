@@ -141,7 +141,7 @@ function read_schedule() {
 
     $.ajax({
         type: "GET",
-        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id + "/schedules",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/" + post_id + "/schedules",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
