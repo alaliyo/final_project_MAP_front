@@ -45,7 +45,7 @@ $(document).ready(function (){
         const params = Object.fromEntries(urlSearchParams.entries());
         post_id = params['id']
         get_post_info();
-        
+        console.log(post_id)
         console.log(day)
     }
 
@@ -278,7 +278,7 @@ function get_post_info(){
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
         type: "GET",
-        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/" + post_id,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
@@ -290,7 +290,6 @@ function get_post_info(){
             day = response.period
             read_schedule();
             create_plan(day)
-            relogin()
         }
     })
 }

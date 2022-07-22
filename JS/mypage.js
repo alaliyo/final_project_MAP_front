@@ -132,7 +132,7 @@ function my_plans() {
                                             </div>
                                         </div>
                                         <footer class="card-footer">
-                                            <a class="card-footer-item" onclick="window.location.href='/plan.html?id=${post_id}'">수정</a>
+                                            <a class="card-footer-item" onclick="window.location.href='/plan.html?id=${post_id}'; ">수정</a>
                                             <a href="#" class="card-footer-item" onclick="my_plan_delete(${post_id})">삭제</a>
                                         </footer>
                                     </div>
