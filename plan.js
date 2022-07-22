@@ -227,7 +227,6 @@ function save_post(){
     console.log(para);
     const postId = para[1]
     console.log(postId);
-
     if (postId >= 0) {
         console.log ('1번')
         $.ajax({
@@ -263,7 +262,6 @@ function save_post(){
             }
         })
     }
-    alert('잠시만')
 }
 
 // 여행 게시물의 모든 일정 삭제
