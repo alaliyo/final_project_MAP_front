@@ -401,7 +401,7 @@ function password_inquiry() {
     const token = get_cookie("X-AUTH-TOKEN");
     let email = profil_email
     console.log(email)
-    if (email == 'kakako') {
+    if (email == 'kakao') {
         $('#my_profil').hide();
         $('#my_profil_revise').show();
     } else {
