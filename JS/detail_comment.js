@@ -44,7 +44,6 @@ function detail_comment_make() {
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(xhr.status);
                 console.log(thrownError);
-                relogin()
                 alert("로그인 후 사용 가능합니다.")
             }
         })

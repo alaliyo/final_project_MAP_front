@@ -26,10 +26,10 @@ $(window.document).ready(function() {
 });
 
 // 에러 시 로그아웃
-function relogin(){
-    alert('다시 로그인 하세요');
-    window.location.replace("/login.html");
-}
+// function relogin(){
+//     alert('다시 로그인 하세요');
+//     window.location.replace("/login.html");
+// }
 
 
 function add_day(post_id){
@@ -96,7 +96,6 @@ function read_schedules(post_id){
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
             console.log(thrownError);
-            relogin()
         }
     })
 }
