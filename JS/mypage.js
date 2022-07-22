@@ -88,7 +88,7 @@ function profil() {
             }
             $('#my_profil').append(temp_html)
             let email = user['email'];
-            profil_email.push(nickname)
+            profil_email.push(email)
         }
     })
 }
