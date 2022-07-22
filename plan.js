@@ -1,3 +1,7 @@
+function get_cookie(name) {
+    let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null; }
+
 
 // 페이지 접속 시 실행하기
 $(window.document).ready(function() {
