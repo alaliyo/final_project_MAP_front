@@ -69,6 +69,7 @@ function update_profile() {
         success: function (response) {
             console.log(response);
             alert(response)
+            window.location.reload();
         }
     })
 
