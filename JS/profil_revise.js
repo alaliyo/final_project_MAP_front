@@ -38,19 +38,22 @@ function profil_revise() {
 }
 
 
-// 게시물 수정 
-function community_put_post() {
+// 프로필 수정 
+function update_profile() {
     let token = get_cookie("X-AUTH-TOKEN");
     let nickname = $('.nickname_textbox').val();
     let email = $('.email_textbox').val();
-    let image = $('#image_textbox').val();
-    let password = $('#password_textbox').val();
+    // let image = $('#image_textbox').val();
+    // let password = $('#password_textbox').val();
     let file = $('#file')[0];
+
+    console.log(file.files[0])
 
     let formData = new FormData();
     formData.append("file", file.files[0]);
 
-    console.log(nickname, email, image, password)
+    // console.log(nickname, email, image, password)
+    
     $.ajax({
         type: "PUT",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/modify`,
@@ -68,6 +71,9 @@ function community_put_post() {
             alert(response)
         }
     })
+
+
+    
     if(file.files.length != 0){
         $.ajax({
             type: "POST",
@@ -79,9 +85,14 @@ function community_put_post() {
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
             success: function (response) {
+                console.log("성공")
                 console.log(response)
+                window.location.reload();
             }
         })
+    }else{
+        console.log("요청x")
     }
+
 
 }

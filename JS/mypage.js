@@ -65,14 +65,14 @@ function profil() {
             let nickname = user['nickname']
             let image = user['image']
             console.log(image)
-            let temp_html = ''
+            let temp_html = ``
             if (image === null) {
                 temp_html = `<div class="profil_box" id="profil_box">
                                 <div class="profil_ring">
                                     <img class="profil" src="/static/default_profile.png" alt="Placeholder image" />
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
-                                <div class="community_write_back" style="width: 110px;" onclick="profil_revise_show(); profil_revise(${user_id});">
+                                <div class="community_write_back" style="width: 110px;" onclick="profil_revise(${user_id});">
                                     <a class="profil_revise_btn" onclick="password_inquiry();" >개인정보수정</a>
                                 </div>
                             </div>`
@@ -82,7 +82,7 @@ function profil() {
                                     <img class="profil" src="${image}" alt="Placeholder image" />
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
-                                <div class="community_write_back" style="width: 110px;" onclick="profil_revise_show(); profil_revise(${user_id});">
+                                <div class="community_write_back" style="width: 110px;" onclick="profil_revise(${user_id});">
                                     <a class="profil_revise_btn" onclick="password_inquiry();" >개인정보수정</a>
                                 </div>
                             </div>`
