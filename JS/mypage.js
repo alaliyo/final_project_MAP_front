@@ -171,7 +171,6 @@ function my_plan_delete(id){
 function time2str(createdAt) {
     let today = new Date() 
     let time = (today - createdAt) / 1000 / 60 // 분
-    console.log(time)
     if (time < 60) {
         return parseInt(time) + "분 전"
     }
@@ -306,7 +305,6 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 
         if (globalData[i] == undefined)
         {
-            console.log(globalData);
             break;
         }
         let post_id = globalData[i]['postId']

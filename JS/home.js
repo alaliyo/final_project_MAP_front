@@ -78,7 +78,6 @@ function likes_inquiry() {
         success: function (likes) {
             for (let i = 0; i < likes.length; i++) {
                 let post_id = likes[i]['postId']
-                console.log(post_id)
                 like_btn.push(post_id)
             }
             cards();
@@ -822,7 +821,6 @@ function go_mypage(){
 function time2str(createdAt) {
     let today = new Date() 
     let time = (today - createdAt) / 1000 / 60 // 분
-    console.log(time)
     if (time < 60) {
         return parseInt(time) + "분 전"
     }
