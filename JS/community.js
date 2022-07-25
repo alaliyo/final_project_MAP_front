@@ -133,7 +133,6 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 
         if (globalData[i] == undefined)
         {
-            console.log(globalData);
             break;
         }
             let post_id = globalData[i]['postId']
@@ -243,9 +242,8 @@ function community_user_nickname() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
-                let nickname = user['nickname']
-                user_nickname.push(nickname)
+            let nickname = user['nickname']
+            user_nickname.push(nickname)
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
