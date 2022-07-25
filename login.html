@@ -47,7 +47,7 @@
                             <!-- 아이디 입력칸 -->
                             <div class="field has-addons">
                                 <div class="control has-icons-left" style="width:100%">
-                                    <input id="input-username" class="input" type="text" placeholder="아이디">
+                                    <input id="input-username" class="input" type="text" placeholder="아이디" onkeyup="if(window.event.keyCode==13){username_check_dup()}">
                                     <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
                                 </div>
                                 <div id="btn-check-dup" class="control is-hidden">
@@ -59,7 +59,7 @@
                             <!-- 로그인 비밀번호 입력칸 -->
                             <div class="field">
                                 <div class="control has-icons-left">
-                                    <input id="input-password" class="input" type="password" placeholder="비밀번호">
+                                    <input id="input-password" class="input" type="password" placeholder="비밀번호" onkeyup="if(window.event.keyCode==13){sign_in()}">
                                     <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                                 </div>
                                 <p id="help-password" class="help is-hidden">8-20자의 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 가능</p>
@@ -104,7 +104,7 @@
                                     <div class="field">
                                         <div style="display: flex;">
                                             <div class="control has-icons-left" style="width:100%;">
-                                                <input id="input-nickname" class="input" type="text" placeholder="닉네임 입력">
+                                                <input id="input-nickname" class="input" type="text" placeholder="닉네임 입력" onkeyup="if(window.event.keyCode==13){nickname_check_dup()}">
                                                 <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                                             </div>
                                             <div id="btn-check-dup" class="control">
@@ -121,7 +121,7 @@
                                     <div class="field">
                                         <div style="display: flex;">
                                             <div class="control has-icons-left" style="width:100%">
-                                                <input id="input-email" class="input" type="text" placeholder="이메일 입력">
+                                                <input id="input-email" class="input" type="text" placeholder="이메일 입력" onkeyup="if(window.event.keyCode==13){email_check_dup()}">
                                                 <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                                             </div>
                                             <div id="btn-check-dup" class="control">

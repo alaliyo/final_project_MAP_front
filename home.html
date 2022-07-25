@@ -63,8 +63,8 @@
     <!-- 검색창 -->
     <div class="field has-addons field_background">
         <div class="control" style="margin:auto;">
-            <input id = "input-local" class="input" style="width: 700px; height: 40px;" type="text" placeholder="지역을 입력하세요">
-            <buttun class="button is-info" onclick="search_btn()" style="height: 40px; float:right;">검색</buttun>
+            <input id = "input-local" class="input" style="width: 700px; height: 40px;" type="text" placeholder="지역을 입력하세요" onkeyup="if(window.event.keyCode==13){search_btn()}">
+            <buttun class="button is-info input-local" onclick="search_btn()" style="height: 40px; float:right;">검색</buttun>
         </div>
     </div>
 

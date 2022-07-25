@@ -77,7 +77,7 @@
                         <div style="display: flex;">
                             <p style="width: 80px; display: block; font-size: 17px;">닉네임 : </p>
                             <div class="control has-icons-left" style="width:100%;">
-                                <input type="text" class="nickname_textbox" id="input-nickname" style="width: 100%; ">
+                                <input type="text" class="nickname_textbox" id="input-nickname" style="width: 100%;" onkeyup="if(window.event.keyCode==13){nickname_check_dup()}">
                             </div>
                             <div id="btn-check-dup" class="control">
                                 <button style="width: 80px;" onclick="nickname_check_dup()">중복확인</button>
@@ -88,7 +88,7 @@
                         <div style="display: flex;">
                             <p style="width: 80px; display: block; font-size: 17px;">이메일 : </p>
                             <div class="control has-icons-left" style="width:100%">
-                                <input type="text" class="email_textbox" id="input-email" style="width: 100%;">
+                                <input type="text" class="email_textbox" id="input-email" style="width: 100%;" onkeyup="if(window.event.keyCode==13){email_check_dup()}">
                             </div>
                             <div id="btn-check-dup" class="control">
                                 <button style="width: 80px;" onclick="email_check_dup()">중복확인</button>
