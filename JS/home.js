@@ -9,7 +9,7 @@ function get_cookie(name) {
 $(window.document).ready(function() {
     keep_out();
     likes_inquiry();
-    //search_cards();
+
 
     // 정렬 변경시 작동
     $('#select_sort').on('change', function () {
@@ -21,6 +21,7 @@ $(window.document).ready(function() {
         likes_inquiry();
         cards();
     });
+
 
     // 카테고리 변경시 작동
     $('#select_category').on('change', function () {
@@ -75,7 +76,6 @@ function likes_inquiry() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (likes) {
-            console.log(likes);
             for (let i = 0; i < likes.length; i++) {
                 let post_id = likes[i]['postId']
                 console.log(post_id)
@@ -95,8 +95,6 @@ function likes_inquiry() {
 //게시물 좋아요 기능 추가
 function likes_btn(post_id) {
     let token = get_cookie("X-AUTH-TOKEN");
-    console.log(post_id)
-    
     $.ajax({
         type: "POST",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/like`,
@@ -105,15 +103,12 @@ function likes_btn(post_id) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
             likes_inquiry();
             cards();
             
         }
     })
-    
-    
 }
 
 
@@ -129,8 +124,7 @@ function view(post_id) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
         }
     })
 }
@@ -145,16 +139,11 @@ function cards() {
         data: {},
         contentType: "application/json",
         success: function (cards) {
-            console.log(cards)
             my_cards = cards
             add_cards(my_cards);
         }
-            
     })
 }
-
-
-
 
 
 // 화면에 카드 붙이기
@@ -162,13 +151,9 @@ function add_cards(cards){
     $('#cards').empty()
     let sorted = $('#select_sort').val()
     let my_category = $('#select_category').val()
-    console.log(sorted)
-    console.log(my_category)
     if(cards.length !=0){
         cards = sortJSON(cards,sorted.split(',')[0],sorted.split(',')[1])
     }
-    
-    
     for (let i = 0; i < cards.length; i++) {
         const post_id = cards[i]['id']
         const nickname = cards[i]['nickname']
@@ -181,7 +166,6 @@ function add_cards(cards){
         const create_at = new Date(createdAt)
         const time_brfore = time2str(create_at)
         let temp_html = ``
-        console.log("like_btn"+like_btn)
         if (like_btn.indexOf(post_id) >= 0) {
             if (category == 'FOOD') {
                 temp_html = `<div class="card" id="${post_id}">
@@ -530,14 +514,11 @@ function add_cards(cards){
 }
 
 
-
 // 미 로그인 시 띄우는 게시물 함수
 function cards_none_login() {
     $('#cards').empty()
     let sorted = $('#select_sort').val()
     let my_category = $('#select_category').val()
-    console.log(sorted)
-    console.log(my_category)
     if(cards.length !=0){
         cards = sortJSON(cards,sorted.split(',')[0],sorted.split(',')[1])
     }
@@ -548,7 +529,6 @@ function cards_none_login() {
         contentType: "application/json",
         success: function (cards) {
             $('#cards').empty()
-            console.log(cards)
             let card = cards
             for (let i = 0; i < card.length; i++) {
                 const post_id = card[i]['id']
@@ -741,7 +721,6 @@ function cards_none_login() {
 
     function search_btn(){
         local = $('#input-local').val();
-        console.log(local)
         let token = get_cookie("X-AUTH-TOKEN");
         if(local == ""){
             cards();
@@ -756,7 +735,6 @@ function cards_none_login() {
                     xhr.setRequestHeader("X-AUTH-TOKEN", token);
                 },
                 success: function (response) {
-                    console.log(response)
                     my_cards = response
                     add_cards(my_cards)
                 },

@@ -24,9 +24,7 @@ function comment_user_nickname() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
             let nickname = user['nickname']
-            console.log(nickname)
             comments_user_nicknames.push(nickname)
             commentGet();
     }
@@ -38,9 +36,7 @@ function comment_user_nickname() {
 function commentGet() {
     const token = get_cookie("X-AUTH-TOKEN");
     const para = document.location.href.split("=");
-    console.log(para);
     const postId = para[1]
-    console.log(postId);
     $.ajax({
         type: "GET",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}/comment`,
@@ -62,7 +58,6 @@ function commentGet() {
                 let temp_html = ``
                 console.log (communitys_user_nickname)
                 if (communitys_user_nickname == nickname) {
-                    console.log("일치")
                     temp_html = `<div style="overflow:hidden; height: auto;">
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
@@ -72,7 +67,6 @@ function commentGet() {
                                 </div>
                                 <hr style="margin-top: 5px;">`
                 } else {
-                    console.log("불일치")
                     temp_html = `<div style="overflow:hidden; height: auto;">
                                     <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
                                     <br>
@@ -81,7 +75,6 @@ function commentGet() {
                                 </div>
                                 <hr style="margin-top: 5px;">`
                 }
-
                     $('#comments').append(temp_html)
             }
         }
@@ -94,7 +87,6 @@ function comment_make() {
     const token = get_cookie("X-AUTH-TOKEN");
     const para = document.location.href.split("=");
     const postId = para[1]
-    console.log(postId)
     let comment = $('#comment_text_box').val();
     if (comment.length == 0) {
         alert('댓글 내용을 입력하세요.');
@@ -112,8 +104,7 @@ function comment_make() {
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (comment) {
-                console.log(comment)
+            success: function () {
                 window.location.reload();
             }
         })
@@ -124,7 +115,6 @@ function comment_make() {
 // 게시물 댓글 DELETE
 function comment_delete(comment_id) {
     const token = get_cookie("X-AUTH-TOKEN");
-    console.log(comment_id)
     if (confirm('삭제하겠습니까?')) {
         $.ajax({
             type: "DELETE",
@@ -136,8 +126,7 @@ function comment_delete(comment_id) {
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (result) {
-                console.log(result);
+            success: function () {
                 window.location.reload(true);
             }
         })

@@ -13,10 +13,7 @@ $(document).ready(function() {
 function community_put_get() {
     const token = get_cookie("X-AUTH-TOKEN");
     const para = document.location.href.split("=");
-    console.log(para);
     const postId = para[1]
-    console.log(postId);
-
     $.ajax({
         type: "GET",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
@@ -27,7 +24,6 @@ function community_put_get() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (my_post) {
-            console.log(my_post)
             const title = my_post['title'];
             const content = my_post['content'];
             $('#title_box').val(`${title}`);
@@ -42,12 +38,9 @@ function community_put_get() {
 function community_put_post() {
     let token = get_cookie("X-AUTH-TOKEN");
     const para = document.location.href.split("=");
-    console.log(para);
     const postId = para[1]
-    console.log(postId);
     let title = $('#title_box').val();
     let content = $('#content_box').val();
-    console.log(title, content)
     $.ajax({
         type: "PUT",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
@@ -61,7 +54,6 @@ function community_put_post() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
-            console.log(response);
             alert(response);
             window.location.replace("/community.html");
         }

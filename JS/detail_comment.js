@@ -25,9 +25,7 @@ function detail_community_users_nickname() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
             let nickname = user['nickname']
-            console.log(nickname)
             detail_community_user_nickname.push(nickname)
             detail_comment_get();
         
@@ -41,8 +39,6 @@ function detail_comment_make() {
     const para = document.location.href.split("=");
     const postId = para[1];
     let comment = $('#content_text_box').val();
-    console.log(postId);
-    console.log(comment);
     if (comment.length == 0) {
         alert('뎃글을 입력해주세요.')
     } else if (comment.length > 40) {
@@ -60,7 +56,6 @@ function detail_comment_make() {
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
             success: function (comment) {
-                console.log(comment)
                 window.location.reload(true);
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -78,7 +73,6 @@ function detail_comment_get() {
     const token = get_cookie("X-AUTH-TOKEN");
     const para = document.location.href.split("=");
     const postId = para[1];
-    console.log(postId);
     $.ajax({
         type: "GET",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/post/${postId}/comment`,
@@ -89,7 +83,6 @@ function detail_comment_get() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (comments) {
-            console.log(comments)
             for (let i = 0; i < comments.length; i++) {
                 let comment_id = comments[i]['id']
                 let nickname = comments[i]['member']
@@ -98,9 +91,7 @@ function detail_comment_get() {
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
-                console.log('에휴'+ detail_community_user_nickname)
                 if (detail_community_user_nickname == nickname ) {
-                    console.log("일치")
                     temp_html = `<div>
                                     <div style="overflow:hidden; height: auto;">
                                         <p style="float: left;">${comment}</p>
@@ -112,7 +103,6 @@ function detail_comment_get() {
                                     <hr style="margin: 0;">
                                 </div>`
                 } else {
-                    console.log('불일치')
                     temp_html = `<div>
                                     <div style="overflow:hidden; height: auto;">
                                         <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
@@ -133,7 +123,6 @@ function detail_comment_get() {
 // 게시물 DELETE
 function detail_comment_delete(id) {
     const token = get_cookie("X-AUTH-TOKEN");
-    console.log(id)
     if (confirm('삭제하겠습니까?')) {
         $.ajax({
             type: "DELETE",
@@ -146,7 +135,6 @@ function detail_comment_delete(id) {
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
             success: function (result) {
-                console.log(result);
                 window.location.reload(true);
             }
         })

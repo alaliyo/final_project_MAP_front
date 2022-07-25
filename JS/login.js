@@ -61,7 +61,6 @@ function sign_up() {
     let password2 = $("#input-password2").val()
     let email = $("#input-email").val()
     let nickname = $("#input-nickname").val()
-    console.log(username, password, password2, nickname, email)
 
     // 중복 검사 했는지 안 했는지 is-success가 있으면 아이디 중복 확인한거다
     if ($("#help-id").hasClass("is-danger")) {
@@ -181,7 +180,6 @@ function is_nickname(asValue) {
 // 아이디 중복 확인 회원 가입
 function username_check_dup() {
     let username = $("#input-username").val()
-    console.log(username)
     // 아이디 빈칸의 경우
     if (username == "") {
         // 벌마의 클래스가 is-danger인 경우 false로 보는게 맞기 때문에 is-safe를 지운다
@@ -206,7 +204,6 @@ function username_check_dup() {
         },
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
-            console.log(response)
             if (response == "회원 유저네임 중복입니다.") {
                 $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
                 $("#input-id").focus()
@@ -224,7 +221,6 @@ function username_check_dup() {
     // 닉네임 입력 확인
 function nickname_check_dup() {
     let nickname = $("#input-nickname").val()
-    console.log(nickname)
     if (nickname == "") {
         $("#help-nickname").text("닉네임을 입력해주세요.").removeClass("is-safe").addClass("is-danger")
         $("#input-nickname").focus()
@@ -246,7 +242,6 @@ function nickname_check_dup() {
             },
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
-            console.log(response)
             if (response == "회원 닉네임 중복입니다.") {
                 $("#help-nickname").text("이미 존재하는 닉네임입니다.").removeClass("is-safe").addClass("is-danger")
                 $("#input-nickname").focus()
@@ -264,7 +259,6 @@ function nickname_check_dup() {
 // 이메일 입력 확인
 function email_check_dup() {
     let email = $("#input-email").val()
-    console.log(email)
     if (email == "") {
         $("#help-email").text("이메일을 입력하세요.").removeClass("is-safe").addClass("is-danger")
         // 아이디 입력하는 부분으로 커서가 focus 됨
@@ -287,7 +281,6 @@ function email_check_dup() {
             },
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
-            console.log(response)
             if (response == "회원 이메일 중복입니다.") {
                 $("#help-email").text("이미 존재하는 이메일입니다.").removeClass("is-safe").addClass("is-danger")
                 $("#input-email").focus()
@@ -303,17 +296,15 @@ function email_check_dup() {
 window.onload = function kakao_url(){
     var code = getParam("code");
     if(code == ""){
-        console.log("빈칸 입니다.")
     }else{
         $.ajax({
         type: "GET",
         url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/kakao/login?code="+code,
         contentType: "application/json; charset=UTF-8",
         success: function (response) {
-            console.log(response)
-                setCookie ('X-AUTH-TOKEN', response, 1)
-                window.location.replace("/home.html")
-                alert("로그인 되었습니다.")
+            setCookie ('X-AUTH-TOKEN', response, 1)
+            window.location.replace("/home.html")
+            alert("로그인 되었습니다.")
         }
     })};
 }

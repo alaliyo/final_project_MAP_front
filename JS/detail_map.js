@@ -3,11 +3,9 @@ $(window.document).ready(function() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     post_id = params['id']
-    
-    console.log("ddd  " + post_id)
     get_schedules(post_id);
-    
 });
+
 
 function get_schedules(post_id){
     let token = get_cookie("X-AUTH-TOKEN");
@@ -24,6 +22,7 @@ function get_schedules(post_id){
         }
     })
 }
+
 
 function get_map(schedules){
     console.log(schedules)
@@ -79,6 +78,7 @@ function get_map(schedules){
         
     }
 
+
     // 지도에 표시할 선을 생성합니다
     var polyline = new kakao.maps.Polyline({
         path: linePath, // 선을 구성하는 좌표배열 입니다
@@ -87,6 +87,7 @@ function get_map(schedules){
         strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
         strokeStyle: 'solid' // 선의 스타일입니다
     });
+    
 
     // 지도에 선을 표시합니다 
     polyline.setMap(map);

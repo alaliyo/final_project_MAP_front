@@ -26,10 +26,8 @@ function profil_revise() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
             let nickname = user['nickname'];
             let email = user['email'];
-            console.log(nickname, email)
             $('.nickname_textbox').val(`${nickname}`);
             $('.email_textbox').val(`${email}`);  
             }
@@ -43,14 +41,12 @@ function community_put_post() {
     let token = get_cookie("X-AUTH-TOKEN");
     let nickname = $('.nickname_textbox').val();
     let email = $('.email_textbox').val();
-    let image = $('#image_textbox').val();
-    let password = $('#password_textbox').val();
+//    let image = $('#image_textbox').val();
+//    let password = $('#password_textbox').val();
     let file = $('#file')[0];
 
     let formData = new FormData();
     formData.append("file", file.files[0]);
-
-    console.log(nickname, email, image, password)
     $.ajax({
         type: "PUT",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/modify`,
@@ -63,8 +59,7 @@ function community_put_post() {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response);
+        success: function () {
             alert(response)
         }
     })
@@ -78,8 +73,7 @@ function community_put_post() {
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (response) {
-                console.log(response)
+            success: function () {
             }
         })
     }

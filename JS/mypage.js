@@ -60,11 +60,9 @@ function profil() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
             const user_id = user['id']
             let nickname = user['nickname']
             let image = user['image']
-            console.log(image)
             let temp_html = ''
             if (image === null) {
                 temp_html = `<div class="profil_box" id="profil_box">
@@ -108,7 +106,6 @@ function my_plans() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (postId) {
-            console.log(postId)
             for (let i = 0; i < postId.length; i++) {
                 let post_id = postId[i]['id']
                 let title = postId[i]['title']
@@ -148,7 +145,6 @@ function my_plans() {
 function my_plan_delete(id){
     const token = get_cookie("X-AUTH-TOKEN");
     const post_id = id
-    console.log(post_id)
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
@@ -160,9 +156,8 @@ function my_plan_delete(id){
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (result) {
+            success: function () {
                 window.location.reload('/');
-                console.log(result);
             }
         })
         alert("삭제되었습니다.")
@@ -216,8 +211,6 @@ function my_community() {
         success: function (communitys)  {
             totalData = communitys.length
             globalData = communitys
-            console.log(totalData)
-            console.log(globalData)
             //글 목록 표시 호출 (테이블 생성)
             displayData(1, dataPerPage, globalData);
             //페이징 표시 호출
@@ -344,7 +337,6 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 function community_post_delete(postId){
     const token = get_cookie("X-AUTH-TOKEN");
     const post_id= postId
-    console.log(post_id)
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
@@ -356,9 +348,8 @@ function community_post_delete(postId){
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (result) {
+            success: function () {
                 window.location.reload('/');
-                console.log(result);
             }
         })
         alert("삭제되었습니다.")
@@ -382,9 +373,8 @@ function withdrawal(){
                     xhr.setRequestHeader("Content-type","application/json");
                     xhr.setRequestHeader("X-AUTH-TOKEN", token);
                 },
-                success: function (result) {
+                success: function () {
                     window.location.replace('/home.html');
-                    console.log(result);
                 }
             })
             alert("탈퇴되습니다. 그동안 서비스를 이용해 주셔서 감사합니다.");
@@ -401,13 +391,11 @@ function withdrawal(){
 function password_inquiry() {
     const token = get_cookie("X-AUTH-TOKEN");
     let email = profil_email
-    console.log(email)
     if (email == 'kakao') {
         $('#my_profil').hide();
         $('#my_profil_revise').show();
     } else {
         let password = prompt ("페스워드를 입력하세요")
-        console.log(password)
         if (password === null) {
         } else {
             $.ajax({
@@ -420,7 +408,6 @@ function password_inquiry() {
                     xhr.setRequestHeader("X-AUTH-TOKEN", token);
                 },
                 success: function (response) {
-                    console.log(response)
                     if ("비밀번호 확인이 완료되었습니다." == response) {
                             $('#my_profil').hide();
                             $('#my_profil_revise').show();

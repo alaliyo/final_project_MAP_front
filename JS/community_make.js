@@ -34,7 +34,6 @@ function communityMakePost() {
     } else if (content.length > 300){
         alert('내용은 300자까지 입력 가능합니다.');
     } else {
-        console.log(title, content)
         $.ajax({
             type: "POST",
             url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post",
@@ -47,8 +46,7 @@ function communityMakePost() {
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (response) {
-                console.log(response)
+            success: function () {
                 window.location.replace("/community.html");
                 alert("저장되었습니다.");
             }

@@ -43,8 +43,6 @@ function communityPostsGet() {
         success: function (posts) {
             totalData = posts.length
             globalData = posts
-            console.log(totalData)
-            console.log(globalData)
             //글 목록 표시 호출 (테이블 생성)
             displayData(1, dataPerPage, globalData);
             //페이징 표시 호출
@@ -145,9 +143,7 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
             let create_at = new Date(createdAt)
             let time_brfore = time2str(create_at)
             let temp_html = ``
-            console.log(user_nickname)
             if (user_nickname == globalData[i]['nickname']) {
-                console.log("삭제 버튼 on")
                 temp_html = `<div id="communtity_post ">
                                 <a id="delete_btn" style="float: right; margin-top: 8px; margin-right: 10px; color: red;" onclick="community_post_delete(${post_id})" >삭제</a>
                                 <div class="communtity_post_box">
@@ -166,7 +162,6 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
                             </div>
                             <hr style="width=100%">`
             } else {
-                console.log("삭제 버튼 off")
                 temp_html =`<div id="communtity_post ">
                                 <div class="communtity_post_box">
                                     <a class="posting_box"  onclick="window.location.href='/community_detail.html?id=${post_id}'">
@@ -193,7 +188,6 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 function community_post_delete(postId){
     const token = get_cookie("X-AUTH-TOKEN");
     const post_id= postId
-    console.log(post_id)
     if(confirm('삭제하겠습니까?')){
         $.ajax({
             type: "DELETE",
@@ -205,9 +199,8 @@ function community_post_delete(postId){
                 xhr.setRequestHeader("Content-type","application/json");
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function (result) {
+            success: function () {
                 window.location.reload('/community.html');
-                console.log(result);
             }
         })
         alert("삭제되었습니다.")
@@ -252,7 +245,6 @@ function community_user_nickname() {
         success: function (user) {
             console.log(user)
                 let nickname = user['nickname']
-                console.log(nickname)
                 user_nickname.push(nickname)
         },
         error: function (xhr, ajaxOptions, thrownError) {

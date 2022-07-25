@@ -43,7 +43,6 @@ function relogin(){
 // 게시물 보기
 function community_detail(postId) {
     const token = get_cookie("X-AUTH-TOKEN");
-    console.log(postId);
     $.ajax({
         type: "GET",
         url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/community/post/${postId}`,
@@ -54,7 +53,6 @@ function community_detail(postId) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (post) {
-            console.log(post)
             let post_id = post['postId']
             let title = post['title']
             let content = post['content']
@@ -63,7 +61,6 @@ function community_detail(postId) {
             let create_at = new Date(createdAt)
             let time_brfore = time2str(create_at)
             let temp_html = ``
-            console.log('test' + communitys_user_nickname);
             if (communitys_user_nickname == nickname) {
                 temp_html = `<div>
                                 <div>
@@ -142,9 +139,7 @@ function community_user_nickname() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
             let nickname = user['nickname']
-            console.log(nickname)
             communitys_user_nickname.push(nickname)
         }
     })

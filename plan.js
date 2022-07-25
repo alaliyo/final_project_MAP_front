@@ -76,7 +76,6 @@ function create_post(){
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function(response){
-            console.log(response)
             post_id = response;
             localStorage.setItem('action', 'null');
         }
@@ -127,7 +126,6 @@ function api_create_schedule(title, address, y, x, phone, url) {
         },
         success: function (response) {
             console.log('api_create_schedule: ' + response)
-            console.log(title, address, y, x, phone, url)
             read_schedule();
         }
     })
@@ -151,7 +149,6 @@ function read_schedule() {
             let schedules = response
             my_size = response.length;
             for (let i = 0; i < schedules.length; i++) {
-                console.log(schedules)
                 let schedule = schedules[i];
                 let temp_html = `<li class="list-group-item" style="padding: 7px;">
                                         <a onclick="delete_schedule(${schedule.id})" style="float: right; color: red; font-size: 20px">×</a>
@@ -184,8 +181,7 @@ function delete_schedule(scheduleId) {
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
             create_plan(day);
             read_schedule();
         }
@@ -193,10 +189,11 @@ function delete_schedule(scheduleId) {
     
 }
 
+
 // 모든 일정 삭제
 function delete_all(){
-
 }
+
 
 // 여행 게시물 저장
 function save_post(){
@@ -205,8 +202,6 @@ function save_post(){
     let category = $("#select_category").val();
     let period = $("#select_day").val();
     let file = $('#file')[0];
-
-    console.log(title, category, period, my_size, title.length)
 
     if(title.length == 0){
         alert("제목을 입력해주세요")
@@ -223,7 +218,6 @@ function save_post(){
     let formData = new FormData();
     formData.append("file", file.files[0]);
 
-
     $.ajax({
         type: "PUT",
         url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
@@ -236,8 +230,7 @@ function save_post(){
             xhr.setRequestHeader("Content-type","application/json");
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
         }
     })
 
@@ -251,8 +244,7 @@ function save_post(){
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
             window.location='/home.html'
         }
     })
@@ -267,8 +259,7 @@ function delete_all(){
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
             alert("일정을 초기화 했습니다.")
             read_schedule()
         }
@@ -285,8 +276,7 @@ function get_post_info(){
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function (response) {
-            console.log(response)
+        success: function () {
             $('#mytitle').val(response.title);
             $("#select_category").val(response.category);
             $("#select_day").val(response.period);
