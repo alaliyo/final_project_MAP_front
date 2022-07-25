@@ -36,14 +36,16 @@ function profil_revise() {
 }
 
 
-// 게시물 수정 
-function community_put_post() {
+// 프로필 수정 
+function update_profile() {
     let token = get_cookie("X-AUTH-TOKEN");
     let nickname = $('.nickname_textbox').val();
     let email = $('.email_textbox').val();
 //    let image = $('#image_textbox').val();
 //    let password = $('#password_textbox').val();
     let file = $('#file')[0];
+
+    console.log(file.files[0])
 
     let formData = new FormData();
     formData.append("file", file.files[0]);
@@ -61,8 +63,12 @@ function community_put_post() {
         },
         success: function () {
             alert(response)
+            window.location.reload();
         }
     })
+
+
+    
     if(file.files.length != 0){
         $.ajax({
             type: "POST",
@@ -73,9 +79,13 @@ function community_put_post() {
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("X-AUTH-TOKEN", token);
             },
-            success: function () {
+            success: function (response) {
+                window.location.reload();
             }
         })
+    }else{
+        console.log("요청x")
     }
+
 
 }

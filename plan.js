@@ -202,7 +202,9 @@ function save_post(){
     let category = $("#select_category").val();
     let period = $("#select_day").val();
     let file = $('#file')[0];
-
+    
+    let formData = new FormData();
+    formData.append("file", file.files[0]);
     if(title.length == 0){
         alert("제목을 입력해주세요")
         return;
@@ -215,9 +217,6 @@ function save_post(){
         alert("제목을 30글자 내로 지정해주세요")
         return;
     }
-    let formData = new FormData();
-    formData.append("file", file.files[0]);
-
     $.ajax({
         type: "PUT",
         url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/" + post_id,
@@ -264,7 +263,6 @@ function delete_all(){
             read_schedule()
         }
     })
-
 }
 
 // 여행 게시물 정보 가져오기
