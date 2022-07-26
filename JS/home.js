@@ -172,11 +172,19 @@ function add_cards(cards){
                 return "없음"
             } 
         }
+        function images() {
+            const img = cards[i]['image'];
+            if (img === '입력 없음') {
+                return "/static/MAP_logo.png"
+            } else {
+                return img
+            }
+        }
         const category = category_variable()
         const post_id = cards[i]['id']
         const nickname = cards[i]['nickname']
         const title = cards[i]['title']
-        const image = cards[i]['image']
+        const image = images()
         const likes = cards[i]['likes']
         const views = cards[i]['views']
         const createdAt = cards[i]['createdAt'] + "+0000"
@@ -184,31 +192,6 @@ function add_cards(cards){
         const time_brfore = time2str(create_at)
         let temp_html = ``
         if (like_btn.indexOf(post_id) >= 0) {
-            if (image==='입력 없음') {
-                temp_html = `<div class="card" id="${post_id}">
-                                <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
-                                    <img class="card_img" src="/static/MAP_logo.png"/>
-                                </a>
-                                <div>
-                                    <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
-                                        <p class="card_title">${title}</p>
-                                    </a>
-                                </div>
-                                <div>
-                                    <p style="position : absolute; bottom : 30px;">카테고리: ${category}</p>
-                                    <div style="position : absolute; bottom : 5px; width:150px;">
-                                        <P style="float: left;"> 조회수: ${views}</P>
-                                        <a style="float: left;  margin-left: 20px;">
-                                            <img onclick=" likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
-                                        </a>
-                                        <num style="float: left; margin-left: 3px;">${likes}</num>
-                                    </div>
-                                    <p class="card_writer">${nickname}</p>
-                                    <br>
-                                    <p class="card_time">${time_brfore}</p>
-                                </div>
-                            </div>`
-                } else {
                 temp_html = `<div class="card" id="${post_id}">
                                 <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
                                     <img class="card_img" src="${image}"/>
@@ -232,33 +215,7 @@ function add_cards(cards){
                                     <p class="card_time">${time_brfore}</p>
                                 </div>
                             </div>`
-                }
             } else {
-                if (image==='입력 없음') {
-                    temp_html = `<div class="card" id="${post_id}">
-                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
-                                        <img class="card_img" src="/static/MAP_logo.png"/>
-                                    </a>
-                                    <div>
-                                        <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
-                                            <p class="card_title">${title}</p>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <p style="position : absolute; bottom : 30px;">카테고리: ${category}</p>
-                                        <div style="position : absolute; bottom : 5px; width:150px;">
-                                            <P style="float: left;"> 조회수: ${views}</P>
-                                            <a style="float: left;  margin-left: 20px;">
-                                                <img onclick=" likes_btn(${post_id})" class="likes likes_off" id="likes-${post_id}" src="/static/like-icon-off.png">
-                                            </a>
-                                            <num style="float: left; margin-left: 3px;">${likes}</num>
-                                        </div>
-                                        <p class="card_writer">${nickname}</p>
-                                        <br>
-                                        <p class="card_time">${time_brfore}</p>
-                                    </div>
-                                </div>`
-                    } else {
                     temp_html = `<div class="card" id="${post_id}">
                                     <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
                                         <img class="card_img" src="${image}"/>
@@ -282,7 +239,6 @@ function add_cards(cards){
                                         <p class="card_time">${time_brfore}</p>
                                     </div>
                                 </div>`
-                    }
             }
         if(my_category=="ALL" || category == my_category){
             $('#cards').append(temp_html)
@@ -326,43 +282,25 @@ function cards_none_login() {
                         return "없음"
                     } 
                 }
+                function images() {
+                    const img = cards[i]['image'];
+                    if (img === '입력 없음') {
+                        return "/static/MAP_logo.png"
+                    } else {
+                        return img
+                    }
+                }
                 const category = category_variable()
                 const post_id = card[i]['id']
                 const nickname = card[i]['nickname']
                 const title = card[i]['title']
-                const image = card[i]['image']
+                const image = images()
                 const likes = card[i]['likes']
                 const views = card[i]['views']
                 const createdAt = cards[i]['createdAt'] + "+0000"
                 const create_at = new Date(createdAt) 
                 const time_brfore = time2str(create_at)
-                let temp_html = ''
-                if (image==='입력 없음') {
-                    temp_html = `<div class="card" id="${post_id}">
-                                    <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
-                                        <img class="card_img" src="/static/MAP_logo.png"/>
-                                    </a>
-                                    <div>
-                                        <a onclick="window.location.href='/detail.html?id=${post_id}'">
-                                            <p class="card_title">${title}</p>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <p style="position : absolute; bottom : 30px;">카테고리: ${category}</p>
-                                        <div style="position : absolute; bottom : 5px; width:150px;">
-                                            <P style="float: left;"> 조회수: ${views}</P>
-                                            <a style="float: left;  margin-left: 20px;">
-                                                <img  class="likes likes_off" src="/static/like-icon-off.png">
-                                            </a>
-                                            <num style="float: left; margin-left: 3px;">${likes}</num>
-                                        </div>
-                                        <p class="card_writer">${nickname}</p>
-                                        <br>
-                                        <p class="card_time">${time_brfore}</p>                                
-                                    </div>
-                                </div>`
-                } else {
-                    temp_html = `<div class="card" id="${post_id}">
+                let temp_html =  `<div class="card" id="${post_id}">
                                     <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}'">
                                         <img class="card_img" src="${image}"/>
                                     </a>
@@ -385,7 +323,6 @@ function cards_none_login() {
                                         <p class="card_time">${time_brfore}</p>                                
                                     </div>
                                 </div>`
-                }
                 if(my_category=="ALL" || category == my_category){
                     $('#cards').append(temp_html)
                 } 
