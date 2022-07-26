@@ -20,7 +20,6 @@ $(document).ready(function() {
 
 // community_user_nickname()를 넣은 전역 변수
 let communitys_user_nickname = [];
-let user_img = [];
 
 
 //토큰 만료 시 로그인 페이지로
@@ -97,9 +96,6 @@ function community_detail(postId) {
                             </div>`
             }
             $('#community_content').append(temp_html)
-        //     <div class="profil_ring">
-            //     <img class="profil" src="${user_img}" alt="Placeholder image" />
-            // </div>
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
@@ -144,10 +140,8 @@ function community_user_nickname() {
         },
         success: function (user) {
             console.log(user)
-            let img = user['image']
             let nickname = user['nickname']
             communitys_user_nickname.push(nickname)
-            user_img.push(img)
         }
     })
 }

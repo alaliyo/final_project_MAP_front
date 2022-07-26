@@ -28,7 +28,6 @@ function detail_community_users_nickname() {
             let nickname = user['nickname']
             detail_community_user_nickname.push(nickname)
             detail_comment_get();
-        
         }
     })
 }
@@ -87,33 +86,76 @@ function detail_comment_get() {
                 let comment_id = comments[i]['id']
                 let nickname = comments[i]['member']
                 let comment = comments[i]['comment']
+                let img = comments[i]['img']
                 let createdAt = comments[i]['createdAt'] + '+0000'
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
-                if (detail_community_user_nickname == nickname ) {
-                    temp_html = `<div>
-                                    <div style="overflow:hidden; height: auto;">
-                                        <p style="float: left;">${comment}</p>
-                                        <br>
-                                        <a class="comment" style="margin-right: 10px; color: red;" id="comment_delete" onclick="detail_comment_delete(${comment_id})">×</a>
-                                        <p class="comment" style="margin-right: 10px">${time_brfore}</p>
-                                        <p class="comment" style="margin-right: 10px">${nickname}</p>
+                console.log(img)
+                if (img == null) {
+                    if (detail_community_user_nickname == nickname ) {
+                        temp_html = `<div style="height: 50px;">
+                                        <div class="profil_ring">
+                                            <img class="profil" src="/static/default_profile.png" alt="Placeholder image" />
+                                        </div>
+                                        <div style="display: flex;">
+                                            <p class="comment_profil">${nickname}:</p>
+                                            <p class="comment_profil" style="margin-left: 7px">${comment}</p>
+                                            <div class="comment_part_box">
+                                                <a class="comment_part" style="margin-right: 10px; right:24%;" id="comment_delete" onclick="comment_delete(${comment_id})">×</a>
+                                                <p class="comment_part" style="">${time_brfore}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <hr style="margin: 0;">
-                                </div>`
+                                    <hr style="margin-top: 5px; margin-bottom: 5px;">`
+                    } else {
+                        temp_html = `<div style="height: 50px;">
+                                        <div class="profil_ring">
+                                            <img class="profil" src="/static/default_profile.png" alt="Placeholder image" />
+                                        </div>
+                                        <div style="display: flex;">
+                                            <p class="comment_profil">${nickname}:</p>
+                                            <p class="comment_profil" style="margin-left: 7px">${comment}</p>
+                                            <div class="comment_part_box">
+                                                <p class="comment_part" style="">${time_brfore}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 5px; margin-bottom: 5px;">`
+                    }
                 } else {
-                    temp_html = `<div>
-                                    <div style="overflow:hidden; height: auto;">
-                                        <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
-                                        <br>
-                                        <p class="comment">${time_brfore}</p>
-                                        <p class="comment">${nickname}</p>
+                    if (detail_community_user_nickname == nickname ) {
+                        temp_html = `<div style="height: 50px;">
+                                        <div class="profil_ring">
+                                            <img class="profil" src="${img}" alt="Placeholder image" />
+                                        </div>
+                                        <div style="display: flex;">
+                                            <p class="comment_profil">${nickname}:</p>
+                                            <p class="comment_profil" style="margin-left: 7px">${comment}</p>
+                                            <div class="comment_part_box">
+                                                <a class="comment_part" style="margin-right: 10px; right:24%;" id="comment_delete" onclick="comment_delete(${comment_id})">×</a>
+                                                <p class="comment_part" style="">${time_brfore}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <hr style="margin: 0;">
-                                </div>`
+                                    <hr style="margin-top: 5px; margin-bottom: 5px;">`
+                    } else {
+                        temp_html = `<div style="height: 50px;">
+                                        <div class="profil_ring">
+                                            <img class="profil" src="${img}" alt="Placeholder image" />
+                                        </div>
+                                        <div style="display: flex;">
+                                            <p class="comment_profil">${nickname}:</p>
+                                            <p class="comment_profil" style="margin-left: 7px">${comment}</p>
+                                            <div class="comment_part_box">
+                                                <p class="comment_part" style="">${time_brfore}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 5px; margin-bottom: 5px;">`
+                    }
                 }
-                    $('#comments').append(temp_html)
+                $('#comments').append(temp_html)
             }
         }
     })

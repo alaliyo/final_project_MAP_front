@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div style="display: flex;">
-                    <input style="resize: none; height: 35px; width: 100%; padding: 15px;" id="comment_text_box" placeholder="댓글을 입력하세요 (40자까지만)"></textarea>
+                    <input style="resize: none; height: 35px; width: 100%; padding: 15px;" id="comment_text_box" placeholder="댓글을 입력하세요 (40자까지만)" onkeyup="if(window.event.keyCode==13){comment_make()}"></textarea>
                     <button class="button is-light" style="height: 35px;" onclick="comment_make()">작성완료</button>
                 </div>
             </div>

@@ -42,3 +42,49 @@
     border: 0;
     overflow-y: scroll;
 }
+
+/* 댓글 css */
+.comment {
+    float: right;
+    margin-top: 5px;
+    font-size: 13px;
+    margin-right: 5px;
+}
+/* 프로필 css */
+.comment_profil {
+    float:left;
+}
+
+.comment_part_box{
+    margin-top: 25px;
+    position: absolute;
+    right: 8%;
+    width: 100px;
+}
+
+.comment_part {
+    margin-top: 5px;
+    font-size: 13px;
+    margin-right: 5px;
+    position: absolute;
+}
+
+.profil_ring {
+    float:left;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+    background-color: rgb(168, 226, 236);
+}
+.profil {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+#comment_delete {
+    color: rgb(255, 0, 0);
+}

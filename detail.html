@@ -79,22 +79,26 @@
     <div class="detail_box">
         <div style="margin-top: 15px; margin-left: 15px;">
             <!-- 지도 -->
-            <div id="map" style="width:55%;height: 680px; float: left;"></div>  
-            <div id="plan" style="width: 45%; height: 680px; float: right; border: 2px solid rgb(194, 194, 194); ">
+            <div id="map" style="width:50%;height: 680px; float: left;"></div>  
+            <div id="plan" style="width:50%; height: 680px; float: right; border: 2px solid rgb(194, 194, 194); ">
                 <!-- 작성자 정보 -->
-                <div style="margin: 10px; height: 30px;">
-                    <div id="title" style="float: left;">
+                <div style="margin: 10px; height: 30px; display: flex;">
+                    <div id="title" style="float: left; width: 60%;">
                         <h1 style="font-size: 40px; float: left; margin-bottom: 2px;">TITLE</h1>
                     </div>
-                    <div>
-                        <div id="writer" ><h2 style="font-size: 30px;text-align: right;">작성자</h2></div>
-                        <div id="createAt"style="float: right;"><h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2></div>
+                    <div style="width: 40%;">
+                        <div id="writer" >
+                            <h2 style="font-size: 30px;text-align: right;">작성자</h2>
+                        </div>
+                        <div id="createAt"style="float: right;">
+                            <h2 style="font-size: 25px;text-align: right;">2022년 7월 5일</h2>
+                        </div>
                     </div>
                 </div>
                 <!-- 여행 날짜 선택 -->
                 <br>
                 <hr style="margin: 0; background-color: rgb(194, 194, 194);">
-                <div>
+                <div style="height: 50px;">
                     <select style="margin: 10px;" id="select_day">
                         <option value=1 label="1일" selected></option>
                     </select>
@@ -135,7 +139,7 @@
                             </div>
                             <div style=" vertical-align: bottom;">
                                 <div style="display: flex;">
-                                    <input style="resize: none; height: 30px; width: 100%; padding: 2px;" id="content_text_box" placeholder="댓글을 입력하세요 (40자까지만)">
+                                    <input style="resize: none; height: 30px; width: 100%; padding: 2px;" id="content_text_box" placeholder="댓글을 입력하세요 (40자까지만)" onkeyup="if(window.event.keyCode==13){detail_comment_make()}">
                                     <button class="button is-sparta" style="width: 40px; height: 30px; padding-top: 2px; padding-bottom: 2px;" onclick="detail_comment_make()">완료</button>
                                 </div>
                             </div>

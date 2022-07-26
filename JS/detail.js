@@ -39,9 +39,9 @@ function add_day(post_id){
                 $(`#select_day`).append(temp_html)
             }
 
-            $(`#title`).append(`<p style="float: left; font-size: 23px;">제목 : ${response['title']}</h1></div>`)
-            $(`#writer`).append(`<p style="text-align: right; font-size: 18px;"> 작성자 : ${response['nickname']}</h2></div>`)
-            $(`#createAt`).append(`<p style="text-align: right; font-size: 18px;"> 날짜 : ${response['createdAt'].substring(0,10)}</h2></div>`)
+            $(`#title`).append(`<p style="float: left; font-size: 19px;">제목 : ${response['title']}</h1></div>`)
+            $(`#writer`).append(`<p style="text-align: right; font-size: 15px;"> 작성자 : ${response['nickname']}</h2></div>`)
+            $(`#createAt`).append(`<p style="text-align: right; font-size: 15px;"> 날짜 : ${response['createdAt'].substring(0,10)}</h2></div>`)
         }
     })
 }

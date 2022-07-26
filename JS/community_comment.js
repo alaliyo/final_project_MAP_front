@@ -52,28 +52,41 @@ function commentGet() {
                 let comment_id = comments[i]['commentId']
                 let nickname = comments[i]['nickname']
                 let comment = comments[i]['comment']
+                let img = comments[i]['img']
                 let createdAt = comments[i]['createdAt'] + '+0000'
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
                 console.log (communitys_user_nickname)
                 if (communitys_user_nickname == nickname) {
-                    temp_html = `<div style="overflow:hidden; height: auto;">
-                                    <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
-                                    <br>
-                                    <a class="comment" style="margin-right: 10px;" id="comment_delete" onclick="comment_delete(${comment_id})">×</a>
-                                    <p class="comment">${time_brfore}</p>
-                                    <p class="comment">${nickname}</p>
+                    temp_html = `<div style="overflow:hidden; height: auto; ">
+                                    <div class="profil_ring">
+                                        <img class="profil" src="${img}" alt="Placeholder image" />
+                                    </div>
+                                    <div style="display: flex;">
+                                        <p class="comment_profil">${nickname}:</p>
+                                        <p class="comment_profil" style="margin-left: 7px;">${comment}</p>
+                                        <div class="comment_part_box">
+                                            <a class="comment_part" style="margin-right: 10px; right:24%;" id="comment_delete" onclick="comment_delete(${comment_id})">×</a>
+                                            <p class="comment_part" style="">${time_brfore}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr style="margin-top: 5px;">`
+                                <hr style="margin-top: 5px; margin-bottom: 5px;">`
                 } else {
-                    temp_html = `<div style="overflow:hidden; height: auto;">
-                                    <p style="margin-top: 10px; margin-bottom: 5px; float: left;">${comment}</p>
-                                    <br>
-                                    <p class="comment">${time_brfore}</p>
-                                    <p class="comment">${nickname}</p>
+                    temp_html = `<div style="overflow:hidden; height: auto; ">
+                                    <div class="profil_ring">
+                                        <img class="profil" src="${img}" alt="Placeholder image" />
+                                    </div>
+                                    <div style="display: flex;">
+                                        <p class="comment_profil" >${nickname}:</p>
+                                        <p class="comment_profil" style="margin-left: 7px; font-size: 14px;">${comment}</p>
+                                        <div class="comment_part_box">
+                                            <p class="comment_part" style="">${time_brfore}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr style="margin-top: 5px;">`
+                                <hr style="margin-top: 5px; margin-bottom: 5px;">`
                 }
                     $('#comments').append(temp_html)
             }
