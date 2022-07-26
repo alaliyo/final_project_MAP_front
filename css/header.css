@@ -53,3 +53,19 @@
     margin: 10px auto;
     position:static;
 }
+
+.header_profil_ring {
+    float:left;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    background-color: rgb(168, 226, 236);
+}
+.header_profil {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-top: 2px;
+    margin-left: 2px;
+}

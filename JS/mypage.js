@@ -66,8 +66,8 @@ function profil() {
             let temp_html = ''
             if (image === null) {
                 temp_html = `<div class="profil_box" id="profil_box">
-                                <div class="profil_ring">
-                                    <img class="profil" src="/static/default_profile.png" alt="Placeholder image" />
+                                <div class="mypage_profil_ring">
+                                    <img class="mypage_profil" src="/static/default_profile.png" alt="Placeholder image" />
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
                                 <div class="community_write_back" style="width: 110px;" onclick="profil_revise(${user_id});">
@@ -76,8 +76,8 @@ function profil() {
                             </div>`
             } else {
                 temp_html = `<div class="profil_box" id="profil_box">
-                                <div class="profil_ring">
-                                    <img class="profil" src="${image}" alt="Placeholder image" />
+                                <div class="mypage_profil_ring">
+                                    <img class="mypage_profil" src="${image}" alt="Placeholder image" />
                                 </div>
                                 <p class="nickname" id="idname">${nickname}</p>
                                 <div class="community_write_back" style="width: 110px;" onclick="profil_revise(${user_id});">

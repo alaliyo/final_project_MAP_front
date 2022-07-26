@@ -11,6 +11,7 @@
     <link href="css/main.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
+    <link href="css/plan.css" rel="stylesheet">
     <!-- <link href="css/plan.css" rel="stylesheet"> -->
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
 
@@ -24,46 +25,7 @@
     <script type="text/javascript" src="map.js"></script>
     <script type="text/javascript" src="plan.js"></script>
     <script type="text/javascript" src="JS/logout.js"></script>
-    <style>
-        .plan_make_box {
-            margin: 0px 7% 0px 7% ;
-            height: 700px;
-            padding: 25px;
-            box-shadow: 1px 1px 7px gray ;
-        }
-
-        .meun_interval {
-            margin-top: 10px;
-            margin-left: 10px;
-            display: flex;
-        }
-
-        .list-group::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera*/
-        }
-
-        .on_active {
-            margin-top: 5px;
-            display: block;
-            width: 35px;
-            height: 20px;
-            background-color: rgb(168, 226, 236);
-            color: white;
-            font-size: 14px;
-            font-weight: bold ;
-            border-radius: 10px;
-            border-width: 0;
-            text-align:center ;
-            line-height: 20px;
-            float: right;
-        }
-        .on_active:hover {
-            color: rgb(70, 70, 70);
-            background-color: rgb(41, 223, 255);
-            transition: 0.5s ease-in-out;
-        }
-    </style>
-
+    <script type="text/javascript" src="JS/header_mypage.js"></script>
 
 </head>
 <body>
@@ -79,8 +41,9 @@
                     <a class="remote_btn position_right" onclick="logout()" id="logout">
                         <div class="menu_btn abc"  style="font-size: 19px;">로그아웃</div>
                     </a>
-                    <a class="remote_btn position_right" onclick="window.location.href='/mypage.html'">
-                        <div class="menu_btn "  style="font-size: 19px;">마이페이지</div>
+                    <a class="remote_btn position_right" style="padding-top: 10px;" href="mypage.html"">
+                        <div class="menu_btn haed_img" style="float: left;"></div>
+                        <div class="haed_nickname menu_btn" style="float: right; font-size: 19px;"></div>
                     </a>
                 </div>
                 <div class="plan_btn_box">

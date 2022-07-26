@@ -48,15 +48,30 @@ function keep_out() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
-            user_role = "user"        
+            console.log(response) 
+            user_role = "user"     
             $('#login').hide()
             $('#logout').show()
+            let nickname = response['nickname']
+            let temp_html1 = `
+                <p style="float:left; margin-right:3px; margin-top:10px;">${nickname}</p>
+                `
+            $('.haed_nickname').append(temp_html1)
+            let image = response['image']
+            let temp_html2 = `
+                <div class="header_profil_ring">
+                    <img class="header_profil" src="${image}" alt="Placeholder image" />
+                </div>
+                `
+            $('.haed_img').append(temp_html2)
+            $('.haed_nickname').show()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status);
             console.log(thrownError);    
             $('#logout').hide()
-            $('#login').show()
+            $('.haed_nickname').hide()
+            $('#login').show()  
         }
     })
 }
