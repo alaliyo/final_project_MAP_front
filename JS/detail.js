@@ -55,7 +55,6 @@ function read_schedules(post_id){
             let schedules = response
             for (let i = 0; i < schedules.length; i++) {
                 let schedule = schedules[i];
-                console.log(schedule)
                 if(day_status == schedule['date']){
                     let temp_html = `<li class="list-group-item" style="padding: 5px;">
                                         <a href="https://map.kakao.com/link/to/${schedule.placeName},${schedule.y},${schedule.x}" target="_blank" style="float: right; color: rgb(50, 115, 220);"">길 찾기</a>

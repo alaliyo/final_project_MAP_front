@@ -1,8 +1,5 @@
 
 /* a 테그 설정 */
-a {
-    color: black;
-}
 
 #comment_delete {
     color: rgb(255, 0, 0);
@@ -54,6 +51,7 @@ hr {
 }
 /* 작성글 설정 (박스) */
 .posting_box {
+    color: black;
     display: block;
     padding-left: 10px;
     padding-top: 7px;

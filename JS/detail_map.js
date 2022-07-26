@@ -25,7 +25,6 @@ function get_schedules(post_id){
 
 
 function get_map(schedules){
-    console.log(schedules)
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(schedules[0].y, schedules[0].x), // 지도의 중심좌표

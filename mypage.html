@@ -11,7 +11,8 @@
     <link href="css/mypage.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/community.css" rel="stylesheet" >
-    
+    <link href="css/home.css" rel="stylesheet" >
+
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -112,16 +113,24 @@
     <hr style="background: #c0c0c0; margin: 0;">
         <!-- 리모컨 -->
     <div style="display: flex;">
-        <div class="menu_remote">
-            <a class="menu_remote_btm" onclick="my_plan()">여행계획</a>
+        <div class="menu_remote_change button0" style="color:black;">
+            <a class="menu_remote_btm_change menu_remote0" onclick="my_plan()">나의계획</a>
         </div>
-        <div class="menu_remote">
-            <a class="menu_remote_btm" onclick="my_community_box()">커뮤니티</a>
+        <div class="menu_remote button1">
+            <a class="menu_remote_btm menu_remote1"  onclick="my_like_plan()">♥ 계획</a>
+        </div>
+        <div class="menu_remote button2">
+            <a class="menu_remote_btm menu_remote2" onclick="my_community_box()">커뮤니티</a>
         </div>
     </div>
     <!-- 게시물 -->
     <div class="cards" id="card-box">
         <div id="mycards">
+        </div>
+    </div>
+    <!-- 좋아요한 게시물 -->
+    <div id="my_like_plan" style="margin-left: 10%">
+        <div id="cards" class="cards">
         </div>
     </div>
     <!-- 커뮤니티 -->

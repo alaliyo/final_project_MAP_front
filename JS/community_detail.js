@@ -139,7 +139,6 @@ function community_user_nickname() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (user) {
-            console.log(user)
             let nickname = user['nickname']
             communitys_user_nickname.push(nickname)
         }

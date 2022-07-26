@@ -67,6 +67,12 @@ a:link {
     color: rgb(185, 185, 185);
 }
 
+.likes{
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
 /* 아이콘 css */
 .like_icon {
     width: 20px;

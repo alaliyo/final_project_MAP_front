@@ -12,6 +12,8 @@ $(window.document).ready(function() {
     my_plan()
     my_plans()
     my_community()
+    my_like_plans_id()
+    my_like_cards()
 });
 
 
@@ -37,13 +39,57 @@ function relogin(){
 // 게시물 및 커뮤니티 조회 버튼
 function my_plan() {
     $('#my_communtity_box').hide()
+    $('#my_like_plan').hide()
     $('#mycards').show()
+}
+function my_like_plan() {
+    $('#mycards').hide()
+    $('#my_communtity_box').hide()
+    $('#my_like_plan').show()
 }
 function my_community_box() {
     $('#mycards').hide()
+    $('#my_like_plan').hide()
     $('#my_communtity_box').show()
 }
 
+
+
+// 버튼 누를 시 색 고정
+$(document).ready(function() {
+    $(".button0").click(
+        function () {
+            document.getElementsByClassName("button0")[0].className = "menu_remote_change button0";
+            document.getElementsByClassName("menu_remote0")[0].className = "menu_remote_btm_change menu_remote0";
+            document.getElementsByClassName("button1")[0].className = "menu_remote button1";
+            document.getElementsByClassName("menu_remote1")[0].className = "menu_remote_btm menu_remote1";
+            document.getElementsByClassName("button2")[0].className = "menu_remote button2";
+            document.getElementsByClassName("menu_remote2")[0].className = "menu_remote_btm menu_remote2";
+        }
+    )
+    $(".button1").click(
+        function () {
+            document.getElementsByClassName("button1")[0].className = "menu_remote_change button1";
+            document.getElementsByClassName("menu_remote1")[0].className = "menu_remote_btm_change menu_remote1";
+            document.getElementsByClassName("button0")[0].className = "menu_remote button0";
+            document.getElementsByClassName("menu_remote0")[0].className = "menu_remote_btm menu_remote0";
+            document.getElementsByClassName("button2")[0].className = "menu_remote button2";
+            document.getElementsByClassName("menu_remote2")[0].className = "menu_remote_btm menu_remote2";
+        }
+    )
+    $(".button2").click(
+        function () {
+            document.getElementsByClassName("button2")[0].className = "menu_remote_change button2";
+            document.getElementsByClassName("menu_remote2")[0].className = "menu_remote_btm_change menu_remote2";
+            document.getElementsByClassName("button0")[0].className = "menu_remote button0";
+            document.getElementsByClassName("menu_remote0")[0].className = "menu_remote_btm menu_remote0";
+            document.getElementsByClassName("button1")[0].className = "menu_remote button1";
+            document.getElementsByClassName("menu_remote1")[0].className = "menu_remote_btm menu_remote1";
+        }
+    )
+})
+
+//이메일 전역 변수
 let profil_email = []
 
 
@@ -138,6 +184,125 @@ function my_plans() {
             }
         }
     });
+}
+
+
+// 내가 좋아요한 게시물 GET
+let my_like_plan_id = []
+
+function my_like_plans_id() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "GET",
+        url: 'http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/posts/my-like',
+        data: {},
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function (like_posts_id) {
+            for (let i = 0; i < like_posts_id.length; i++) {
+                let posts_id = like_posts_id[i]['postId']
+                my_like_plan_id.push(posts_id)
+            }
+        }
+    });
+}
+
+function my_like_cards() {
+    $('#cards').empty()
+    $.ajax({
+        type: "GET",
+        url: "http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/plan/posts",
+        data: {},
+        contentType: "application/json",
+        success: function (like_cards) {
+            for (let i=0; i < like_cards.length; i ++) {
+                function category_variable() {
+                    let categories = like_cards[i]['category'];
+                    if (categories === 'FOOD') {
+                        return "맛집투어"
+                    } else if (categories === 'HEALING') {
+                        return "힐링여행"
+                    } else if (categories === 'SCENERY') {
+                        return "풍경"
+                    } else if (categories === 'CAFE') {
+                        return "카페투어"
+                    } else if (categories === 'ATTRACTION') {
+                        return "관광지"
+                    } else if (categories === 'DATE') {
+                        return "데이트"
+                    } else {
+                        return "없음"
+                    } 
+                }
+                function images() {
+                    const img = like_cards[i]['image'];
+                    if (img === '입력 없음') {
+                        return "/static/MAP_logo.png"
+                    } else {
+                        return img
+                    }
+                }
+                const category = category_variable()
+                const post_id = like_cards[i]['id']
+                const nickname = like_cards[i]['nickname']
+                const title = like_cards[i]['title']
+                const image = images()
+                const likes = like_cards[i]['likes']
+                const views = like_cards[i]['views']
+                const createdAt = like_cards[i]['createdAt'] + "+0000"
+                const create_at = new Date(createdAt)
+                const time_brfore = time2str(create_at)
+                let temp_html = ``
+                if (my_like_plan_id.indexOf(post_id) >= 0) {
+                        temp_html = `<div class="card" id="${post_id}">
+                                        <a class="card_img_box" onclick="window.location.href='/detail.html?id=${post_id}';  view(${post_id});">
+                                            <img class="card_img" src="${image}"/>
+                                        </a>
+                                        <div>
+                                            <a onclick="window.location.href='/detail.html?id=${post_id}'; view(${post_id});">
+                                                <p class="card_title">${title}</p>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <p style="position : absolute; bottom : 30px;">카테고리: ${category}</p>
+                                            <div style="position : absolute; bottom : 5px; width:150px;">
+                                                <P style="float: left;"> 조회수: ${views}</P>
+                                                <a style="float: left;  margin-left: 20px;">
+                                                    <img onclick="likes_btn(${post_id})" class="likes likes_on" id="likes-${post_id}" src="/static/like-icon-on.png">
+                                                </a>
+                                                <num style="float: left; margin-left: 3px;">${likes}</num>
+                                            </div>
+                                            <p class="card_writer">${nickname}</p>
+                                            <br>
+                                            <p class="card_time">${time_brfore}</p>
+                                        </div>
+                                    </div>`
+                }
+                $('#cards').append(temp_html)
+            }
+        }
+    })
+}
+
+function likes_btn(post_id) {
+    let token = get_cookie("X-AUTH-TOKEN");
+    $.ajax({
+        type: "POST",
+        url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/plan/post/${post_id}/like`,
+        contentType: "application/json;",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.setRequestHeader("X-AUTH-TOKEN", token);
+        },
+        success: function () {
+            my_like_plans_id();
+            my_like_cards();
+            location.reload('/')
+        }
+    })
 }
 
 

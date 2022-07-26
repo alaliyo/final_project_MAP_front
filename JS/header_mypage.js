@@ -14,7 +14,6 @@ function haeder_mypage() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
-
             let nickname = response['nickname']
             let temp_html1 = `
                 <p style="float:left; margin-right:3px; margin-top:10px;">${nickname}</p>

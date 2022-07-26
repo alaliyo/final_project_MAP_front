@@ -47,7 +47,6 @@ function commentGet() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (comments) {
-            console.log(comments)
             for (let i = 0; i < comments.length; i++) {
                 let comment_id = comments[i]['commentId']
                 let nickname = comments[i]['nickname']
@@ -57,7 +56,6 @@ function commentGet() {
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
-                console.log (communitys_user_nickname)
                 if (communitys_user_nickname == nickname) {
                     temp_html = `<div style="overflow:hidden; height: auto; ">
                                     <div class="profil_ring">

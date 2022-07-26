@@ -48,7 +48,6 @@ function keep_out() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
-            console.log(response) 
             user_role = "user"     
             $('#login').hide()
             $('#logout').show()
@@ -341,42 +340,46 @@ function cards_none_login() {
                 if(my_category=="ALL" || category == my_category){
                     $('#cards').append(temp_html)
                 } 
-                }
+            }
+        }
+    })
+}
+
+
+// 검색버튼 구현
+function search_btn(){
+    local = $('#input-local').val();
+    let token = get_cookie("X-AUTH-TOKEN");
+    if(local == ""){
+        cards();
+        return 0
+    }else{
+        $.ajax({
+            type: "GET",
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/schedule?local=${local}`,
+            contentType: "application/json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (response) {
+                my_cards = response
+                add_cards(my_cards)
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(thrownError);
+                alert("로그인 해주세요")
+                window.location.replace("/login.html");
             }
         })
     }
+    
+    
+}
 
-    function search_btn(){
-        local = $('#input-local').val();
-        let token = get_cookie("X-AUTH-TOKEN");
-        if(local == ""){
-            cards();
-            return 0
-        }else{
-            $.ajax({
-                type: "GET",
-                url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/schedule?local=${local}`,
-                contentType: "application/json",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Content-type","application/json");
-                    xhr.setRequestHeader("X-AUTH-TOKEN", token);
-                },
-                success: function (response) {
-                    my_cards = response
-                    add_cards(my_cards)
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                    alert("로그인 해주세요")
-                    window.location.replace("/login.html");
-                }
-            })
-        }
-        
-        
-    }
 
+//게시물 작성 버튼 구현
 function go_plan(){
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
@@ -401,6 +404,7 @@ function go_plan(){
     })
 }
 
+//커뮤니티 페이지로 이동
 function go_community(){
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
@@ -423,6 +427,8 @@ function go_community(){
     })
 }
 
+
+// 마이페이지로 이동
 function go_mypage(){
     let token = get_cookie("X-AUTH-TOKEN");
     $.ajax({
@@ -445,6 +451,7 @@ function go_mypage(){
     })
 }
 
+
 // 시간 변경 함수
 function time2str(createdAt) {
     let today = new Date() 
@@ -462,6 +469,7 @@ function time2str(createdAt) {
     }
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 }
+
 
 // JSON 정렬 함수
 var sortJSON = function(data, key, type) {

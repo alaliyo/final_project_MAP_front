@@ -91,7 +91,6 @@ function detail_comment_get() {
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)
                 let temp_html = ``
-                console.log(img)
                 if (img == null) {
                     if (detail_community_user_nickname == nickname ) {
                         temp_html = `<div style="height: 50px;">
