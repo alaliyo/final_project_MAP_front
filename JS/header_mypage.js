@@ -14,17 +14,25 @@ function haeder_mypage() {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
         success: function (response) {
+            console.log(response)
             let nickname = response['nickname']
             let temp_html1 = `
                 <p style="float:left; margin-right:3px; margin-top:10px;">${nickname}</p>
                 `
             $('.haed_nickname').append(temp_html1)
             let image = response['image']
-            let temp_html2 = `
-                <div class="header_profil_ring">
-                    <img class="header_profil" src="${image}" alt="Placeholder image" />
-                </div>
+            let temp_html2 = ``
+            if (image == null) {
+                temp_html2 = `<div class="header_profil_ring">
+                                <img class="header_profil" src="/static/default_profile.png" alt="Placeholder image" />
+                            </div>
                 `
+            } else {
+                temp_html2 = `<div class="header_profil_ring">
+                                <img class="header_profil" src="${image}" alt="Placeholder image" />
+                            </div>
+                `
+            }
             $('.haed_img').append(temp_html2)
         },
         error: function (xhr, ajaxOptions, thrownError) {

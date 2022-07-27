@@ -57,11 +57,18 @@ function keep_out() {
                 `
             $('.haed_nickname').append(temp_html1)
             let image = response['image']
-            let temp_html2 = `
-                <div class="header_profil_ring">
-                    <img class="header_profil" src="${image}" alt="Placeholder image" />
-                </div>
+            let temp_html2 = ``
+            if (image == null) {
+                temp_html2 = `<div class="header_profil_ring">
+                                <img class="header_profil" src="/static/default_profile.png" alt="Placeholder image" />
+                            </div>
                 `
+            } else {
+                temp_html2 = `<div class="header_profil_ring">
+                                <img class="header_profil" src="${image}" alt="Placeholder image" />
+                            </div>
+                `
+            }
             $('.haed_img').append(temp_html2)
             $('.haed_nickname').show()
         },

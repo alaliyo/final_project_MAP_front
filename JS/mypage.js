@@ -550,7 +550,7 @@ function withdrawal(){
 }
 
 
-//페스워드 비교 조회 호 수정 기능 띄우기
+//페스워드 비교 조회 후 수정 기능 띄우기
 function password_inquiry() {
     const token = get_cookie("X-AUTH-TOKEN");
     let email = profil_email

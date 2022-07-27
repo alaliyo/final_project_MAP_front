@@ -80,10 +80,10 @@ function sign_up() {
     }
 
     if ($("#help-email").hasClass("is-danger")) {
-        alert("닉네임을 다시 확인해주세요.")
+        alert("이메일을 다시 확인해주세요.")
         return;
     } else if (!$("#help-email").hasClass("is-success")) {
-        alert("닉네임 중복확인을 해주세요.")
+        alert("이메일 중복확인을 해주세요.")
         return;
     }
 
@@ -170,7 +170,7 @@ function is_email(asValue) {
     const regExp = /^(?=.*[a-zA-Z0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9])[0-9a-zA-Z@.]{10,30}$/;
     return regExp.test(asValue);
 }
-//닉이름 규칙
+//닉네임 규칙
 function is_nickname(asValue) {
     const regExp = /^(?=.*[a-zA-Z0-9ㄱ-ㅎ가-힣])[0-9a-zA-Zㄱ-ㅎ가-힣]{2,30}$/;
     return regExp.test(asValue);
@@ -217,8 +217,8 @@ function username_check_dup() {
 }
 
 
-    // <------------------------------------- 닉네임 확인 ------------------------------------->
-    // 닉네임 입력 확인
+// <------------------------------------- 닉네임 확인 ------------------------------------->
+// 닉네임 입력 확인
 function nickname_check_dup() {
     let nickname = $("#input-nickname").val()
     if (nickname == "") {
@@ -293,6 +293,8 @@ function email_check_dup() {
     });
 }
 
+
+// 카카오 소셜 로그인
 window.onload = function kakao_url(){
     var code = getParam("code");
     if(code == ""){
