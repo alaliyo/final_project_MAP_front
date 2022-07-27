@@ -74,7 +74,7 @@
                             <input type="file" class="custom-file-input" id="file">
                         </div>
                         <!-- 닉네임 수정 -->
-                        <div style="display: flex;">
+                        <div style="display: flex;" class="nickname_show">
                             <p style="width: 80px; display: block; font-size: 17px;">닉네임 : </p>
                             <div class="control has-icons-left" style="width:100%;">
                                 <input type="text" class="nickname_textbox" id="input-nickname" style="width: 100%;" onkeyup="if(window.event.keyCode==13){nickname_check_dup()}">
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <br>
-            <div style="float: right;">
+            <div style="float: right;" class="profil_btn">
                 <button onclick="profil_revise_off()">취소</button>
                 <button onclick="update_profile()">저장</button>
             </div>
