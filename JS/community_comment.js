@@ -48,10 +48,18 @@ function commentGet() {
         },
         success: function (comments) {
             for (let i = 0; i < comments.length; i++) {
+                function images() {
+                    const image = comments[i]['img'];
+                    if (image === '입력 없음') {
+                        return "/static/MAP_logo.png"
+                    } else {
+                        return image
+                    }
+                }
                 let comment_id = comments[i]['commentId']
                 let nickname = comments[i]['nickname']
                 let comment = comments[i]['comment']
-                let img = comments[i]['img']
+                let img = images()
                 let createdAt = comments[i]['createdAt'] + '+0000'
                 let create_at = new Date(createdAt)
                 let time_brfore = time2str(create_at)

@@ -274,7 +274,7 @@ function get_post_info(){
         beforeSend: function (xhr) {
             xhr.setRequestHeader("X-AUTH-TOKEN", token);
         },
-        success: function () {
+        success: function (response) {
             $('#mytitle').val(response.title);
             $("#select_category").val(response.category);
             $("#select_day").val(response.period);
