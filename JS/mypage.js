@@ -557,6 +557,7 @@ function password_inquiry() {
     if (email == 'kakao') {
         $('#my_profil').hide();
         $('#my_profil_revise').show();
+        $('.email_hide').hide();
     } else {
         let password = prompt ("페스워드를 입력하세요")
         if (password === null) {
