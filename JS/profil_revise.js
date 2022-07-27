@@ -1,17 +1,21 @@
+function get_cookie(name) {
+    let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+}
 
+
+// 홈페이 접속 시 호출
 $(window.document).ready(function() {
     profil_get();
     profil_revise();
 })
 
+
+//프로필 보여줌
 function profil_revise_off() {
     $('#my_profil_revise').hide();
     $('#my_profil').show();
 }
-
-function get_cookie(name) {
-    let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null; }
 
 
 // 유저정보 들고오기
