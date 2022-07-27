@@ -556,33 +556,39 @@ function password_inquiry() {
     let email = profil_email
     if (email == 'kakao') {
         $('#my_profil').hide();
-        $('.nickname_show').show();
-        $('.custom-file').show();
-        $('.profil_btn').show();
+        $('#my_profil_revise').show();
+        $('#email_hide').hide();
     } else {
-        let password = prompt ("페스워드를 입력하세요")
-        if (password === null) {
-        } else {
-            $.ajax({
-                type: "GET",
-                url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
-                data:{},
-                contentType: "application/json; charset=UTF-8",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Content-type","application/json");
-                    xhr.setRequestHeader("X-AUTH-TOKEN", token);
-                },
-                success: function (response) {
-                    if ("비밀번호 확인이 완료되었습니다." == response) {
-                            $('#my_profil').hide();
-                            $('#my_profil_revise').show();
-                    } else {
-                        alert("비밀번호를 확인해 주세요");
-                        password_inquiry();
-                    }
-                }
-            });
-        }
+        $('#my_profil').hide();
+        $('#my_profil_revise').hide();
+        $('#my_profil_password_check').show();
     }
+}
 
+function password_check_btn() {
+    const token = get_cookie("X-AUTH-TOKEN");
+    let password = $('#password_check_input').val();
+    if (password === null) {
+    } else {
+        $.ajax({
+            type: "GET",
+            url: `http://finalapp-env.eba-mcuzkehj.ap-northeast-2.elasticbeanstalk.com/user/member?password=${password}`,
+            data:{},
+            contentType: "application/json; charset=UTF-8",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Content-type","application/json");
+                xhr.setRequestHeader("X-AUTH-TOKEN", token);
+            },
+            success: function (response) {
+                if ("비밀번호 확인이 완료되었습니다." == response) {
+                        $('#my_profil').hide();
+                        $('#my_profil_password_check').hide();
+                        $('#my_profil_revise').show();
+                } else {
+                    alert("비밀번호를 확인해 주세요");
+                    password_inquiry();
+                }
+            }
+        });
+    }
 }

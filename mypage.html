@@ -56,6 +56,18 @@
     <!-- 프로필 -->
     <div id="my_profil"></div>
 
+    <!-- 프로필 수정 전 패스워드 조회 -->
+    <div id="my_profil_password_check" style="width: 75%; display: none; margin: 83px;" >
+        <p>비밀번호를 입력하세요</p>
+        <div class="field has-addons" style="display: flex;">
+            <div class="control has-icons-left" style="width: 100%;">
+                <input id="password_check_input" class="input" type="password" placeholder="비밀번호를 입력해주세요" onkeyup="if(window.event.keyCode==13){password_check_btn()}">
+                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+            </div>
+                <button class="button is-sparta" style="height: 40px;" onclick="password_check_btn()">조회하기</button>
+        </div>
+    </div>
+
     <!-- 프로필 수정 -->
     <div id="my_profil_revise" style="display: none;">
         <div class="community_box" style="height: 230px; margin-top: 0;">
@@ -74,7 +86,7 @@
                             <input type="file" class="custom-file-input" id="file">
                         </div>
                         <!-- 닉네임 수정 -->
-                        <div style="display: flex;" class="nickname_show">
+                        <div style="display: flex;">
                             <p style="width: 80px; display: block; font-size: 17px;">닉네임 : </p>
                             <div class="control has-icons-left" style="width:100%;">
                                 <input type="text" class="nickname_textbox" id="input-nickname" style="width: 100%;" onkeyup="if(window.event.keyCode==13){nickname_check_dup()}">
@@ -85,7 +97,7 @@
                         </div>
                         <p id="help-nickname" class="help is-hiddden" style="height: 20px;"></p>
                         <!-- 이메일 수정 -->
-                        <div style="display: flex;" >
+                        <div style="display: flex;" id="email_hide">
                             <p style="width: 80px; display: block; font-size: 17px;">이메일 : </p>
                             <div class="control has-icons-left" style="width:100%">
                                 <input type="text" class="email_textbox" id="input-email" style="width: 100%;" onkeyup="if(window.event.keyCode==13){email_check_dup()}">
@@ -94,7 +106,7 @@
                                 <button style="width: 80px;" onclick="email_check_dup()">중복확인</button>
                             </div>
                         </div>
-                        <p id="help-email" class="help is-hiddden " style="height: 20px;"></p>
+                        <p id="help-email" class="help is-hiddden" style="height: 20px;"></p>
                         
                         <!-- <br>
                         비밀번호: <input type="text" class="image_textbox" id="password_textbox" style="width: 80%;"> -->
@@ -102,7 +114,7 @@
                 </div>
             </div>
             <br>
-            <div style="float: right;" class="profil_btn">
+            <div style="float: right;">
                 <button onclick="profil_revise_off()">취소</button>
                 <button onclick="update_profile()">저장</button>
             </div>

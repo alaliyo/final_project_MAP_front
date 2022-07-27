@@ -84,13 +84,17 @@ function update_profile() {
         alert("닉네임 중복확인을 해주세요.")
         return;
     }
-
-    if ($("#help-email").hasClass("is-danger")) {
-        alert("이메일을 다시 확인해주세요.")
-        return;
-    } else if (!$("#help-email").hasClass("is-success")) {
-        alert("이메일 중복확인을 해주세요.")
-        return;
+    if (email == 'kakao') {
+    }
+    else {
+        if ($("#help-email").hasClass("is-danger")) {
+            alert("이메일을 다시 확인해주세요.")
+            return;
+        } else if (!$("#help-email").hasClass("is-success")) {
+            alert("이메일 중복확인을 해주세요.")
+            return;
+        }
+    
     }
 
     let formData = new FormData();
